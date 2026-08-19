@@ -165,7 +165,6 @@ class Header_News extends Widget_Base {
                         <div class="header-icons">
                             <button class="header-icon-btn is-burger" type="button" data-nsfpulso-open aria-label="<?php echo esc_attr__( 'Abrir menú', 'nsfpulso-widgets' ); ?>" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="2" rx="1"/><rect x="3" y="11" width="18" height="2" rx="1"/><rect x="3" y="16" width="18" height="2" rx="1"/></svg></button>
                             <button class="header-icon-btn" type="button" data-nsfpulso-search-open aria-label="<?php echo esc_attr__( 'Buscar', 'nsfpulso-widgets' ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.8l-.3-.3c1-1.1 1.6-2.6 1.6-4.2C16 5.9 13.1 3 9.5 3S3 5.9 3 9.5 5.9 16 9.5 16c1.6 0 3.1-.6 4.2-1.6l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/></svg></button>
-                            <button class="header-icon-btn" type="button" aria-label="<?php echo esc_attr__( 'Notificaciones', 'nsfpulso-widgets' ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></button>
                         </div>
                         <?php $this->render_logo( $s, $url, 'brand' ); ?>
                         <div class="header-right">
