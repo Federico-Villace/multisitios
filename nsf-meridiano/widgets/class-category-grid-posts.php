@@ -41,17 +41,17 @@ class Category_Grid_Posts extends Widget_Base {
         $this->add_responsive_control( 'header_align', [ 'label' => esc_html__( 'Alineación', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::CHOOSE, 'options' => [ 'left'=>[ 'title'=>'Izquierda','icon'=>'eicon-text-align-left' ], 'center'=>[ 'title'=>'Centro','icon'=>'eicon-text-align-center' ], 'right'=>[ 'title'=>'Derecha','icon'=>'eicon-text-align-right' ] ], 'default' => 'left', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-cat-grid-header' => 'text-align: {{VALUE}};' ] ] );
         $this->add_control( 'header_bg', [ 'label' => esc_html__( 'Fondo encabezado', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-cat-grid-header' => 'background: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'header_padding', [ 'label' => esc_html__( 'Padding', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::DIMENSIONS, 'size_units' => [ 'px', 'em', '%' ], 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-cat-grid-header' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ] ] );
-        $this->add_control( 'cat_title_color', [ 'label' => esc_html__( 'Color título', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#003087', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-cat-grid-title' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'cat_title_color', [ 'label' => esc_html__( 'Color título', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#0b2545', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-cat-grid-title' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'cat_title_typo', 'selector' => '{{WRAPPER}} .nsfmeridiano-cat-grid-title' ] );
         $this->add_control( 'desc_color', [ 'label' => esc_html__( 'Color descripción', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-cat-grid-desc' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'desc_typo', 'selector' => '{{WRAPPER}} .nsfmeridiano-cat-grid-desc' ] );
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_card', [ 'label' => esc_html__( 'Texto de notas', 'nsfmeridiano-widgets' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
-        $this->add_control( 'kicker_color', [ 'label' => esc_html__( 'Color kicker', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#003087', 'selectors' => [ '{{WRAPPER}} .post-card-kicker' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'kicker_color', [ 'label' => esc_html__( 'Color kicker', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#a8823a', 'selectors' => [ '{{WRAPPER}} .post-card-kicker' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'kicker_typo', 'selector' => '{{WRAPPER}} .post-card-kicker' ] );
         $this->add_control( 'post_title_color', [ 'label' => esc_html__( 'Color título', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .post-card-title, {{WRAPPER}} .post-card-title a' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'post_title_hover_color', [ 'label' => esc_html__( 'Título hover', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#003087', 'selectors' => [ '{{WRAPPER}} .post-card:hover .post-card-title, {{WRAPPER}} .post-card:hover .post-card-title a' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'post_title_hover_color', [ 'label' => esc_html__( 'Título hover', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#a8823a', 'selectors' => [ '{{WRAPPER}} .post-card:hover .post-card-title, {{WRAPPER}} .post-card:hover .post-card-title a' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'post_title_typo', 'selector' => '{{WRAPPER}} .post-card-title' ] );
         $this->add_control( 'excerpt_color', [ 'label' => esc_html__( 'Color bajada', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .post-card-excerpt' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'excerpt_typo', 'selector' => '{{WRAPPER}} .post-card-excerpt' ] );
@@ -111,7 +111,7 @@ class Category_Grid_Posts extends Widget_Base {
         $title = trim( (string) ( $s['custom_title'] ?? '' ) );
         if ( '' === $title ) { $title = $term && ! is_wp_error( $term ) ? $term->name : __( 'Noticias', 'nsfmeridiano-widgets' ); }
         ?>
-        <div class="nsfmeridiano-scope nsfmeridiano-category-grid-posts"><div class="container">
+        <div class="nsfmeridiano-scope nsfmeridiano-category-grid-posts nsfmeridiano-brd"><div class="container">
             <?php if ( 'yes' === ( $s['show_header'] ?? '' ) ) : ?>
                 <header class="nsfmeridiano-cat-grid-header">
                     <h2 class="nsfmeridiano-cat-grid-title"><?php echo esc_html( $title ); ?></h2>

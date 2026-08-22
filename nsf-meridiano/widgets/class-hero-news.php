@@ -51,7 +51,7 @@ class Hero_News extends Widget_Base {
         $author_byline = Helpers::author_byline( $main->ID, $s['author_prefix'] ?? __( 'Por', 'nsfmeridiano-widgets' ) );
         $layout_class = ( $count > 1 ) ? ' nsfmeridiano-hero-has-secondary nsfmeridiano-hero-secondary-' . sanitize_html_class( $s['secondary_layout'] ?? 'side' ) : ' nsfmeridiano-hero-single';
         ?>
-        <div class="nsfmeridiano-scope nsfmeridiano-hero-news<?php echo esc_attr( $layout_class ); ?>">
+        <div class="nsfmeridiano-scope nsfmeridiano-brd nsfmeridiano-hero-news<?php echo esc_attr( $layout_class ); ?>">
             <div class="container">
                 <?php if ( 1 === $count ) : ?>
                     <article class="hero">

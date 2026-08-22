@@ -19,9 +19,9 @@ class Latest_Box extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section( 'style', [ 'label' => 'Estilo', 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
-        $this->add_control( 'accent', [ 'label' => 'Color acento', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#003087', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-latest-box::after' => 'background: {{VALUE}};', '{{WRAPPER}} .nsfmeridiano-latest-title' => 'border-color: {{VALUE}};' ] ] );
-        $this->add_control( 'box_bg', [ 'label' => 'Fondo', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-latest-box' => 'background: {{VALUE}};' ] ] );
-        $this->add_control( 'box_border', [ 'label' => 'Borde', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#d6d6d6', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-latest-box' => 'border-color: {{VALUE}};', '{{WRAPPER}} .nsfmeridiano-latest-item' => 'border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'accent', [ 'label' => 'Color acento', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#a8823a', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-latest-box::after' => 'background: {{VALUE}};', '{{WRAPPER}} .nsfmeridiano-latest-title' => 'border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'box_bg', [ 'label' => 'Fondo', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#fbfaf7', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-latest-box' => 'background: {{VALUE}};' ] ] );
+        $this->add_control( 'box_border', [ 'label' => 'Borde', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#cfc9ba', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-latest-box' => 'border-color: {{VALUE}};', '{{WRAPPER}} .nsfmeridiano-latest-item' => 'border-color: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'box_padding', [ 'label' => 'Padding', 'type' => \Elementor\Controls_Manager::DIMENSIONS, 'size_units' => [ 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-latest-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'head_typo', 'selector' => '{{WRAPPER}} .nsfmeridiano-latest-head' ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'item_typo', 'selector' => '{{WRAPPER}} .nsfmeridiano-latest-item-title' ] );
@@ -32,7 +32,7 @@ class Latest_Box extends Widget_Base {
         $s = $this->get_settings_for_display();
         $q = $this->build_query( $s );
         ?>
-        <div class="nsfmeridiano-scope"><div class="nsfmeridiano-latest-box">
+        <div class="nsfmeridiano-scope nsfmeridiano-brd"><div class="nsfmeridiano-latest-box">
             <div class="nsfmeridiano-latest-head"><strong><?php echo esc_html( $s['title'] ); ?></strong><span></span><em><?php echo esc_html( $s['section_label'] ); ?></em></div>
             <div class="nsfmeridiano-latest-list">
                 <?php $i = 0; while ( $q->have_posts() ) : $q->the_post(); $i++; ?>

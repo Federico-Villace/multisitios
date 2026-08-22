@@ -104,16 +104,16 @@ class Footer_News extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_colors', [ 'label' => 'Colores', 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
-        $this->add_control( 'footer_bg', [ 'label' => 'Fondo', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#363636', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro' => 'background: {{VALUE}};' ] ] );
-        $this->add_control( 'footer_border_color', [ 'label' => 'Línea superior / divisores', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#777777', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro, {{WRAPPER}} .nsfmeridiano-footer-pro .footer-bottom' => 'border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'footer_bg', [ 'label' => 'Fondo', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#f2efe8', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro' => 'background: {{VALUE}};' ] ] );
+        $this->add_control( 'footer_border_color', [ 'label' => 'Línea superior / divisores', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#a8823a', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro, {{WRAPPER}} .nsfmeridiano-footer-pro .footer-bottom' => 'border-color: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'top_border_width', [ 'label' => 'Grosor línea superior', 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 12 ] ], 'default' => [ 'size' => 0, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro' => 'border-top-width: {{SIZE}}{{UNIT}};' ] ] );
-        $this->add_control( 'logo_color', [ 'label' => 'Color logo texto', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .brand-logo' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'heading_color', [ 'label' => 'Color títulos columnas', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-col h5' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'link_color', [ 'label' => 'Color links', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#eeeeee', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-col a, {{WRAPPER}} .nsfmeridiano-footer-pro .footer-bottom a' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'link_hover_color', [ 'label' => 'Color links hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#003087', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-col a:hover, {{WRAPPER}} .nsfmeridiano-footer-pro .footer-bottom a:hover' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'text_color', [ 'label' => 'Color textos', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#dddddd', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-brand p, {{WRAPPER}} .nsfmeridiano-footer-pro .footer-text, {{WRAPPER}} .nsfmeridiano-footer-pro .footer-bottom p' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'social_color', [ 'label' => 'Color iconos redes', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-socials a' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'social_hover_bg', [ 'label' => 'Fondo redes hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#003087', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-socials a:hover' => 'background: {{VALUE}}; border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'logo_color', [ 'label' => 'Color logo texto', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#0b2545', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .brand-logo' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'heading_color', [ 'label' => 'Color títulos columnas', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#0b2545', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-col h5' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'link_color', [ 'label' => 'Color links', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#4a4438', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-col a, {{WRAPPER}} .nsfmeridiano-footer-pro .footer-bottom a' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'link_hover_color', [ 'label' => 'Color links hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#a8823a', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-col a:hover, {{WRAPPER}} .nsfmeridiano-footer-pro .footer-bottom a:hover' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'text_color', [ 'label' => 'Color textos', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#6b6559', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-brand p, {{WRAPPER}} .nsfmeridiano-footer-pro .footer-text, {{WRAPPER}} .nsfmeridiano-footer-pro .footer-bottom p' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'social_color', [ 'label' => 'Color iconos redes', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#0b2545', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-socials a' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'social_hover_bg', [ 'label' => 'Fondo redes hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#0b2545', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-footer-pro .footer-socials a:hover' => 'background: {{VALUE}}; border-color: {{VALUE}};' ] ] );
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_typo', [ 'label' => 'Tipografías', 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
@@ -183,7 +183,7 @@ class Footer_News extends Widget_Base {
         $logo_url = ! empty( $s['logo_url']['url'] ) ? $s['logo_url']['url'] : home_url( '/' );
         $bottom_text = str_replace( '{year}', gmdate( 'Y' ), $s['bottom_text'] ?? '' );
         ?>
-        <div class="nsfmeridiano-scope">
+        <div class="nsfmeridiano-scope nsfmeridiano-brd">
             <footer class="footer nsfmeridiano-footer-pro">
                 <div class="container">
                     <div class="nsfmeridiano-footer-main">

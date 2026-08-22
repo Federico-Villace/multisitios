@@ -59,7 +59,7 @@ class Header_News extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section( 'style', [ 'label' => esc_html__( 'Estilo', 'nsfmeridiano-widgets' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
-        $this->add_control( 'accent_color', [ 'label' => esc_html__( 'Color rojo', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#003087', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-scope' => '--c-red: {{VALUE}};' ] ] );
+        $this->add_control( 'accent_color', [ 'label' => esc_html__( 'Color rojo', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#0b2545', 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-scope' => '--c-red: {{VALUE}};' ] ] );
         $this->add_control( 'header_bg', [ 'label' => esc_html__( 'Fondo header', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .site-header' => 'background-color: {{VALUE}};' ] ] );
         $this->add_control( 'drawer_bg', [ 'label' => esc_html__( 'Fondo canvas', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .drawer' => 'background-color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'logo_typography', 'selector' => '{{WRAPPER}} .brand-logo, {{WRAPPER}} .drawer-logo' ] );
@@ -124,7 +124,7 @@ class Header_News extends Widget_Base {
         $club_url = ! empty( $s['club_url']['url'] ) ? $s['club_url']['url'] : home_url( '/' );
         $club_text = nl2br( esc_html( $s['club_text'] ?? "UNITE\nAL CLUB" ) );
         ?>
-        <div class="nsfmeridiano-scope nsfmeridiano-header-widget" id="<?php echo esc_attr( $uid ); ?>" data-search-mode="<?php echo esc_attr( $search_mode ); ?>">
+        <div class="nsfmeridiano-scope nsfmeridiano-header-widget nsfmeridiano-brd" id="<?php echo esc_attr( $uid ); ?>" data-search-mode="<?php echo esc_attr( $search_mode ); ?>">
             <div class="drawer-backdrop" data-nsfmeridiano-backdrop aria-hidden="true"></div>
             <aside class="drawer" data-nsfmeridiano-drawer aria-label="<?php echo esc_attr__( 'Menú principal', 'nsfmeridiano-widgets' ); ?>" aria-hidden="true">
                 <header class="drawer-top">

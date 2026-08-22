@@ -28,13 +28,13 @@ class Single_Note extends Widget_Base {
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'subtitle_typo', 'label' => esc_html__( 'Bajada', 'nsfmeridiano-widgets' ), 'selector' => '{{WRAPPER}} .note-subtitle' ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'body_typo', 'label' => esc_html__( 'Cuerpo', 'nsfmeridiano-widgets' ), 'selector' => '{{WRAPPER}} .note-body' ] );
         $this->add_control( 'title_color', [ 'label' => esc_html__( 'Color título', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .note-title' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'accent_color', [ 'label' => esc_html__( 'Color acento', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#003087', 'selectors' => [ '{{WRAPPER}} .note-breadcrumb a, {{WRAPPER}} .author-name strong, {{WRAPPER}} .note-body a' => 'color: {{VALUE}};', '{{WRAPPER}} .share-btn:hover' => 'border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'accent_color', [ 'label' => esc_html__( 'Color acento', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#a8823a', 'selectors' => [ '{{WRAPPER}} .note-breadcrumb a, {{WRAPPER}} .author-name strong, {{WRAPPER}} .note-body a' => 'color: {{VALUE}};', '{{WRAPPER}} .share-btn:hover' => 'border-color: {{VALUE}};' ] ] );
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_share', [ 'label' => esc_html__( 'Compartir', 'nsfmeridiano-widgets' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE, 'condition' => [ 'show_share' => 'yes' ] ] );
         $this->add_responsive_control( 'share_size', [ 'label' => esc_html__( 'Tamaño botón', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 24, 'max' => 70 ] ], 'default' => [ 'size' => 38, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .share-btn' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};' ] ] );
         $this->add_control( 'share_color', [ 'label' => esc_html__( 'Color iconos', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .share-btn, {{WRAPPER}} .share-save' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'share_hover_bg', [ 'label' => esc_html__( 'Fondo hover', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#003087', 'selectors' => [ '{{WRAPPER}} .share-btn:hover' => 'background: {{VALUE}}; color: #fff; border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'share_hover_bg', [ 'label' => esc_html__( 'Fondo hover', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#0b2545', 'selectors' => [ '{{WRAPPER}} .share-btn:hover' => 'background: {{VALUE}}; color: #fff; border-color: {{VALUE}};' ] ] );
         $this->end_controls_section();
     }
 
@@ -62,7 +62,7 @@ class Single_Note extends Widget_Base {
         $share_url = rawurlencode( get_permalink( $post_id ) );
         $share_title = rawurlencode( get_the_title( $post_id ) );
         ?>
-        <div class="nsfmeridiano-scope"><div class="container"><article class="note-wrap"><div class="note-main">
+        <div class="nsfmeridiano-scope nsfmeridiano-brd nsfmeridiano-note-widget"><div class="container"><article class="note-wrap"><div class="note-main">
             <?php if ( 'yes' === ( $s['show_breadcrumb'] ?? 'yes' ) ) : ?>
                 <nav class="note-breadcrumb" aria-label="<?php echo esc_attr__( 'Migas', 'nsfmeridiano-widgets' ); ?>">
                     <a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo esc_html( $s['breadcrumb_home_text'] ?: __( 'Inicio', 'nsfmeridiano-widgets' ) ); ?></a>
