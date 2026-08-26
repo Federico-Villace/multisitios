@@ -3500,6 +3500,26 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
   background:var(--brd-paper);
   border-bottom:4px double var(--brd-navy);
 }
+/* Elementor envuelve cada widget en `.e-con > .e-con-inner`, y ese
+   interior trae `max-width: var(--content-width)` (1140px por defecto).
+   Ese tope está POR ENCIMA del plugin: ninguna regla escrita desde
+   adentro lo alcanza, y por eso el header seguía angosto por más que se
+   soltara su `.container`.
+
+   `:has()` sí lo alcanza: selecciona hacia arriba, al contenedor que
+   contiene este widget, y le saca el tope SÓLO a ése. Cualquier otro
+   contenedor de la página sigue en caja como corresponde.
+
+   Es la alternativa limpia al truco de `width:100vw`, que rompe en
+   Windows porque 100vw incluye el ancho de la barra de scroll. */
+.e-con:has(.elementor-widget-nsfmeridiano_header_news) > .e-con-inner{
+  max-width:none;
+  padding-inline:0;
+}
+.e-con:has(.elementor-widget-nsfmeridiano_header_news){
+  padding-inline:0;
+}
+
 /* Header a ancho completo.
 
    El fondo del header ya iba de borde a borde: `.site-header` no declara
@@ -3520,12 +3540,13 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
   grid-template-columns:auto minmax(0,1fr);
   grid-template-areas:
     "actions status"
-    "brand   brand";
+    "brand   brand"
+    "nav     nav";
   align-items:center;
   gap:0 16px;
   height:auto;
   min-height:0;
-  padding:9px 0 16px;
+  padding:9px 0 0;
 }
 .nsfmeridiano-brd .header-icons{ grid-area:actions; display:inline-flex; gap:2px; }
 .nsfmeridiano-brd .header-right{
@@ -3554,6 +3575,50 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
 }
 .nsfmeridiano-brd .brand-logo-img{ display:block; height:auto; }
 .nsfmeridiano-brd .brand-slogan{ font-size:11px; letter-spacing:.3em; }
+
+/* --- Barra de secciones: la línea horizontal bajo el cabezal ---
+   Cabecera de servicio, nombre del diario y línea de secciones: es el
+   orden de una portada de papel. Reemplaza a la hamburguesa a partir de
+   1025px; por debajo vuelve el canvas. */
+.nsfmeridiano-brd .header-nav{ grid-area:nav; width:100%; }
+.nsfmeridiano-brd .header-nav ul{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:0 30px;
+  margin:14px 0 0;
+  padding:11px 0 13px;
+  border-top:1px solid var(--brd-rule);
+}
+.nsfmeridiano-brd .header-nav li{ border:0; padding:0; }
+.nsfmeridiano-brd .header-nav li::before{ content:none; }
+.nsfmeridiano-brd .header-nav a{
+  display:block;
+  padding:3px 0;
+  font-family:var(--f-brd-serif);
+  font-variant-caps:small-caps;
+  font-size:17px;
+  font-weight:600;
+  line-height:1.2;
+  letter-spacing:.09em;
+  text-transform:lowercase;
+  color:var(--brd-navy);
+  transition:color 140ms ease;
+}
+.nsfmeridiano-brd .header-nav a:hover{ color:var(--brd-gold); }
+/* Si el menú viene vacío, la fila no deja un filete suelto */
+.nsfmeridiano-brd .header-nav:empty,
+.nsfmeridiano-brd .header-nav ul:empty{ display:none; }
+
+/* El cruce: hamburguesa abajo de 1025, secciones desplegadas arriba */
+@media (min-width:1025px){
+  .nsfmeridiano-brd .header-icon-btn.is-burger{ display:none; }
+}
+@media (max-width:1024px){
+  .nsfmeridiano-brd .header-nav{ display:none; }
+  .nsfmeridiano-brd.nsfmeridiano-header-widget .site-header-inner{ padding-bottom:16px; }
+}
 
 .nsfmeridiano-brd .header-icon-btn{
   width:34px; height:34px;
