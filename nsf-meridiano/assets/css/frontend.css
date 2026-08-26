@@ -3500,6 +3500,25 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
   background:var(--brd-paper);
   border-bottom:4px double var(--brd-navy);
 }
+/* ── Colisión de nombres con el tema ─────────────────────────────
+   Hello Elementor define SU propio header con la clase `.site-header`
+   y, arriba de 1200px, le impone `max-width:1140px` más márgenes
+   automáticos (theme.css, regla `.site-header:not(.dynamic-header)`).
+
+   El marcado de este widget usa EL MISMO nombre de clase, así que el
+   tema se lo aplica creyendo que es el suyo. Y no había forma de
+   notarlo desde acá: ninguna regla del plugin declaraba `max-width`
+   sobre `.site-header`, así que la del tema ganaba sola, sin competir.
+
+   Se neutraliza con especificidad de sobra (0,3,0) y (0,4,0) para no
+   depender del orden en que WordPress encole las hojas. */
+.nsfmeridiano-scope.nsfmeridiano-brd .site-header,
+.nsfmeridiano-scope.nsfmeridiano-brd .site-header .site-header-inner{
+  max-width:none;
+  margin-left:0;
+  margin-right:0;
+}
+
 /* Elementor envuelve cada widget en `.e-con > .e-con-inner`, y ese
    interior trae `max-width: var(--content-width)` (1140px por defecto).
    Ese tope está POR ENCIMA del plugin: ninguna regla escrita desde
