@@ -3500,6 +3500,21 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
   background:var(--brd-paper);
   border-bottom:4px double var(--brd-navy);
 }
+/* Header a ancho completo.
+
+   El fondo del header ya iba de borde a borde: `.site-header` no declara
+   ancho, se estira con su padre. Lo que estaba acotado era el CONTENIDO,
+   por el `.container` interno con `max-width: var(--w-max)` (1200px).
+
+   Se libera sólo acá dentro, no globalmente: el cuerpo de las notas
+   necesita seguir acotado o la línea de texto se vuelve ilegible.
+   El respiro lateral crece con la pantalla pero nunca baja de 20px,
+   así el titular no arranca pegado al borde en un monitor grande. */
+.nsfmeridiano-brd .site-header > .container{
+  max-width:none;
+  padding-left:clamp(20px,3.2vw,56px);
+  padding-right:clamp(20px,3.2vw,56px);
+}
 .nsfmeridiano-brd.nsfmeridiano-header-widget .site-header-inner{
   display:grid;
   grid-template-columns:auto minmax(0,1fr);
@@ -3600,7 +3615,9 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
   max-height:100dvh;
   transform:translateY(-100%);
   transition:transform 380ms cubic-bezier(.16,.84,.44,1);
-  padding:0 max(18px,calc((100vw - 1240px) / 2));
+  /* Mismo respiro lateral que el header: el canvas es parte de la
+     misma pieza y tiene que alinear con él. */
+  padding:0 clamp(20px,3.2vw,56px);
   display:grid;
   grid-template-columns:minmax(0,1fr) auto;
   grid-template-areas:
