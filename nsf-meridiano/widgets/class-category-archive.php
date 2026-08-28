@@ -33,6 +33,34 @@ class Category_Archive extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_items', [ 'label' => esc_html__( 'Notas', 'nsfmeridiano-widgets' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
+        $this->add_responsive_control( 'content_box', [
+            'label' => esc_html__( 'Ancho del contenido', 'nsfmeridiano-widgets' ),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => [ 'px', '%' ],
+            'range' => [ 'px' => [ 'min' => 700, 'max' => 1800 ], '%' => [ 'min' => 40, 'max' => 100 ] ],
+            'default' => [ 'size' => 1320, 'unit' => 'px' ],
+            'tablet_default' => [ 'size' => 100, 'unit' => '%' ],
+            'mobile_default' => [ 'size' => 100, 'unit' => '%' ],
+            'description' => esc_html__( 'Encajona el contenido. El fondo de la sección sigue ocupando todo el ancho.', 'nsfmeridiano-widgets' ),
+            'selectors' => [ '{{WRAPPER}} .nsfmeridiano-scope' => '--brd-box: {{SIZE}}{{UNIT}};' ],
+        ] );
+        $this->add_responsive_control( 'content_inset', [
+            'label' => esc_html__( 'Respiro lateral', 'nsfmeridiano-widgets' ),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => [ 'px' ],
+            'range' => [ 'px' => [ 'min' => 0, 'max' => 140 ] ],
+            'default' => [ 'size' => 44, 'unit' => 'px' ],
+            'tablet_default' => [ 'size' => 28, 'unit' => 'px' ],
+            'mobile_default' => [ 'size' => 18, 'unit' => 'px' ],
+            'selectors' => [ '{{WRAPPER}} .nsfmeridiano-scope' => '--brd-inset: {{SIZE}}{{UNIT}};' ],
+        ] );
+        $this->add_control( 'section_bg', [
+            'label' => esc_html__( 'Fondo de la sección', 'nsfmeridiano-widgets' ),
+            'type' => \Elementor\Controls_Manager::COLOR,
+            'default' => '#fbfaf7',
+            'description' => esc_html__( 'Cubre TODO el ancho, incluidos los costados que quedan fuera del contenido encajonado.', 'nsfmeridiano-widgets' ),
+            'selectors' => [ '{{WRAPPER}} .nsfmeridiano-scope' => 'background: {{VALUE}};' ],
+        ] );
         $this->add_responsive_control( 'item_gap', [ 'label' => esc_html__( 'Separación', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'size_units' => [ 'px' ], 'range' => [ 'px' => [ 'min' => 0, 'max' => 80 ] ], 'default' => [ 'size' => 18, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .cat-list' => 'gap: {{SIZE}}{{UNIT}};' ] ] );
         $this->add_responsive_control( 'image_width', [ 'label' => esc_html__( 'Ancho imagen lista', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'size_units' => [ 'px', '%' ], 'range' => [ 'px' => [ 'min' => 80, 'max' => 520 ], '%' => [ 'min' => 20, 'max' => 60 ] ], 'default' => [ 'size' => 340, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .cat-list' => '--brd-archive-img: {{SIZE}}{{UNIT}};' ], 'condition' => [ 'layout' => 'list' ] ] );
         $this->add_responsive_control( 'image_ratio', [ 'label' => esc_html__( 'Proporción imagen', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '3/2', 'options' => [ '3/2' => '3:2', '4/3' => '4:3', '1/1' => '1:1', '16/9' => '16:9' ], 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-archive-img' => 'aspect-ratio: {{VALUE}};' ] ] );

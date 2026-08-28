@@ -3947,6 +3947,28 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
   background:var(--brd-paper);
   padding:30px 0 38px;
 }
+/* ── Encajonado de sección ───────────────────────────────────────
+   Un portal de noticias a sangre completa se lee como una landing.
+   Se encajona el CONTENIDO, no la sección: el fondo sigue ocupando
+   todo el ancho, así los costados que quedan fuera nunca aparecen en
+   blanco — se pintan con el color de la propia sección.
+
+       ┌────────────────────────────────────────────┐
+       │ fondo   ┌──────────────────────┐    fondo  │
+       │ de la   │      contenido       │    de la  │
+       │ sección └──────────────────────┘   sección │
+       └────────────────────────────────────────────┘
+
+   Ancho, respiro y color salen de controles de Elementor, así se
+   ajusta desde la interfaz sin volver a tocar el CSS. */
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts > .container,
+.nsfmeridiano-brd.nsfmeridiano-archive-widget > .container{
+  max-width:var(--brd-box,1320px);
+  margin-inline:auto;
+  padding-left:var(--brd-inset,44px);
+  padding-right:var(--brd-inset,44px);
+}
+
 /* Cabecera de sección centrada entre filetes, como un titulillo de página */
 .nsfmeridiano-brd.nsfmeridiano-category-grid-posts .nsfmeridiano-cat-grid-header{
   position:relative;
