@@ -3945,7 +3945,9 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
    ============================================================ */
 .nsfmeridiano-brd.nsfmeridiano-category-grid-posts{
   background:var(--brd-paper);
-  padding:30px 0 38px;
+  /* Valor de respaldo: el margen real lo fija el control
+     "Margen vertical de la sección" desde Elementor. */
+  padding:58px 0 66px;
 }
 /* ── Encajonado de sección ───────────────────────────────────────
    Un portal de noticias a sangre completa se lee como una landing.
@@ -4007,6 +4009,10 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
   position:relative;
   border-top:1px solid var(--brd-rule);
   padding-top:15px;
+  /* La fecha quedaba a ras del borde inferior de la ficha y el conjunto
+     se leía aplastado: el filete de la fila siguiente arrancaba encima
+     del texto anterior sin transición. */
+  padding-bottom:16px;
   background:none;
 }
 .nsfmeridiano-brd.nsfmeridiano-category-grid-posts .post-card::after{ content:none; }
@@ -4158,11 +4164,12 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
    ============================================================ */
 .nsfmeridiano-brd.nsfmeridiano-archive-widget{
   background:var(--brd-paper);
-  padding:0 0 34px;
+  /* Antes no tenía respiro arriba y quedaba pegado al bloque anterior. */
+  padding:58px 0 66px;
 }
 .nsfmeridiano-brd .cat-header{
   position:relative;
-  padding:30px 0 14px;
+  padding:0 0 14px;
   border-bottom:4px double var(--brd-navy);
   text-align:center;
 }

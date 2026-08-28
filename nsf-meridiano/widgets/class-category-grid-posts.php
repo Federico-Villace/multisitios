@@ -56,8 +56,19 @@ class Category_Grid_Posts extends Widget_Base {
             'description' => esc_html__( 'Cubre TODO el ancho, incluidos los costados que quedan fuera del contenido encajonado.', 'nsfmeridiano-widgets' ),
             'selectors' => [ '{{WRAPPER}} .nsfmeridiano-scope' => 'background: {{VALUE}};' ],
         ] );
+        $this->add_responsive_control( 'section_pad_y', [
+            'label' => esc_html__( 'Margen vertical de la sección', 'nsfmeridiano-widgets' ),
+            'type' => \Elementor\Controls_Manager::DIMENSIONS,
+            'size_units' => [ 'px', 'em' ],
+            'allowed_dimensions' => 'vertical',
+            'default'        => [ 'top' => 58, 'bottom' => 66, 'unit' => 'px', 'isLinked' => false ],
+            'tablet_default' => [ 'top' => 42, 'bottom' => 48, 'unit' => 'px', 'isLinked' => false ],
+            'mobile_default' => [ 'top' => 30, 'bottom' => 34, 'unit' => 'px', 'isLinked' => false ],
+            'description' => esc_html__( 'Separa la sección de los bloques de arriba y de abajo. El fondo acompaña, así que el aire también queda del color de la sección.', 'nsfmeridiano-widgets' ),
+            'selectors' => [ '{{WRAPPER}} .nsfmeridiano-scope' => 'padding-top: {{TOP}}{{UNIT}}; padding-bottom: {{BOTTOM}}{{UNIT}};' ],
+        ] );
         $this->add_responsive_control( 'columns', [ 'label' => esc_html__( 'Columnas', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '3', 'tablet_default' => '2', 'mobile_default' => '1', 'options' => [ '1'=>'1','2'=>'2','3'=>'3','4'=>'4','5'=>'5' ], 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-category-grid-posts .posts-grid' => 'grid-template-columns: repeat({{VALUE}}, minmax(0, 1fr));' ] ] );
-        $this->add_responsive_control( 'gap', [ 'label' => esc_html__( 'Separación', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 80 ] ], 'default' => [ 'size' => 28, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-category-grid-posts .posts-grid' => 'gap: {{SIZE}}{{UNIT}};' ] ] );
+        $this->add_responsive_control( 'gap', [ 'label' => esc_html__( 'Separación', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 80 ] ], 'default' => [ 'size' => 38, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-category-grid-posts .posts-grid' => 'gap: {{SIZE}}{{UNIT}};' ] ] );
         $this->add_control( 'image_ratio', [ 'label' => esc_html__( 'Proporción imagen', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '4/3', 'options' => [ '1/1'=>'Cuadrada 1:1','4/3'=>'4:3','16/9'=>'16:9','3/2'=>'3:2','2/3'=>'Vertical 2:3' ], 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-category-grid-posts .post-card-img, {{WRAPPER}} .nsfmeridiano-category-grid-posts .post-card-img img' => 'aspect-ratio: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'card_padding', [ 'label' => esc_html__( 'Padding card', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::DIMENSIONS, 'size_units' => [ 'px', 'em', '%' ], 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-category-grid-posts .post-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ] ] );
         $this->add_control( 'card_bg', [ 'label' => esc_html__( 'Fondo card', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfmeridiano-category-grid-posts .post-card' => 'background: {{VALUE}};' ] ] );
