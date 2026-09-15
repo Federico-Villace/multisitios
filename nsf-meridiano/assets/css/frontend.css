@@ -5007,3 +5007,165 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
   .nsfmeridiano-brd .cat-header{ padding-left:22px; padding-right:22px; }
   .nsfmeridiano-brd .note-body{ font-size:16.5px; }
 }
+
+
+/* ============================================================
+   PROVINCIA EN FOCO · BUSCADOR "EL VISOR"
+   ------------------------------------------------------------
+   El formulario lo inyecta Ivory Search por shortcode, y la capa
+   base del clon ya lo pisaba con una píldora redondeada y un
+   botón circular — el mismo en los diez plugins. Ese detalle
+   delataba que estaban hechos por la misma mano.
+
+   Acá se reemplaza por el gesto de la marca: pantalla al negro,
+   corchetes de encuadre en naranja y el término de búsqueda en
+   condensada grande, como un visor de cámara enfocando.
+
+   Las reglas base usan !important, así que hay que responder con
+   !important Y más especificidad: (0,4,0) contra (0,3,0).
+   ============================================================ */
+
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal{
+  padding:0;
+  align-items:center;
+  justify-content:center;
+}
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__backdrop{
+  background:rgba(13,13,13,.96);
+  backdrop-filter:none;
+}
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__panel{
+  position:relative;
+  width:min(920px,calc(100vw - 56px));
+  background:none;
+  border:0;
+  border-radius:0;
+  box-shadow:none;
+  padding:56px 48px 50px;
+}
+
+/* Los corchetes del logo enmarcando el campo */
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__panel::before,
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__panel::after{
+  content:"";
+  position:absolute;
+  width:30px;
+  height:30px;
+  border:3px solid var(--brd-gold);
+  pointer-events:none;
+}
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__panel::before{
+  top:0; left:0; border-right:0; border-bottom:0;
+}
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__panel::after{
+  bottom:0; right:0; border-left:0; border-top:0;
+}
+
+/* El campo deja de ser una caja: sólo un filete naranja debajo y el
+   término escrito en condensada grande, como un titular en curso */
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal input[type="search"],
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal input[type="text"],
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal .is-search-input{
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  border:0!important;
+  border-bottom:3px solid var(--brd-gold)!important;
+  border-radius:0!important;
+  background:transparent!important;
+  padding:0 0 16px!important;
+  font-family:var(--f-brd-disp)!important;
+  font-size:clamp(26px,5vw,56px)!important;
+  font-weight:700!important;
+  line-height:1.06!important;
+  letter-spacing:.005em!important;
+  text-transform:uppercase!important;
+  color:#fff!important;
+  box-shadow:none!important;
+  outline:0!important;
+}
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal input::placeholder{
+  color:rgba(255,255,255,.3)!important;
+}
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal input:focus{
+  border-bottom-color:#fff!important;
+}
+
+/* El botón de enviar de Ivory pierde el círculo azul */
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal .is-search-submit,
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal .search-submit,
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal button[type="submit"]{
+  background:none!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  width:auto!important;
+  height:auto!important;
+  padding:0 0 12px!important;
+  color:var(--brd-gold)!important;
+  opacity:1!important;
+}
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal .is-search-submit svg,
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal .is-search-icon svg{
+  fill:var(--brd-gold)!important;
+  width:26px!important;
+  height:26px!important;
+}
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal .is-search-form{
+  display:flex!important;
+  align-items:flex-end!important;
+  gap:18px!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal .is-search-form label{
+  flex:1 1 auto!important;
+  margin:0!important;
+  width:auto!important;
+}
+
+/* Cerrar: cuadrado, del color de la marca, no un círculo gris */
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__close{
+  top:-6px;
+  right:-6px;
+  width:48px;
+  height:48px;
+  border:2px solid var(--brd-gold);
+  border-radius:0;
+  background:none;
+  color:var(--brd-gold);
+  font-size:26px;
+  font-weight:400;
+  transition:background 140ms ease,color 140ms ease;
+}
+.nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__close:hover{
+  background:var(--brd-gold);
+  color:var(--brd-ink);
+}
+
+/* El campo del canvas sigue la misma lógica: filete, no caja */
+.nsfmeridiano-brd .drawer-search-input input{
+  height:auto;
+  padding:0 0 12px;
+  border:0;
+  border-bottom:2px solid var(--brd-gold);
+  border-radius:0;
+  background:transparent;
+  font-family:var(--f-brd-disp);
+  font-size:26px;
+  font-weight:700;
+  letter-spacing:.005em;
+  text-transform:uppercase;
+  color:var(--brd-ink);
+}
+.nsfmeridiano-brd .drawer-search-input input::placeholder{ color:var(--brd-muted); }
+.nsfmeridiano-brd .drawer-search-input input:focus{ outline:0; border-bottom-color:var(--brd-ink); }
+
+@media (max-width:767px){
+  .nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__panel{ padding:44px 28px 40px; }
+  .nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__panel::before,
+  .nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__panel::after{ width:22px; height:22px; }
+  .nsfmeridiano-scope.nsfmeridiano-brd .nsfmeridiano-search-modal__close{ top:0; right:0; width:40px; height:40px; }
+  .nsfmeridiano-brd .drawer-search-input input{ font-size:20px; }
+}
