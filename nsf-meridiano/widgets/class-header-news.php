@@ -14,7 +14,7 @@ class Header_News extends Widget_Base {
     protected function register_controls() {
         $this->start_controls_section( 'content', [ 'label' => esc_html__( 'Contenido', 'nsfmeridiano-widgets' ) ] );
         $this->add_control( 'logo_type', [ 'label' => esc_html__( 'Tipo de logo', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => 'text', 'options' => [ 'text' => esc_html__( 'Texto', 'nsfmeridiano-widgets' ), 'image' => esc_html__( 'Imagen / SVG', 'nsfmeridiano-widgets' ) ] ] );
-        $this->add_control( 'logo_text', [ 'label' => esc_html__( 'Logo texto', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => 'Meridiano', 'condition' => [ 'logo_type' => 'text' ] ] );
+        $this->add_control( 'logo_text', [ 'label' => esc_html__( 'Logo texto', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => 'Provincia en Foco', 'condition' => [ 'logo_type' => 'text' ] ] );
         $this->add_control( 'logo_image', [ 'label' => esc_html__( 'Logo imagen / SVG', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::MEDIA, 'condition' => [ 'logo_type' => 'image' ] ] );
         $this->add_control( 'logo_slogan', [ 'label' => esc_html__( 'Slogan', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => 'FIRME CON LA GENTE' ] );
         $this->add_control( 'home_url', [ 'label' => esc_html__( 'URL del logo', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::URL ] );
@@ -30,7 +30,7 @@ class Header_News extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section( 'drawer_content', [ 'label' => esc_html__( 'Menú canvas', 'nsfmeridiano-widgets' ) ] );
-        $this->add_control( 'drawer_title', [ 'label' => esc_html__( 'Título del canvas', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => 'Meridiano' ] );
+        $this->add_control( 'drawer_title', [ 'label' => esc_html__( 'Título del canvas', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => 'Provincia en Foco' ] );
         $this->add_control( 'drawer_menu', [ 'label' => esc_html__( 'Menú de WordPress', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'options' => Helpers::get_menus_options(), 'default' => '' ] );
         $this->add_control( 'fallback_items', [ 'label' => esc_html__( 'Ítems fallback', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::TEXTAREA, 'rows' => 5, 'default' => "Argentina\nPolítica\nEconomía\nDeportes\nSociedad\nMundo\nEspectáculos\nTecnología\nNewsletters" ] );
         $this->add_control( 'show_header_nav', [ 'label' => esc_html__( 'Barra de secciones en escritorio', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => 'yes', 'description' => esc_html__( 'Muestra las secciones desplegadas bajo el cabezal en pantallas grandes. Debajo de 1024px se reemplaza por la hamburguesa.', 'nsfmeridiano-widgets' ) ] );

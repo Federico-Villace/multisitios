@@ -4754,3 +4754,255 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
   .nsfmeridiano-brd .note-body > p:first-of-type::first-letter{ font-size:3.5em; }
   .nsfmeridiano-brd .share-save{ margin-left:0; }
 }
+
+
+/* ============================================================
+   MERIDIANO · IDENTIDAD "PROVINCIA EN FOCO" v2.1
+   ------------------------------------------------------------
+   El logo impone una dirección opuesta a la que traía la capa
+   broadsheet: grotesca ULTRACONDENSADA en mayúsculas plenas,
+   negro y naranja, y corchetes de encuadre de cámara.
+
+   Se conservan los LAYOUTS (corondel del archivo, cabezal
+   centrado, mosaico, capitular) y se cambia sólo la piel:
+   paleta, tipografía y el motivo gráfico de la marca.
+
+   Se redefinen las VARIABLES en vez de reescribir cada regla:
+   hay 49 usos de la tipográfica y todos se actualizan solos.
+   ============================================================ */
+
+.nsfmeridiano-scope.nsfmeridiano-brd,
+.nsfmeridiano-brd{
+  /* --- Paleta tomada del logo --- */
+  --brd-navy:      #0d0d0d;   /* el negro de "PROVINCIA EN" */
+  --brd-navy-soft: #3a3a37;
+  --brd-gold:      #e8935a;   /* el naranja de "FOCO" */
+  --brd-gold-soft: #f7d3b4;
+  /* Variante oscura del naranja para TEXTO CHICO: #e8935a sobre papel
+     da apenas 2.3:1 de contraste y no pasa WCAG en cuerpos pequeños.
+     El naranja claro queda para bloques, filetes y corchetes. */
+  --brd-gold-ink:  #b0581f;
+
+  --brd-paper:     #fcfbf9;
+  --brd-paper-2:   #f4f1ec;
+  --brd-rule:      #dbd6ce;
+  --brd-rule-soft: #ebe7e0;
+  --brd-ink:       #141412;
+  --brd-muted:     #6f6a62;
+
+  /* --- Tipografía ---
+     `--f-brd-serif` deja de ser serif y pasa a ser la de lectura; se
+     conserva el nombre para no tocar los 49 usos. La condensada va
+     aparte, sólo para titulares.
+
+     Ninguna de estas viene instalada de fábrica: conviene elegir
+     Oswald 700 desde los controles de Tipografía de Elementor, que se
+     encarga de cargarla para el visitante. El stack es el respaldo. */
+  --f-brd-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --f-brd-disp:  "Oswald", "Anton", "Haettenschweiler", "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
+  --f-brd-sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  --c-red:    #0d0d0d;
+  --c-yellow: #e8935a;
+  --c-line:   #dbd6ce;
+  --c-meta:   #6f6a62;
+  --c-bg-alt: #f4f1ec;
+}
+
+/* --- Etiquetas: las versalitas del broadsheet no existen en una
+       grotesca. Su equivalente es mayúscula con interletrado. --- */
+.nsfmeridiano-brd .post-card-kicker,
+.nsfmeridiano-brd .cat-kicker,
+.nsfmeridiano-brd .nsfmeridiano-archive-kicker,
+.nsfmeridiano-brd .cat-item .kicker,
+.nsfmeridiano-brd .card-byline,
+.nsfmeridiano-brd .post-card-date,
+.nsfmeridiano-brd .note-date,
+.nsfmeridiano-brd .author-name,
+.nsfmeridiano-brd .hero-byline,
+.nsfmeridiano-brd .header-date,
+.nsfmeridiano-brd .brand-slogan,
+.nsfmeridiano-brd .note-breadcrumb,
+.nsfmeridiano-brd .nsfmeridiano-latest-head em,
+.nsfmeridiano-brd .drawer-close,
+.nsfmeridiano-brd .live-pill,
+.nsfmeridiano-brd .club-pill .club-badge,
+.nsfmeridiano-brd .drawer-live-cta,
+.nsfmeridiano-brd .share-save,
+.nsfmeridiano-brd .nsfmeridiano-footer-pro .footer-bottom p,
+.nsfmeridiano-brd .nsfmeridiano-footer-pro .footer-bottom a,
+.nsfmeridiano-brd .nsfmeridiano-footer-pro .footer-col h5{
+  font-family:var(--f-brd-sans);
+  font-variant-caps:normal;
+  font-weight:700;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+}
+.nsfmeridiano-brd .post-card-kicker,
+.nsfmeridiano-brd .nsfmeridiano-archive-kicker,
+.nsfmeridiano-brd .cat-item .kicker{ font-size:11.5px; color:var(--brd-gold-ink); }
+.nsfmeridiano-brd .cat-kicker{ font-size:12px; color:var(--brd-gold-ink); }
+.nsfmeridiano-brd .card-byline,
+.nsfmeridiano-brd .post-card-date,
+.nsfmeridiano-brd .note-date,
+.nsfmeridiano-brd .author-name,
+.nsfmeridiano-brd .hero-byline,
+.nsfmeridiano-brd .header-date{ font-size:11.5px; }
+.nsfmeridiano-brd .note-breadcrumb,
+.nsfmeridiano-brd .nsfmeridiano-footer-pro .footer-col h5{ font-size:12px; }
+.nsfmeridiano-brd .nsfmeridiano-latest-head em{ font-size:11px; color:var(--brd-gold-ink); }
+.nsfmeridiano-brd .brand-slogan{ font-size:10px; letter-spacing:.34em; }
+
+/* --- Titulares: condensada, negra, mayúsculas, muy apretada --- */
+.nsfmeridiano-brd .brand-logo,
+.nsfmeridiano-brd .drawer-logo,
+.nsfmeridiano-brd .nsfmeridiano-footer-pro .footer-brand .brand-logo,
+.nsfmeridiano-brd .cat-title,
+.nsfmeridiano-brd .cat-item .card-title,
+.nsfmeridiano-brd .note-title,
+.nsfmeridiano-brd .note-body h2,
+.nsfmeridiano-brd .note-body h3,
+.nsfmeridiano-brd .hero-title,
+.nsfmeridiano-brd .nsfmeridiano-hero-main-title,
+.nsfmeridiano-brd .nsfmeridiano-hero-side-title,
+.nsfmeridiano-brd .nsfmeridiano-dynamic-title,
+.nsfmeridiano-brd .nsfmeridiano-dynamic-section-title,
+.nsfmeridiano-brd .nsfmeridiano-latest-head strong,
+.nsfmeridiano-brd .nsfmeridiano-latest-item-title,
+.nsfmeridiano-brd .header-nav a,
+.nsfmeridiano-brd .drawer-list li a,
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .nsfmeridiano-cat-grid-title,
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .post-card-title{
+  font-family:var(--f-brd-disp);
+  font-weight:700;
+  font-variant-caps:normal;
+  text-transform:uppercase;
+  letter-spacing:.005em;
+  color:var(--brd-navy);
+}
+/* La condensada apila mejor con la línea más cerrada que la serif */
+.nsfmeridiano-brd .cat-title,
+.nsfmeridiano-brd .note-title,
+.nsfmeridiano-brd .hero-title,
+.nsfmeridiano-brd .nsfmeridiano-hero-main-title,
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .nsfmeridiano-cat-grid-title{ line-height:.94; }
+.nsfmeridiano-brd .cat-item .card-title,
+.nsfmeridiano-brd .nsfmeridiano-latest-item-title,
+.nsfmeridiano-brd .nsfmeridiano-hero-side-title,
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .post-card-title{ line-height:1.04; }
+.nsfmeridiano-brd .nsfmeridiano-dynamic-title{ line-height:1.02; }
+.nsfmeridiano-brd .header-nav a,
+.nsfmeridiano-brd .drawer-list li a{ letter-spacing:.06em; }
+
+/* El naranja como color de vínculo activo */
+.nsfmeridiano-brd .cat-item .card-title a:hover,
+.nsfmeridiano-brd .note-title a:hover,
+.nsfmeridiano-brd .hero-title a:hover,
+.nsfmeridiano-brd .nsfmeridiano-hero-main-title a:hover,
+.nsfmeridiano-brd .nsfmeridiano-hero-side-title a:hover,
+.nsfmeridiano-brd .nsfmeridiano-dynamic-title a:hover,
+.nsfmeridiano-brd .nsfmeridiano-latest-item-title:hover,
+.nsfmeridiano-brd .header-nav a:hover,
+.nsfmeridiano-brd .drawer-list li a:hover,
+.nsfmeridiano-brd .nsfmeridiano-footer-pro .footer-col a:hover{ color:var(--brd-gold-ink); }
+
+/* Cuerpo de lectura: grotesca neutra, un punto más de interlínea que
+   la serif porque la sans pide más aire */
+.nsfmeridiano-brd .note-body,
+.nsfmeridiano-brd .nsfmeridiano-archive-excerpt,
+.nsfmeridiano-brd .nsfmeridiano-dynamic-excerpt,
+.nsfmeridiano-brd .hero-sub,
+.nsfmeridiano-brd .note-subtitle,
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .post-card-excerpt{
+  font-family:var(--f-brd-serif);
+  font-style:normal;
+  letter-spacing:0;
+}
+.nsfmeridiano-brd .note-body{ font-size:17.5px; line-height:1.72; }
+.nsfmeridiano-brd .note-body > p:first-of-type::first-letter{
+  font-family:var(--f-brd-disp);
+  font-size:3.6em;
+  line-height:.82;
+  color:var(--brd-gold);
+}
+.nsfmeridiano-brd .note-body blockquote{
+  font-family:var(--f-brd-disp);
+  font-style:normal;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:.005em;
+  line-height:1.06;
+  border-left-color:var(--brd-gold);
+}
+
+/* --- El motivo de la marca: corchetes de encuadre ---
+   Los ángulos que enmarcan "FOCO" en el logo son marcas de encuadre de
+   cámara. Se reutilizan como firma en las cabeceras de sección y en el
+   recuadro de Lo Último, reaprovechando los pseudo-elementos que la
+   capa broadsheet había anulado. */
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .nsfmeridiano-cat-grid-header,
+.nsfmeridiano-brd .cat-header,
+.nsfmeridiano-brd .nsfmeridiano-latest-box{
+  position:relative;
+}
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .nsfmeridiano-cat-grid-header::before,
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .nsfmeridiano-cat-grid-header::after,
+.nsfmeridiano-brd .cat-header::before,
+.nsfmeridiano-brd .cat-header::after,
+.nsfmeridiano-brd .nsfmeridiano-latest-box::before,
+.nsfmeridiano-brd .nsfmeridiano-latest-box::after{
+  content:"";
+  position:absolute;
+  width:17px;
+  height:17px;
+  border:3px solid var(--brd-gold);
+  pointer-events:none;
+}
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .nsfmeridiano-cat-grid-header::before,
+.nsfmeridiano-brd .cat-header::before,
+.nsfmeridiano-brd .nsfmeridiano-latest-box::before{
+  top:0; left:0;
+  border-right:0; border-bottom:0;
+}
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .nsfmeridiano-cat-grid-header::after,
+.nsfmeridiano-brd .cat-header::after,
+.nsfmeridiano-brd .nsfmeridiano-latest-box::after{
+  bottom:0; right:0;
+  border-left:0; border-top:0;
+  background:none;
+  width:17px; height:17px;
+}
+/* Las cabeceras de sección necesitan aire para que el corchete no pise
+   el texto, y el filete inferior pasa a simple: con el corchete arriba
+   la regla doble sumaba demasiado peso. */
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .nsfmeridiano-cat-grid-header,
+.nsfmeridiano-brd .cat-header{
+  padding-left:30px;
+  padding-right:30px;
+  padding-top:16px;
+  border-bottom:2px solid var(--brd-navy);
+}
+.nsfmeridiano-brd .nsfmeridiano-latest-box::before,
+.nsfmeridiano-brd .nsfmeridiano-latest-box::after{ z-index:2; }
+
+/* Filetes dobles a simples: la condensada ya aporta peso suficiente */
+.nsfmeridiano-brd .site-header,
+.nsfmeridiano-brd .drawer,
+.nsfmeridiano-brd .nsfmeridiano-footer-pro,
+.nsfmeridiano-brd .nsfmeridiano-dynamic-news,
+.nsfmeridiano-brd .nsfmeridiano-latest-box{
+  border-top-style:solid;
+  border-bottom-style:solid;
+}
+.nsfmeridiano-brd .site-header{ border-bottom:3px solid var(--brd-navy); }
+.nsfmeridiano-brd .drawer{ border-bottom:3px solid var(--brd-gold); }
+.nsfmeridiano-brd .nsfmeridiano-dynamic-news{ border-top:3px solid var(--brd-navy); }
+.nsfmeridiano-brd .nsfmeridiano-latest-box{ border-top:3px solid var(--brd-gold); }
+.nsfmeridiano-brd .cat-item.is-featured-archive{ border-bottom:3px solid var(--brd-navy); }
+.nsfmeridiano-brd.nsfmeridiano-category-grid-posts .posts-grid > .post-card.feat{ border-top:3px solid var(--brd-gold); }
+
+@media (max-width:767px){
+  .nsfmeridiano-brd.nsfmeridiano-category-grid-posts .nsfmeridiano-cat-grid-header,
+  .nsfmeridiano-brd .cat-header{ padding-left:22px; padding-right:22px; }
+  .nsfmeridiano-brd .note-body{ font-size:16.5px; }
+}

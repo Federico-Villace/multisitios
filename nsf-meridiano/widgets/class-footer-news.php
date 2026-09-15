@@ -19,7 +19,7 @@ class Footer_News extends Widget_Base {
             'default' => 'text',
             'options' => [ 'text' => 'Texto', 'image' => 'Imagen' ],
         ] );
-        $this->add_control( 'logo_text', [ 'label' => esc_html__( 'Logo texto', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => 'Meridiano', 'condition' => [ 'logo_type' => 'text' ] ] );
+        $this->add_control( 'logo_text', [ 'label' => esc_html__( 'Logo texto', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => 'Provincia en Foco', 'condition' => [ 'logo_type' => 'text' ] ] );
         $this->add_control( 'logo_image', [ 'label' => esc_html__( 'Logo imagen', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::MEDIA, 'condition' => [ 'logo_type' => 'image' ] ] );
         $this->add_control( 'logo_url', [ 'label' => esc_html__( 'Enlace del logo', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::URL, 'placeholder' => home_url( '/' ) ] );
         $this->add_control( 'description', [ 'label' => esc_html__( 'Descripción', 'nsfmeridiano-widgets' ), 'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => 'Periodismo independiente. Información, análisis y cobertura en tiempo real de la actualidad nacional e internacional.' ] );
@@ -90,7 +90,7 @@ class Footer_News extends Widget_Base {
 
         $this->start_controls_section( 'content_bottom', [ 'label' => esc_html__( 'Barra inferior', 'nsfmeridiano-widgets' ) ] );
         $this->add_control( 'show_bottom', [ 'label' => 'Mostrar barra inferior', 'type' => \Elementor\Controls_Manager::SWITCHER, 'default' => 'yes' ] );
-        $this->add_control( 'bottom_text', [ 'label' => 'Texto legal', 'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => 'Todos los derechos reservados © {year} Meridiano', 'description' => 'Podés usar {year}.' ] );
+        $this->add_control( 'bottom_text', [ 'label' => 'Texto legal', 'type' => \Elementor\Controls_Manager::TEXTAREA, 'default' => 'Todos los derechos reservados © {year} Provincia en Foco', 'description' => 'Podés usar {year}.' ] );
         $this->add_control( 'bottom_links', [ 'label' => 'Links inferiores', 'type' => \Elementor\Controls_Manager::TEXTAREA, 'rows' => 4, 'default' => "Privacidad|#\nTérminos|#\nEditorial|#", 'description' => 'Un item por línea: Texto|URL' ] );
         $this->end_controls_section();
 
