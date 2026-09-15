@@ -27,10 +27,18 @@ final class Plugin {
         add_action( 'elementor/elements/categories_registered', [ $this, 'register_category' ] );
         add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ], 5 );
+        add_filter( 'wp_resource_hints', [ $this, 'resource_hints' ], 10, 2 );
         add_action( 'elementor/frontend/after_register_styles', [ $this, 'register_assets' ] );
         add_action( 'elementor/frontend/after_register_scripts', [ $this, 'register_assets' ] );
         add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_assets' ] );
         add_action( 'elementor/preview/enqueue_scripts', [ $this, 'enqueue_assets' ] );
+    }
+
+    public function resource_hints( $hints, $relation ) {
+        if ( 'preconnect' === $relation && wp_style_is( 'nsfmeridiano-fonts', 'enqueued' ) ) {
+            $hints[] = [ 'href' => 'https://fonts.gstatic.com', 'crossorigin' => 'anonymous' ];
+        }
+        return $hints;
     }
 
     public function register_assets() {
@@ -39,10 +47,30 @@ final class Plugin {
         $css_version  = NSFMERIDIANO_VERSION . '-' . ( file_exists( $frontend_css ) ? filemtime( $frontend_css ) : time() );
         $js_version   = NSFMERIDIANO_VERSION . '-' . ( file_exists( $frontend_js ) ? filemtime( $frontend_js ) : time() );
 
+        /* Tipografía de titulares.
+
+           La condensada que pide la identidad Provincia en Foco no viene
+           instalada en ninguna máquina, así que sin esto el stack cae a
+           Arial Narrow y los titulares pierden toda la fuerza del logo.
+
+           Se registra como DEPENDENCIA de la hoja del plugin en lugar de
+           encolarla suelta: WordPress la carga sola cuando hay un widget
+           en la página, y no la pide en las páginas donde no hace falta.
+
+           Para cambiar la familia se toca solamente acá y la variable
+           --f-brd-disp del CSS; no hay que recorrer los 29 controles de
+           tipografía repartidos en los ocho widgets. */
+        wp_register_style(
+            'nsfmeridiano-fonts',
+            'https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&display=swap',
+            [],
+            null
+        );
+
         wp_register_style(
             'nsfmeridiano-widgets-frontend',
             NSFMERIDIANO_URL . 'assets/css/frontend.css',
-            [],
+            [ 'nsfmeridiano-fonts' ],
             $css_version
         );
 

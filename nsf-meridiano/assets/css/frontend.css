@@ -4795,9 +4795,10 @@ body.nsfmeridiano-drawer-open, body.nsfmeridiano-search-open{overflow:hidden!imp
      conserva el nombre para no tocar los 49 usos. La condensada va
      aparte, sólo para titulares.
 
-     Ninguna de estas viene instalada de fábrica: conviene elegir
-     Oswald 700 desde los controles de Tipografía de Elementor, que se
-     encarga de cargarla para el visitante. El stack es el respaldo. */
+     Oswald la carga el propio plugin (ver register_assets en
+     includes/class-plugin.php), registrada como dependencia de esta
+     hoja: se pide sola donde hay un widget y en ningún otro lado. El
+     resto del stack es el respaldo si la fuente no llegara a cargar. */
   --f-brd-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --f-brd-disp:  "Oswald", "Anton", "Haettenschweiler", "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
   --f-brd-sans:  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
