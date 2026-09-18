@@ -4191,34 +4191,44 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np .nsfmarea-dynamic-card{ background:none; }
 .nsfmarea-np .nsfmarea-dynamic-img{ background:var(--nc-paper-2); filter:none; }
 .nsfmarea-np .nsfmarea-dynamic-main .nsfmarea-dynamic-title{ font-size:clamp(21px,2.6vw,33px); line-height:1.05; }
-/* Archivo Black es una letra ancha: en una columna angosta los títulos
-   se parten en astillas de una palabra por renglón. Se afloja el cuerpo,
-   se cierra el interletrado y se deja que el navegador reparta los
-   renglones de forma pareja. */
+/* Sin partido de palabras: `hyphens:auto` en una columna angosta cortaba
+   los títulos en sílabas sueltas. Con la ficha apilada ya no hace falta. */
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-title{
-  font-size:14px;
-  line-height:1.2;
-  letter-spacing:-.02em;
+  font-size:15px;
+  line-height:1.16;
+  letter-spacing:-.018em;
   text-wrap:pretty;
-  hyphens:auto;
+  hyphens:manual;
 }
 .nsfmarea-np .nsfmarea-dynamic-title a:hover{ color:var(--nc-red); }
 .nsfmarea-np .nsfmarea-dynamic-excerpt{ font-size:15px; line-height:1.55; margin-top:10px; }
 .nsfmarea-np .nsfmarea-dynamic-meta{ font-size:9.5px; }
 /* Laterales: fichas horizontales chicas */
 .nsfmarea-np .nsfmarea-dynamic-side{ gap:0; }
+/* Ficha lateral APILADA: foto arriba a todo el ancho de la columna y
+   título debajo.
+
+   El reparto horizontal —miniatura al costado y texto en el resto— es
+   inviable acá: la columna es angosta, Archivo Black es una letra muy
+   ancha, y el texto terminaba partiéndose en astillas de una palabra
+   mientras sobraba hueco a la derecha. Apilado, el título dispone del
+   ancho completo de la columna y entra en dos renglones. */
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{
-  display:grid;
-  grid-template-columns:104px minmax(0,1fr);
-  gap:15px;
-  align-items:start;
-  padding:14px 0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  padding:16px 0;
   border-top:1px solid var(--nc-rule-sft);
 }
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card > .nsfmarea-dynamic-img{ order:1; }
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-content{ order:2; }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card:first-child{ border-top:0; padding-top:0; }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-content{ padding:0; }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-content::before{ content:none; }
-.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-img{ aspect-ratio:1 / 1; }
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-img{
+  aspect-ratio:16 / 9;
+  width:100%;
+}
 /* En el lateral el título va al lado de la foto, nunca encima */
 .nsfmarea-np .nsfmarea-dynamic-side-card.nsfmarea-dynamic-overlay .nsfmarea-dynamic-content{
   position:static; padding:0; color:inherit;
@@ -4570,7 +4580,7 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   .nsfmarea-np .nsfmarea-hero-side-card:first-child,
   .nsfmarea-np .nsfmarea-hero-side-card:nth-child(2){ border-top:0; }
 
-  .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{ grid-template-columns:78px minmax(0,1fr); }
+  .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{ padding:14px 0; }
   .nsfmarea-np .note-body{ font-size:16.5px; }
   .nsfmarea-np .note-body > p:first-of-type{ font-size:17.5px; }
   .nsfmarea-np .share-save{ margin-left:0; }
