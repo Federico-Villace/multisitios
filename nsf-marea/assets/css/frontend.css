@@ -4700,3 +4700,105 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   .nsfmarea-np .note-body > p:first-of-type{ font-size:17.5px; }
   .nsfmarea-np .share-save{ margin-left:0; }
 }
+
+
+/* ============================================================
+   11. GRILLA NOTICIAS — la misma retícula de recortes
+   Este widget usa la ficha compartida `.card`, no `.post-card`
+   como la grilla de categoría, así que necesita su propio juego
+   de reglas. Va scopeado a `.nsfmarea-grid-news` para no alcanzar
+   a los otros widgets que también usan `.card`.
+   ============================================================ */
+.nsfmarea-np.nsfmarea-grid-news{ padding:40px 0 46px; }
+.nsfmarea-np.nsfmarea-grid-news > .container{
+  max-width:var(--nc-box,1280px);
+  margin-inline:auto;
+  padding-left:var(--nc-inset,32px);
+  padding-right:var(--nc-inset,32px);
+}
+
+/* Cabecera de sección: titular de bloque a la izquierda y el
+   "ver más" como etiqueta chica al otro extremo */
+.nsfmarea-np.nsfmarea-grid-news .section-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  gap:18px;
+  margin:0 0 20px;
+  padding:0 0 10px;
+  border-bottom-style:solid;
+  border-bottom-width:3px;
+}
+.nsfmarea-np.nsfmarea-grid-news .section-title{
+  font-family:var(--f-nc-disp);
+  font-weight:400;
+  font-size:clamp(20px,2.2vw,29px);
+  line-height:1;
+  letter-spacing:-.025em;
+  text-transform:none;
+  margin:0;
+}
+.nsfmarea-np.nsfmarea-grid-news .section-link{
+  flex:0 0 auto;
+  font-family:var(--f-nc-meta);
+  font-weight:700;
+  font-size:10.5px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.nsfmarea-np.nsfmarea-grid-news .section-link::after{
+  content:" →";
+  letter-spacing:0;
+}
+
+/* Fichas: recortes pegados sobre el papel, igual que en la grilla
+   de categoría, para que las dos retículas se lean como una sola */
+.nsfmarea-np.nsfmarea-grid-news .dual-grid{ align-items:start; }
+.nsfmarea-np.nsfmarea-grid-news .card{
+  display:block;
+  border:1px solid var(--nc-rule-sft);
+  padding:10px 10px 14px;
+  box-shadow:0 1px 0 rgba(27,26,23,.05);
+  transition:box-shadow 160ms ease, transform 160ms ease;
+}
+.nsfmarea-np.nsfmarea-grid-news .card:hover{
+  box-shadow:0 5px 14px rgba(27,26,23,.11);
+  transform:translateY(-2px);
+}
+.nsfmarea-np.nsfmarea-grid-news .card-img,
+.nsfmarea-np.nsfmarea-grid-news .card-img-real,
+.nsfmarea-np.nsfmarea-grid-news .card > a:first-child{
+  border-radius:var(--nc-radius-s);
+  overflow:hidden;
+  background:var(--nc-paper-2);
+  display:block;
+}
+.nsfmarea-np.nsfmarea-grid-news .card-title{
+  font-family:var(--f-nc-disp);
+  font-weight:400;
+  font-size:15.5px;
+  line-height:1.16;
+  letter-spacing:-.012em;
+  text-transform:none;
+  margin:11px 0 0;
+  padding:0 4px;
+}
+.nsfmarea-np.nsfmarea-grid-news .card-byline{
+  font-family:var(--f-nc-meta);
+  font-weight:700;
+  font-size:9.5px;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  margin:9px 4px 0;
+  padding-top:7px;
+  border-top:1px solid var(--nc-rule-sft);
+}
+/* Sin autor ni fecha el filete quedaría suelto arriba de la nada */
+.nsfmarea-np.nsfmarea-grid-news .card-byline:empty{ display:none; }
+
+@media (max-width:767px){
+  .nsfmarea-np.nsfmarea-grid-news{ padding:26px 0 32px; }
+  .nsfmarea-np.nsfmarea-grid-news > .container{ padding-left:18px; padding-right:18px; }
+  .nsfmarea-np.nsfmarea-grid-news .section-head{ margin-bottom:16px; }
+  .nsfmarea-np.nsfmarea-grid-news .card-title{ font-size:14.5px; }
+}
