@@ -4010,7 +4010,7 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   font-size:15px; line-height:1.55; max-width:64ch; margin-top:9px;
 }
 
-.nsfmarea-np .cat-list{ --nc-archive-img:132px; }
+.nsfmarea-np .cat-list{ --nc-archive-img:112px; }
 .nsfmarea-np .cat-list.layout-list{
   display:grid;
   grid-template-columns:minmax(0,1fr);
@@ -4045,7 +4045,47 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np .cat-item .card-byline{ font-size:9.5px; margin-top:7px; }
 .nsfmarea-np .nsfmarea-archive-img{ background:var(--nc-paper-2); filter:none; }
 
+/* --- Variante GRILLA ---
+   Nunca había tenido reglas propias en esta identidad: corría con el
+   aspecto del clon original. El marcado pone el texto ANTES que la foto
+   y la capa base deja la ficha en `display:block`, donde `order` no
+   existe, así que la foto caía debajo del título. Se pasa a flex para
+   poder subirla y las fichas quedan como recortes, igual que en el resto
+   de las retículas. */
+.nsfmarea-np .cat-list.layout-grid{ gap:18px; }
+.nsfmarea-np .cat-list.layout-grid .cat-item{
+  display:flex;
+  flex-direction:column;
+  background:var(--nc-clip);
+  border:1px solid var(--nc-rule-sft);
+  border-radius:var(--nc-radius);
+  padding:10px 10px 14px;
+  margin:0;
+  box-shadow:0 1px 0 rgba(27,26,23,.05);
+  transition:box-shadow 160ms ease, transform 160ms ease;
+}
+.nsfmarea-np .cat-list.layout-grid .cat-item:hover{
+  background:var(--nc-clip);
+  box-shadow:0 5px 14px rgba(27,26,23,.11);
+  transform:translateY(-2px);
+}
+.nsfmarea-np .cat-list.layout-grid .nsfmarea-archive-img{
+  order:-1;
+  margin-top:0;
+  width:100%;
+}
+.nsfmarea-np .cat-list.layout-grid .nsfmarea-archive-content{
+  order:2;
+  padding:11px 4px 0;
+}
+.nsfmarea-np .cat-list.layout-grid .card-title{ font-size:15.5px; }
+.nsfmarea-np .cat-list.layout-grid .nsfmarea-archive-excerpt{ font-size:13.5px; margin-top:6px; }
+.nsfmarea-np .cat-list.layout-grid .cat-item .card-byline{
+  margin-top:9px; padding-top:7px; border-top:1px solid var(--nc-rule-sft);
+}
+
 /* Destacada: recorte grande arriba del índice, horizontal */
+.nsfmarea-np .cat-list.layout-grid .cat-item.is-featured-archive{ grid-column:1 / -1; }
 .nsfmarea-np .cat-item.is-featured-archive{
   display:grid;
   grid-template-columns:minmax(0,.9fr) minmax(0,1fr);
