@@ -4078,6 +4078,15 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
    una foto de tapa real.
    ============================================================ */
 .nsfmarea-np.nsfmarea-hero-news{ padding:40px 0 34px; }
+/* El hero sí trae `.container`, pero con el tope viejo del clon: si no
+   se lo alinea al mismo encajonado, su borde no coincide con el de la
+   grilla ni el del archivo y la página se lee desprolija en vertical. */
+.nsfmarea-np.nsfmarea-hero-news > .container{
+  max-width:var(--nc-box,1280px);
+  margin-inline:auto;
+  padding-left:var(--nc-inset,32px);
+  padding-right:var(--nc-inset,32px);
+}
 .nsfmarea-np .nsfmarea-hero-grid{ grid-template-columns:minmax(0,1fr); gap:0; }
 .nsfmarea-np .nsfmarea-hero-main{
   display:grid;
@@ -4155,9 +4164,16 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 /* ============================================================
    6. BLOQUE DINÁMICO y 7. LO ÚLTIMO
    ============================================================ */
+/* Este widget NO trae `.container` en su marcado —la grilla y el archivo
+   sí lo traen—, así que iba pegado al borde izquierdo sin ningún respiro
+   mientras la columna derecha acumulaba el sobrante. El encajonado va
+   entonces sobre la sección misma, con las MISMAS medidas que el resto
+   para que todos los bloques de la página alineen en la misma vertical. */
 .nsfmarea-np .nsfmarea-dynamic-news{
   border-top:3px solid var(--nc-ink);
-  padding:32px 0 34px;
+  max-width:var(--nc-box,1280px);
+  margin-inline:auto;
+  padding:32px var(--nc-inset,32px) 34px;
 }
 .nsfmarea-np .nsfmarea-dynamic-section-title{
   display:inline-block;
@@ -4175,7 +4191,17 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np .nsfmarea-dynamic-card{ background:none; }
 .nsfmarea-np .nsfmarea-dynamic-img{ background:var(--nc-paper-2); filter:none; }
 .nsfmarea-np .nsfmarea-dynamic-main .nsfmarea-dynamic-title{ font-size:clamp(21px,2.6vw,33px); line-height:1.05; }
-.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-title{ font-size:15px; line-height:1.16; }
+/* Archivo Black es una letra ancha: en una columna angosta los títulos
+   se parten en astillas de una palabra por renglón. Se afloja el cuerpo,
+   se cierra el interletrado y se deja que el navegador reparta los
+   renglones de forma pareja. */
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-title{
+  font-size:14px;
+  line-height:1.2;
+  letter-spacing:-.02em;
+  text-wrap:pretty;
+  hyphens:auto;
+}
 .nsfmarea-np .nsfmarea-dynamic-title a:hover{ color:var(--nc-red); }
 .nsfmarea-np .nsfmarea-dynamic-excerpt{ font-size:15px; line-height:1.55; margin-top:10px; }
 .nsfmarea-np .nsfmarea-dynamic-meta{ font-size:9.5px; }
@@ -4183,10 +4209,10 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np .nsfmarea-dynamic-side{ gap:0; }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{
   display:grid;
-  grid-template-columns:98px minmax(0,1fr);
-  gap:13px;
+  grid-template-columns:104px minmax(0,1fr);
+  gap:15px;
   align-items:start;
-  padding:13px 0;
+  padding:14px 0;
   border-top:1px solid var(--nc-rule-sft);
 }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card:first-child{ border-top:0; padding-top:0; }
