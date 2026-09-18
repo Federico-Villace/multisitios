@@ -4189,6 +4189,49 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 }
 .nsfmarea-np .nsfmarea-dynamic-section-title::after{ content:none; }
 .nsfmarea-np .nsfmarea-dynamic-card{ background:none; }
+
+/* El texto superpuesto se posiciona contra la FICHA, no contra la foto.
+
+   El CSS base del clon declara dos veces la misma grilla con valores
+   opuestos —`align-items:start` y más abajo `align-items:stretch`— y
+   gana el segundo por orden. Con `stretch`, la ficha grande se estira a
+   la altura de la fila, que es la de las tres notas apiladas de al lado.
+   El texto, anclado a `bottom:0` de esa caja invisible, terminaba muy
+   por debajo de la imagen y en blanco sobre el papel.
+
+   Se fija la alineación al arranque para que la ficha mida exactamente
+   lo que mide su foto, y se le pasan el radio y el recorte para que el
+   texto respete las esquinas redondeadas. */
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-grid{ align-items:start; }
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main{
+  align-self:start;
+  position:relative;
+  border-radius:var(--nc-radius);
+  overflow:hidden;
+}
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main.nsfmarea-dynamic-overlay .nsfmarea-dynamic-content{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  z-index:2;
+  display:block;
+  padding:clamp(16px,2.2vw,26px);
+}
+/* Dentro del recuadro el titular no debe cruzar toda la foto: se corta
+   la medida para que respire y la bajada quede claramente subordinada. */
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main.nsfmarea-dynamic-overlay .nsfmarea-dynamic-title{
+  max-width:20ch;
+  color:#fff;
+}
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main.nsfmarea-dynamic-overlay .nsfmarea-dynamic-excerpt{
+  max-width:52ch;
+  margin-top:9px;
+  font-size:15px;
+  color:rgba(255,255,255,.88);
+}
+/* La foto no puede recortar el degradado ni el texto */
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main .nsfmarea-dynamic-img{
+  border-radius:var(--nc-radius);
+}
 .nsfmarea-np .nsfmarea-dynamic-img{ background:var(--nc-paper-2); filter:none; }
 .nsfmarea-np .nsfmarea-dynamic-main .nsfmarea-dynamic-title{ font-size:clamp(21px,2.6vw,33px); line-height:1.05; }
 /* Sin partido de palabras: `hyphens:auto` en una columna angosta cortaba
