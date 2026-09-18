@@ -16,11 +16,22 @@ class Dynamic_News_Block extends Widget_Base {
         $this->start_controls_section( 'content', [ 'label' => esc_html__( 'Contenido', 'nsfmarea-widgets' ) ] );
         $this->add_query_controls( 4 );
         $this->add_control( 'section_title', [ 'label' => esc_html__( 'Título de sección', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => '' ] );
+        $this->add_control( 'show_title', [ 'label' => esc_html__( 'Mostrar título', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => 'yes' ] );
         $this->add_control( 'show_excerpt', [ 'label' => esc_html__( 'Mostrar bajada en nota grande', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => 'yes' ] );
+        $this->add_control( 'show_excerpt_side', [ 'label' => esc_html__( 'Mostrar bajada en notas chicas', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => '' ] );
         $this->add_control( 'show_author', [ 'label' => esc_html__( 'Mostrar autor', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => '' ] );
         $this->add_control( 'author_prefix', [ 'label' => esc_html__( 'Prefijo autor', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => esc_html__( 'Por', 'nsfmarea-widgets' ), 'condition' => [ 'show_author' => 'yes' ] ] );
         $this->add_control( 'show_date', [ 'label' => esc_html__( 'Mostrar fecha', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => '' ] );
-        $this->add_control( 'overlay_titles', [ 'label' => esc_html__( 'Título sobre la foto en desktop', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => 'yes' ] );
+        $this->add_control( 'text_position', [
+            'label' => esc_html__( 'Posición del texto', 'nsfmarea-widgets' ),
+            'type' => \Elementor\Controls_Manager::SELECT,
+            'default' => 'over',
+            'options' => [
+                'over'  => esc_html__( 'Sobre la foto', 'nsfmarea-widgets' ),
+                'below' => esc_html__( 'Debajo de la foto', 'nsfmarea-widgets' ),
+            ],
+            'description' => esc_html__( 'Aplica a la nota grande. Las notas chicas van siempre con el texto debajo: sobre una foto angosta el título no se lee.', 'nsfmarea-widgets' ),
+        ] );
         $this->add_control( 'big_position', [ 'label' => esc_html__( 'Nota grande', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => 'left', 'options' => [ 'left' => esc_html__( 'Izquierda', 'nsfmarea-widgets' ), 'right' => esc_html__( 'Derecha', 'nsfmarea-widgets' ) ] ] );
         $this->end_controls_section();
 
@@ -36,7 +47,7 @@ class Dynamic_News_Block extends Widget_Base {
         $this->add_responsive_control( 'big_ratio', [ 'label' => esc_html__( 'Proporción imagen grande', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '16/9', 'options' => [ '16/9' => '16:9', '4/3' => '4:3', '3/2' => '3:2', '1/1' => '1:1' ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-dynamic-main .nsfmarea-dynamic-img' => 'aspect-ratio: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'small_ratio', [ 'label' => esc_html__( 'Proporción imágenes chicas', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '16/9', 'options' => [ '16/9' => '16:9', '4/3' => '4:3', '1/1' => '1:1' ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-dynamic-side .nsfmarea-dynamic-img' => 'aspect-ratio: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'main_width', [ 'label' => esc_html__( 'Ancho nota grande (%)', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'size_units' => [ '%' ], 'range' => [ '%' => [ 'min' => 45, 'max' => 75 ] ], 'default' => [ 'size' => 58, 'unit' => '%' ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-dynamic-grid' => 'grid-template-columns: minmax(0, {{SIZE}}%) minmax(0, 1fr);' ] ] );
-        $this->add_responsive_control( 'border_radius', [ 'label' => esc_html__( 'Radio imágenes', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'size_units' => [ 'px' ], 'range' => [ 'px' => [ 'min' => 0, 'max' => 40 ] ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-dynamic-img' => 'border-radius: {{SIZE}}{{UNIT}};' ] ] );
+        $this->add_responsive_control( 'border_radius', [ 'label' => esc_html__( 'Radio imágenes', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'size_units' => [ 'px' ], 'range' => [ 'px' => [ 'min' => 0, 'max' => 40 ] ], 'default' => [ 'size' => 12, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-dynamic-img' => 'border-radius: {{SIZE}}{{UNIT}};' ] ] );
         $this->end_controls_section();
 
         $this->start_controls_section( 'typography_style', [ 'label' => esc_html__( 'Tipografías', 'nsfmarea-widgets' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
@@ -55,7 +66,24 @@ class Dynamic_News_Block extends Widget_Base {
 
     protected function render_post_card( $post_id, $is_main, $settings, $index = 0 ) {
         $classes = 'nsfmarea-dynamic-card ' . ( $is_main ? 'nsfmarea-dynamic-main' : 'nsfmarea-dynamic-side-card' );
-        if ( 'yes' === ( $settings['overlay_titles'] ?? '' ) ) { $classes .= ' nsfmarea-dynamic-overlay'; }
+
+        // Sólo la nota grande puede llevar el texto encima: sobre una foto
+        // chica el título queda ilegible. Se respeta el valor guardado del
+        // control anterior para no perder la configuración existente.
+        $legacy   = isset( $settings['text_position'] ) ? null : ( $settings['overlay_titles'] ?? 'yes' );
+        $position = $settings['text_position'] ?? ( 'yes' === $legacy ? 'over' : 'below' );
+        if ( $is_main && 'over' === $position ) { $classes .= ' nsfmarea-dynamic-overlay'; }
+
+        $show_excerpt = $is_main
+            ? 'yes' === ( $settings['show_excerpt'] ?? '' )
+            : 'yes' === ( $settings['show_excerpt_side'] ?? '' );
+
+        $meta = [];
+        if ( 'yes' === ( $settings['show_author'] ?? '' ) ) {
+            $byline = Helpers::author_byline( $post_id, $settings['author_prefix'] ?? '' );
+            if ( '' !== $byline ) { $meta[] = $byline; }
+        }
+        if ( 'yes' === ( $settings['show_date'] ?? '' ) ) { $meta[] = get_the_date( '', $post_id ); }
         ?>
         <article class="<?php echo esc_attr( $classes ); ?>" data-mobile-index="<?php echo esc_attr( $index ); ?>">
             <a class="nsfmarea-dynamic-img" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>">
@@ -66,9 +94,14 @@ class Dynamic_News_Block extends Widget_Base {
                 <?php endif; ?>
             </a>
             <div class="nsfmarea-dynamic-content">
-                <<?php echo $is_main ? 'h2' : 'h3'; ?> class="nsfmarea-dynamic-title"><a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>"><?php echo esc_html( get_the_title( $post_id ) ); ?></a></<?php echo $is_main ? 'h2' : 'h3'; ?>>
-                <?php if ( $is_main && 'yes' === ( $settings['show_excerpt'] ?? '' ) ) : ?>
-                    <p class="nsfmarea-dynamic-excerpt"><?php echo esc_html( Helpers::trim_words( Helpers::post_subtitle( $post_id ), 26 ) ); ?></p>
+                <?php if ( 'yes' === ( $settings['show_title'] ?? 'yes' ) ) : ?>
+                    <<?php echo $is_main ? 'h2' : 'h3'; ?> class="nsfmarea-dynamic-title"><a href="<?php echo esc_url( get_permalink( $post_id ) ); ?>"><?php echo esc_html( get_the_title( $post_id ) ); ?></a></<?php echo $is_main ? 'h2' : 'h3'; ?>>
+                <?php endif; ?>
+                <?php if ( $show_excerpt ) : ?>
+                    <p class="nsfmarea-dynamic-excerpt"><?php echo esc_html( Helpers::trim_words( Helpers::post_subtitle( $post_id ), $is_main ? 26 : 16 ) ); ?></p>
+                <?php endif; ?>
+                <?php if ( $meta ) : ?>
+                    <p class="nsfmarea-dynamic-meta"><?php echo esc_html( implode( ' · ', $meta ) ); ?></p>
                 <?php endif; ?>
             </div>
         </article>

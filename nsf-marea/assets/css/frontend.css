@@ -3506,6 +3506,7 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np .brand-slogan,
 .nsfmarea-np .note-breadcrumb,
 .nsfmarea-np .nsfmarea-latest-head em,
+.nsfmarea-np .nsfmarea-dynamic-meta,
 .nsfmarea-np .nsfmarea-footer-pro .footer-col h5,
 .nsfmarea-np .nsfmarea-footer-pro .footer-bottom{
   font-family:var(--f-nc-meta);
@@ -4232,6 +4233,48 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main .nsfmarea-dynamic-img{
   border-radius:var(--nc-radius);
 }
+
+/* --- Texto DEBAJO de la foto ---
+   Es la otra mitad del control "Posición del texto". Sin la clase de
+   superposición el bloque cae al flujo normal, así que acá sólo hay que
+   darle el aire y el color de papel: el titular vuelve a tinta y la
+   caja deja de recortar, porque ya no hay nada que quede por fuera. */
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main:not(.nsfmarea-dynamic-overlay){
+  overflow:visible;
+  border-radius:0;
+}
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main:not(.nsfmarea-dynamic-overlay) .nsfmarea-dynamic-content{
+  position:static;
+  padding:14px 0 0;
+  color:var(--nc-ink);
+}
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main:not(.nsfmarea-dynamic-overlay) .nsfmarea-dynamic-title{
+  color:var(--nc-ink);
+  max-width:24ch;
+}
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main:not(.nsfmarea-dynamic-overlay) .nsfmarea-dynamic-excerpt{
+  color:var(--nc-ink-soft);
+  max-width:62ch;
+}
+
+/* Autor y fecha: el control existía desde siempre pero no imprimía nada,
+   así que este estilo nunca se había usado. */
+.nsfmarea-np .nsfmarea-dynamic-meta{
+  margin-top:9px;
+  font-size:9.5px;
+}
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-main.nsfmarea-dynamic-overlay .nsfmarea-dynamic-meta{
+  color:rgba(255,255,255,.72);
+}
+
+/* Bajada y meta en las notas chicas, que ahora pueden mostrarlas */
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-excerpt{
+  font-size:13.5px;
+  line-height:1.5;
+  margin-top:6px;
+  color:var(--nc-ink-soft);
+}
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-meta{ margin-top:7px; }
 .nsfmarea-np .nsfmarea-dynamic-img{ background:var(--nc-paper-2); filter:none; }
 .nsfmarea-np .nsfmarea-dynamic-main .nsfmarea-dynamic-title{ font-size:clamp(21px,2.6vw,33px); line-height:1.05; }
 /* Sin partido de palabras: `hyphens:auto` en una columna angosta cortaba
