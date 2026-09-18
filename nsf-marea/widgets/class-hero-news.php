@@ -28,7 +28,7 @@ class Hero_News extends Widget_Base {
         $this->add_control( 'secondary_title_color', [ 'label' => esc_html__( 'Color títulos secundarios', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfmarea-hero-side-title, {{WRAPPER}} .nsfmarea-hero-side-title a' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'excerpt_typography', 'selector' => '{{WRAPPER}} .hero-sub' ] );
         $this->add_control( 'excerpt_color', [ 'label' => esc_html__( 'Color bajada', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .hero-sub' => 'color: {{VALUE}};' ] ] );
-        $this->add_responsive_control( 'hero_image_ratio', [ 'label' => esc_html__( 'Proporción imagen principal', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '4/3', 'options' => [ '16/9' => '16:9', '4/3' => '4:3', '3/2' => '3:2', '1/1' => '1:1' ], 'selectors' => [ '{{WRAPPER}} .hero-img, {{WRAPPER}} .hero-img-real, {{WRAPPER}} .nsfmarea-hero-main-media' => 'aspect-ratio: {{VALUE}};' ] ] );
+        $this->add_responsive_control( 'hero_image_ratio', [ 'label' => esc_html__( 'Proporción imagen principal', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '3/2', 'options' => [ '3/2' => '3:2', '4/3' => '4:3', '16/9' => '16:9', '1/1' => '1:1' ], 'selectors' => [ '{{WRAPPER}} .hero-img, {{WRAPPER}} .hero-img-real, {{WRAPPER}} .nsfmarea-hero-main-media' => 'aspect-ratio: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'side_image_ratio', [ 'label' => esc_html__( 'Proporción imágenes secundarias', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '16/9', 'options' => [ '16/9' => '16:9', '4/3' => '4:3', '3/2' => '3:2', '1/1' => '1:1' ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-hero-side-media' => 'aspect-ratio: {{VALUE}};' ] ] );
         $this->end_controls_section();
     }
@@ -51,7 +51,7 @@ class Hero_News extends Widget_Base {
         $author_byline = Helpers::author_byline( $main->ID, $s['author_prefix'] ?? __( 'Por', 'nsfmarea-widgets' ) );
         $layout_class = ( $count > 1 ) ? ' nsfmarea-hero-has-secondary nsfmarea-hero-secondary-' . sanitize_html_class( $s['secondary_layout'] ?? 'side' ) : ' nsfmarea-hero-single';
         ?>
-        <div class="nsfmarea-scope nsfmarea-hero-news<?php echo esc_attr( $layout_class ); ?>">
+        <div class="nsfmarea-scope nsfmarea-np nsfmarea-hero-news<?php echo esc_attr( $layout_class ); ?>">
             <div class="container">
                 <?php if ( 1 === $count ) : ?>
                     <article class="hero">

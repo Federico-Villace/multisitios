@@ -19,9 +19,9 @@ class Latest_Box extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section( 'style', [ 'label' => 'Estilo', 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
-        $this->add_control( 'accent', [ 'label' => 'Color acento', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#6b2d8b', 'selectors' => [ '{{WRAPPER}} .nsfmarea-latest-box::after' => 'background: {{VALUE}};', '{{WRAPPER}} .nsfmarea-latest-title' => 'border-color: {{VALUE}};' ] ] );
-        $this->add_control( 'box_bg', [ 'label' => 'Fondo', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfmarea-latest-box' => 'background: {{VALUE}};' ] ] );
-        $this->add_control( 'box_border', [ 'label' => 'Borde', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#d6d6d6', 'selectors' => [ '{{WRAPPER}} .nsfmarea-latest-box' => 'border-color: {{VALUE}};', '{{WRAPPER}} .nsfmarea-latest-item' => 'border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'accent', [ 'label' => 'Color acento', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#a82b1e', 'selectors' => [ '{{WRAPPER}} .nsfmarea-latest-box::after' => 'background: {{VALUE}};', '{{WRAPPER}} .nsfmarea-latest-title' => 'border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'box_bg', [ 'label' => 'Fondo', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#f2efe9', 'selectors' => [ '{{WRAPPER}} .nsfmarea-latest-box' => 'background: {{VALUE}};' ] ] );
+        $this->add_control( 'box_border', [ 'label' => 'Borde', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#b9b3a5', 'selectors' => [ '{{WRAPPER}} .nsfmarea-latest-box' => 'border-color: {{VALUE}};', '{{WRAPPER}} .nsfmarea-latest-item' => 'border-color: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'box_padding', [ 'label' => 'Padding', 'type' => \Elementor\Controls_Manager::DIMENSIONS, 'size_units' => [ 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-latest-box' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'head_typo', 'selector' => '{{WRAPPER}} .nsfmarea-latest-head' ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'item_typo', 'selector' => '{{WRAPPER}} .nsfmarea-latest-item-title' ] );
@@ -32,7 +32,7 @@ class Latest_Box extends Widget_Base {
         $s = $this->get_settings_for_display();
         $q = $this->build_query( $s );
         ?>
-        <div class="nsfmarea-scope"><div class="nsfmarea-latest-box">
+        <div class="nsfmarea-scope nsfmarea-np"><div class="nsfmarea-latest-box">
             <div class="nsfmarea-latest-head"><strong><?php echo esc_html( $s['title'] ); ?></strong><span></span><em><?php echo esc_html( $s['section_label'] ); ?></em></div>
             <div class="nsfmarea-latest-list">
                 <?php $i = 0; while ( $q->have_posts() ) : $q->the_post(); $i++; ?>

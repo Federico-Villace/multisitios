@@ -104,16 +104,16 @@ class Footer_News extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_colors', [ 'label' => 'Colores', 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
-        $this->add_control( 'footer_bg', [ 'label' => 'Fondo', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#363636', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro' => 'background: {{VALUE}};' ] ] );
-        $this->add_control( 'footer_border_color', [ 'label' => 'Línea superior / divisores', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#777777', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro, {{WRAPPER}} .nsfmarea-footer-pro .footer-bottom' => 'border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'footer_bg', [ 'label' => 'Fondo', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#1b1a17', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro' => 'background: {{VALUE}};' ] ] );
+        $this->add_control( 'footer_border_color', [ 'label' => 'Línea superior / divisores', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#a82b1e', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro, {{WRAPPER}} .nsfmarea-footer-pro .footer-bottom' => 'border-color: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'top_border_width', [ 'label' => 'Grosor línea superior', 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 12 ] ], 'default' => [ 'size' => 0, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro' => 'border-top-width: {{SIZE}}{{UNIT}};' ] ] );
-        $this->add_control( 'logo_color', [ 'label' => 'Color logo texto', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .brand-logo' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'heading_color', [ 'label' => 'Color títulos columnas', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-col h5' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'link_color', [ 'label' => 'Color links', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#eeeeee', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-col a, {{WRAPPER}} .nsfmarea-footer-pro .footer-bottom a' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'link_hover_color', [ 'label' => 'Color links hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#6b2d8b', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-col a:hover, {{WRAPPER}} .nsfmarea-footer-pro .footer-bottom a:hover' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'text_color', [ 'label' => 'Color textos', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#dddddd', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-brand p, {{WRAPPER}} .nsfmarea-footer-pro .footer-text, {{WRAPPER}} .nsfmarea-footer-pro .footer-bottom p' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'social_color', [ 'label' => 'Color iconos redes', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-socials a' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'social_hover_bg', [ 'label' => 'Fondo redes hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#6b2d8b', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-socials a:hover' => 'background: {{VALUE}}; border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'logo_color', [ 'label' => 'Color logo texto', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#f2efe9', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .brand-logo' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'heading_color', [ 'label' => 'Color títulos columnas', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#f2efe9', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-col h5' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'link_color', [ 'label' => 'Color links', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#bdb8ad', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-col a, {{WRAPPER}} .nsfmarea-footer-pro .footer-bottom a' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'link_hover_color', [ 'label' => 'Color links hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#e8a99f', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-col a:hover, {{WRAPPER}} .nsfmarea-footer-pro .footer-bottom a:hover' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'text_color', [ 'label' => 'Color textos', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#9a958b', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-brand p, {{WRAPPER}} .nsfmarea-footer-pro .footer-text, {{WRAPPER}} .nsfmarea-footer-pro .footer-bottom p' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'social_color', [ 'label' => 'Color iconos redes', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#f2efe9', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-socials a' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'social_hover_bg', [ 'label' => 'Fondo redes hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#a82b1e', 'selectors' => [ '{{WRAPPER}} .nsfmarea-footer-pro .footer-socials a:hover' => 'background: {{VALUE}}; border-color: {{VALUE}};' ] ] );
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_typo', [ 'label' => 'Tipografías', 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
@@ -183,7 +183,7 @@ class Footer_News extends Widget_Base {
         $logo_url = ! empty( $s['logo_url']['url'] ) ? $s['logo_url']['url'] : home_url( '/' );
         $bottom_text = str_replace( '{year}', gmdate( 'Y' ), $s['bottom_text'] ?? '' );
         ?>
-        <div class="nsfmarea-scope">
+        <div class="nsfmarea-scope nsfmarea-np">
             <footer class="footer nsfmarea-footer-pro">
                 <div class="container">
                     <div class="nsfmarea-footer-main">

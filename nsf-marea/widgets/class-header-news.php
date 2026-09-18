@@ -33,6 +33,7 @@ class Header_News extends Widget_Base {
         $this->add_control( 'drawer_title', [ 'label' => esc_html__( 'Título del canvas', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => '' ] );
         $this->add_control( 'drawer_menu', [ 'label' => esc_html__( 'Menú de WordPress', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'options' => Helpers::get_menus_options(), 'default' => '' ] );
         $this->add_control( 'fallback_items', [ 'label' => esc_html__( 'Ítems fallback', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::TEXTAREA, 'rows' => 5, 'default' => "Argentina\nPolítica\nEconomía\nDeportes\nSociedad\nMundo\nEspectáculos\nTecnología\nNewsletters" ] );
+        $this->add_control( 'show_header_nav', [ 'label' => esc_html__( 'Tira de secciones en escritorio', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => 'yes', 'description' => esc_html__( 'Muestra las secciones bajo la bandera en pantallas grandes. Debajo de 1024px se reemplaza por la hamburguesa.', 'nsfmarea-widgets' ) ] );
         $this->add_control( 'show_drawer_ad', [ 'label' => esc_html__( 'Mostrar banner superior en canvas', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => 'yes' ] );
         $this->add_control( 'drawer_ad_text', [ 'label' => esc_html__( 'Texto banner canvas', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => '320 × 50', 'condition' => [ 'show_drawer_ad' => 'yes' ] ] );
         $this->end_controls_section();
@@ -59,7 +60,7 @@ class Header_News extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section( 'style', [ 'label' => esc_html__( 'Estilo', 'nsfmarea-widgets' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
-        $this->add_control( 'accent_color', [ 'label' => esc_html__( 'Color rojo', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#6b2d8b', 'selectors' => [ '{{WRAPPER}} .nsfmarea-scope' => '--c-red: {{VALUE}};' ] ] );
+        $this->add_control( 'accent_color', [ 'label' => esc_html__( 'Color rojo', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#a82b1e', 'selectors' => [ '{{WRAPPER}} .nsfmarea-scope' => '--c-red: {{VALUE}};' ] ] );
         $this->add_control( 'header_bg', [ 'label' => esc_html__( 'Fondo header', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .site-header' => 'background-color: {{VALUE}};' ] ] );
         $this->add_control( 'drawer_bg', [ 'label' => esc_html__( 'Fondo canvas', 'nsfmarea-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .drawer' => 'background-color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'logo_typography', 'selector' => '{{WRAPPER}} .brand-logo, {{WRAPPER}} .drawer-logo' ] );
@@ -124,7 +125,7 @@ class Header_News extends Widget_Base {
         $club_url = ! empty( $s['club_url']['url'] ) ? $s['club_url']['url'] : home_url( '/' );
         $club_text = nl2br( esc_html( $s['club_text'] ?? "UNITE\nAL CLUB" ) );
         ?>
-        <div class="nsfmarea-scope nsfmarea-header-widget" id="<?php echo esc_attr( $uid ); ?>" data-search-mode="<?php echo esc_attr( $search_mode ); ?>">
+        <div class="nsfmarea-scope nsfmarea-header-widget nsfmarea-np" id="<?php echo esc_attr( $uid ); ?>" data-search-mode="<?php echo esc_attr( $search_mode ); ?>">
             <div class="drawer-backdrop" data-nsfmarea-backdrop aria-hidden="true"></div>
             <aside class="drawer" data-nsfmarea-drawer aria-label="<?php echo esc_attr__( 'Menú principal', 'nsfmarea-widgets' ); ?>" aria-hidden="true">
                 <header class="drawer-top">
@@ -165,7 +166,6 @@ class Header_News extends Widget_Base {
                         <div class="header-icons">
                             <button class="header-icon-btn is-burger" type="button" data-nsfmarea-open aria-label="<?php echo esc_attr__( 'Abrir menú', 'nsfmarea-widgets' ); ?>" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="2" rx="1"/><rect x="3" y="11" width="18" height="2" rx="1"/><rect x="3" y="16" width="18" height="2" rx="1"/></svg></button>
                             <button class="header-icon-btn" type="button" data-nsfmarea-search-open aria-label="<?php echo esc_attr__( 'Buscar', 'nsfmarea-widgets' ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 14h-.8l-.3-.3c1-1.1 1.6-2.6 1.6-4.2C16 5.9 13.1 3 9.5 3S3 5.9 3 9.5 5.9 16 9.5 16c1.6 0 3.1-.6 4.2-1.6l.3.3v.8l5 5 1.5-1.5-5-5zm-6 0C7 14 5 12 5 9.5S7 5 9.5 5 14 7 14 9.5 12 14 9.5 14z"/></svg></button>
-                            <button class="header-icon-btn" type="button" aria-label="<?php echo esc_attr__( 'Notificaciones', 'nsfmarea-widgets' ); ?>"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 22c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2zm6-6V11c0-3.07-1.64-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.63 5.36 6 7.92 6 11v5l-2 2v1h16v-1l-2-2z"/></svg></button>
                         </div>
                         <?php $this->render_logo( $s, $url, 'brand' ); ?>
                         <div class="header-right">
@@ -173,6 +173,11 @@ class Header_News extends Widget_Base {
                             <?php if ( 'yes' === ( $s['show_live'] ?? 'yes' ) ) : ?><a href="<?php echo esc_url( $live_url ); ?>" class="live-pill"><span class="dot" aria-hidden="true"></span><?php echo esc_html( $s['live_text'] ?: 'En vivo' ); ?></a><?php endif; ?>
                             <?php if ( 'yes' === ( $s['show_club'] ?? 'yes' ) ) : ?><a href="<?php echo esc_url( $club_url ); ?>" class="club-pill"><span class="club-badge">club</span><span class="club-text"><?php echo $club_text; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></span></a><?php endif; ?>
                         </div>
+                        <?php if ( 'yes' === ( $s['show_header_nav'] ?? 'yes' ) ) : ?>
+                            <nav class="header-nav" aria-label="<?php echo esc_attr__( 'Secciones', 'nsfmarea-widgets' ); ?>">
+                                <?php $this->render_drawer_menu( $s ); ?>
+                            </nav>
+                        <?php endif; ?>
                     </div>
                 </div>
             </header>

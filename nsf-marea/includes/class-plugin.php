@@ -27,10 +27,18 @@ final class Plugin {
         add_action( 'elementor/elements/categories_registered', [ $this, 'register_category' ] );
         add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ], 5 );
+        add_filter( 'wp_resource_hints', [ $this, 'resource_hints' ], 10, 2 );
         add_action( 'elementor/frontend/after_register_styles', [ $this, 'register_assets' ] );
         add_action( 'elementor/frontend/after_register_scripts', [ $this, 'register_assets' ] );
         add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_assets' ] );
         add_action( 'elementor/preview/enqueue_scripts', [ $this, 'enqueue_assets' ] );
+    }
+
+    public function resource_hints( $hints, $relation ) {
+        if ( 'preconnect' === $relation && wp_style_is( 'nsfmarea-fonts', 'enqueued' ) ) {
+            $hints[] = [ 'href' => 'https://fonts.gstatic.com', 'crossorigin' => 'anonymous' ];
+        }
+        return $hints;
     }
 
     public function register_assets() {
@@ -39,10 +47,26 @@ final class Plugin {
         $css_version  = NSFMAREA_VERSION . '-' . ( file_exists( $frontend_css ) ? filemtime( $frontend_css ) : time() );
         $js_version   = NSFMAREA_VERSION . '-' . ( file_exists( $frontend_js ) ? filemtime( $frontend_js ) : time() );
 
+        /* Tipografía de titulares: una grotesca ANCHA y muy negra, que es
+           lo que devuelve el logo entintado de Noticias del Conurbano.
+           Es deliberadamente lo opuesto a la condensada que usa el
+           plugin hermano, para que los dos sitios no se confundan.
+
+           Se registra como dependencia de la hoja del plugin: WordPress
+           la pide sola donde hay un widget y no en el resto del sitio.
+           El cuerpo va en serif del sistema, así que no hace falta
+           cargar una segunda familia. */
+        wp_register_style(
+            'nsfmarea-fonts',
+            'https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap',
+            [],
+            null
+        );
+
         wp_register_style(
             'nsfmarea-widgets-frontend',
             NSFMAREA_URL . 'assets/css/frontend.css',
-            [],
+            [ 'nsfmarea-fonts' ],
             $css_version
         );
 
