@@ -4291,29 +4291,50 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np .nsfmarea-dynamic-meta{ font-size:9.5px; }
 /* Laterales: fichas horizontales chicas */
 .nsfmarea-np .nsfmarea-dynamic-side{ gap:0; }
-/* Ficha lateral APILADA: foto arriba a todo el ancho de la columna y
-   título debajo.
+/* La columna lateral se ajusta a la altura de la nota principal.
 
-   El reparto horizontal —miniatura al costado y texto en el resto— es
-   inviable acá: la columna es angosta, Archivo Black es una letra muy
-   ancha, y el texto terminaba partiéndose en astillas de una palabra
-   mientras sobraba hueco a la derecha. Apilado, el título dispone del
-   ancho completo de la columna y entra en dos renglones. */
-.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-  padding:16px 0;
-  border-top:1px solid var(--nc-rule-sft);
+   Apiladas —foto arriba a todo el ancho— las fichas quedaban altísimas y
+   tres nunca entraban: la columna se pasaba de largo y la principal
+   quedaba con un hueco enorme debajo. Vuelven a ser horizontales pero
+   COMPACTAS: miniatura cuadrada chica al costado y título al lado.
+
+   La columna se estira a la altura de la fila y reparte sus fichas en
+   partes iguales, así el bloque cierra parejo de los dos lados sea cual
+   sea la cantidad de notas. */
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side{
+  align-self:stretch;
+  grid-auto-rows:1fr;
 }
-.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card > .nsfmarea-dynamic-img{ order:1; }
-.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-content{ order:2; }
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{
+  display:grid;
+  grid-template-columns:104px minmax(0,1fr);
+  gap:15px;
+  align-items:center;
+  padding:14px 0;
+  border-top:1px solid var(--nc-rule-sft);
+  min-width:0;
+}
+/* Defensivo: en más de un contexto el bloque de texto se encogía a su
+   contenido mínimo y el título se partía en astillas de una palabra
+   mientras sobraba hueco a la derecha. Se le fija el ancho de la celda. */
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-content{
+  width:100%;
+  min-width:0;
+  padding:0;
+}
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-title,
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-excerpt{
+  display:block;
+  width:100%;
+  max-width:none;
+}
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card:first-child{ border-top:0; padding-top:0; }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-content{ padding:0; }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-content::before{ content:none; }
 .nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-img{
-  aspect-ratio:16 / 9;
-  width:100%;
+  aspect-ratio:1 / 1;
+  width:104px;
+  align-self:center;
 }
 /* En el lateral el título va al lado de la foto, nunca encima */
 .nsfmarea-np .nsfmarea-dynamic-side-card.nsfmarea-dynamic-overlay .nsfmarea-dynamic-content{
@@ -4666,7 +4687,15 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   .nsfmarea-np .nsfmarea-hero-side-card:first-child,
   .nsfmarea-np .nsfmarea-hero-side-card:nth-child(2){ border-top:0; }
 
-  .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{ padding:14px 0; }
+  /* En móvil las dos columnas se apilan, así que la lateral deja de
+     tener que igualar altura y la miniatura puede achicarse. */
+  .nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side{ align-self:auto; grid-auto-rows:auto; }
+  .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{
+    grid-template-columns:84px minmax(0,1fr);
+    gap:13px;
+    padding:13px 0;
+  }
+  .nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-img{ width:84px; }
   .nsfmarea-np .note-body{ font-size:16.5px; }
   .nsfmarea-np .note-body > p:first-of-type{ font-size:17.5px; }
   .nsfmarea-np .share-save{ margin-left:0; }
