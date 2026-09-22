@@ -3834,27 +3834,41 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   border-top-width:4px;
   border-radius:var(--nc-radius) var(--nc-radius) 0 0;
 }
-/* La marca va a la DERECHA, con las columnas ocupando el resto.
-   En los otros sitios de la familia el logo quedó siempre a la
-   izquierda o centrado; acá se corre al otro extremo, separado por un
-   filete vertical, como el pie de imprenta de la última página. */
+/* Las columnas ocupan la banda de arriba y la marca cierra abajo a todo
+   el ancho, con la descripción a la izquierda y el logo a la derecha.
+   En los otros sitios de la familia el logo quedó siempre a la izquierda
+   o centrado; acá va al extremo opuesto del texto, como el pie de
+   imprenta de la última página. */
 .nsfmarea-np .nsfmarea-footer-pro .nsfmarea-footer-main{
   display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,260px);
-  grid-template-areas:"cols brand";
-  column-gap:46px;
-  gap:0 46px;
-  align-items:start;
+  grid-template-columns:minmax(0,1fr);
+  grid-template-areas:"cols" "brand";
+  gap:0;
 }
 .nsfmarea-np .nsfmarea-footer-pro .footer-brand{
   grid-area:brand;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:center;
+  column-gap:46px;
   text-align:left;
-  padding:0 0 0 46px;
-  margin-bottom:0;
+  padding:24px 0 0;
+  margin:26px 0 0;
+  border-top:1px solid rgba(244,241,235,.22);
   border-bottom:0;
-  border-left:1px solid rgba(244,241,235,.22);
+  border-left:0;
   flex:none;
 }
+/* El logo ocupa la columna derecha entera: si hay redes debajo de la
+   descripción, queda centrado contra las dos filas en vez de saltar. */
+.nsfmarea-np .nsfmarea-footer-pro .footer-brand .brand-logo{
+  grid-column:2;
+  grid-row:1 / -1;
+  justify-self:end;
+  align-self:center;
+}
+.nsfmarea-np .nsfmarea-footer-pro .footer-brand p{ grid-column:1; }
+.nsfmarea-np .nsfmarea-footer-pro .footer-brand .footer-socials{ grid-column:1; }
 .nsfmarea-np .nsfmarea-footer-pro .footer-cols{ grid-area:cols; }
 .nsfmarea-np .nsfmarea-footer-pro .footer-brand .brand-logo img{
   display:block;
@@ -3867,7 +3881,7 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   letter-spacing:-.03em;
   background:none;
   padding:0;
-  margin-bottom:10px;
+  margin-bottom:0;
   color:var(--nc-clip);
 }
 .nsfmarea-np .nsfmarea-footer-pro .footer-brand .brand-logo::before{ content:none; }
@@ -3877,7 +3891,7 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   letter-spacing:0; max-width:none; margin:0;
   padding-left:0; border-left:0;
 }
-.nsfmarea-np .nsfmarea-footer-pro .footer-brand .footer-socials{ justify-content:flex-start; margin-top:16px; }
+.nsfmarea-np .nsfmarea-footer-pro .footer-brand .footer-socials{ justify-content:flex-start; margin-top:14px; }
 .nsfmarea-np .nsfmarea-footer-pro .footer-socials a{
   display:inline-flex; align-items:center; justify-content:center;
   border:1px solid rgba(244,241,235,.3);
@@ -4704,16 +4718,16 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 @media (max-width:767px){
   .nsfmarea-np.nsfmarea-header-widget .site-header-inner{ padding:10px 0; column-gap:14px; }
   .nsfmarea-np .brand{ padding:2px 14px 8px 0; border-right-width:1px; }
-  .nsfmarea-np .nsfmarea-footer-pro .nsfmarea-footer-main{
-    grid-template-columns:minmax(0,1fr);
-    grid-template-areas:"brand" "cols";
-    gap:0;
-  }
   .nsfmarea-np .nsfmarea-footer-pro .footer-brand{
-    padding:0 0 20px;
-    margin-bottom:22px;
-    border-left:0;
-    border-bottom:1px solid rgba(244,241,235,.22);
+    grid-template-columns:minmax(0,1fr);
+    row-gap:18px;
+    padding:20px 0 0;
+    margin-top:22px;
+  }
+  .nsfmarea-np .nsfmarea-footer-pro .footer-brand .brand-logo{
+    grid-column:1;
+    grid-row:auto;
+    justify-self:start;
   }
   .nsfmarea-np .brand-logo{ font-size:clamp(17px,5.4vw,24px); }
   .nsfmarea-np .brand-slogan{ display:none; }
