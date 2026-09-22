@@ -3599,9 +3599,17 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   display:flex;
   flex-direction:column;
   align-items:flex-start;
+  justify-content:center;
   gap:5px;
-  padding-right:26px;
-  border-right:2px solid var(--nc-ink);
+  padding:4px 24px 12px 0;
+  /* Un filete de 2px en tinta plena competía con el logo entintado y
+     partía el cabezal en dos bloques. Basta con una línea fina. */
+  border-right:1px solid var(--nc-rule);
+}
+.nsfmarea-np .brand-logo-img{
+  width:auto;
+  height:auto;
+  object-fit:contain;
 }
 .nsfmarea-np .brand-logo{
   font-size:clamp(24px,3.4vw,40px);
@@ -3826,23 +3834,36 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   border-top-width:4px;
   border-radius:var(--nc-radius) var(--nc-radius) 0 0;
 }
+/* La marca va a la DERECHA, con las columnas ocupando el resto.
+   En los otros sitios de la familia el logo quedó siempre a la
+   izquierda o centrado; acá se corre al otro extremo, separado por un
+   filete vertical, como el pie de imprenta de la última página. */
 .nsfmarea-np .nsfmarea-footer-pro .nsfmarea-footer-main{
   display:grid;
-  grid-template-columns:minmax(0,1fr);
-  grid-template-areas:"brand" "cols";
-  gap:0;
+  grid-template-columns:minmax(0,1fr) minmax(0,260px);
+  grid-template-areas:"cols brand";
+  column-gap:46px;
+  gap:0 46px;
+  align-items:start;
 }
 .nsfmarea-np .nsfmarea-footer-pro .footer-brand{
   grid-area:brand;
   text-align:left;
-  padding:4px 0 22px;
-  margin-bottom:24px;
-  border-bottom:1px solid rgba(244,241,235,.2);
+  padding:0 0 0 46px;
+  margin-bottom:0;
+  border-bottom:0;
+  border-left:1px solid rgba(244,241,235,.22);
+  flex:none;
 }
 .nsfmarea-np .nsfmarea-footer-pro .footer-cols{ grid-area:cols; }
+.nsfmarea-np .nsfmarea-footer-pro .footer-brand .brand-logo img{
+  display:block;
+  height:auto;
+  max-width:100%;
+}
 .nsfmarea-np .nsfmarea-footer-pro .footer-brand .brand-logo{
   display:inline-block;
-  font-size:32px;
+  font-size:28px;
   letter-spacing:-.03em;
   background:none;
   padding:0;
@@ -3852,8 +3873,8 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np .nsfmarea-footer-pro .footer-brand .brand-logo::before{ content:none; }
 .nsfmarea-np .nsfmarea-footer-pro .footer-brand p{
   font-family:var(--f-nc-body);
-  font-size:14.5px; line-height:1.6;
-  letter-spacing:0; max-width:56ch; margin:0;
+  font-size:14px; line-height:1.55;
+  letter-spacing:0; max-width:none; margin:0;
   padding-left:0; border-left:0;
 }
 .nsfmarea-np .nsfmarea-footer-pro .footer-brand .footer-socials{ justify-content:flex-start; margin-top:16px; }
@@ -4682,7 +4703,18 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 
 @media (max-width:767px){
   .nsfmarea-np.nsfmarea-header-widget .site-header-inner{ padding:10px 0; column-gap:14px; }
-  .nsfmarea-np .brand{ padding-right:14px; border-right-width:1px; }
+  .nsfmarea-np .brand{ padding:2px 14px 8px 0; border-right-width:1px; }
+  .nsfmarea-np .nsfmarea-footer-pro .nsfmarea-footer-main{
+    grid-template-columns:minmax(0,1fr);
+    grid-template-areas:"brand" "cols";
+    gap:0;
+  }
+  .nsfmarea-np .nsfmarea-footer-pro .footer-brand{
+    padding:0 0 20px;
+    margin-bottom:22px;
+    border-left:0;
+    border-bottom:1px solid rgba(244,241,235,.22);
+  }
   .nsfmarea-np .brand-logo{ font-size:clamp(17px,5.4vw,24px); }
   .nsfmarea-np .brand-slogan{ display:none; }
   .nsfmarea-np .header-date,
