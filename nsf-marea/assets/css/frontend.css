@@ -4854,11 +4854,24 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 
 /* Fichas: recortes pegados sobre el papel, igual que en la grilla
    de categoría, para que las dos retículas se lean como una sola */
-.nsfmarea-np.nsfmarea-grid-news .dual-grid{ align-items:start; }
+/* Todas las tarjetas, del mismo alto.
+
+   `align-items:start` las dejaba medir cada una lo suyo, así que un
+   titular de tres renglones estiraba su tarjeta y la de al lado quedaba
+   corta. Se vuelve al estiramiento de la grilla y cada tarjeta pasa a
+   columna flexible, con la fecha empujada al pie: así la línea de
+   fechas queda alineada en toda la fila sin importar cuánto ocupe
+   cada título. */
+.nsfmarea-np.nsfmarea-grid-news .dual-grid{ align-items:stretch; }
+.nsfmarea-np.nsfmarea-grid-news .card{
+  display:flex;
+  flex-direction:column;
+  height:100%;
+}
+.nsfmarea-np.nsfmarea-grid-news .card-byline{ margin-top:auto; }
 /* Sin recuadro, igual que el resto de las retículas: un diario separa
    las notas con aire y un filete, no encajonando cada una. */
 .nsfmarea-np.nsfmarea-grid-news .card{
-  display:block;
   background:none;
   border:0;
   padding:0;
