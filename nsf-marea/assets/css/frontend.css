@@ -3827,12 +3827,15 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
    Bloque oscuro que cierra el diario, con el logo grande arriba
    y las columnas debajo en retícula chica.
    ============================================================ */
+/* El pie va con esquinas rectas: el radio es la firma de las FOTOS, y
+   aplicado también al contenedor dejaba dos muescas blancas en los
+   extremos superiores, contra el borde de la ventana. */
 .nsfmarea-np .nsfmarea-footer-pro{
   background:var(--nc-ink);
   color:var(--nc-clip);
   border-top-style:solid;
   border-top-width:4px;
-  border-radius:var(--nc-radius) var(--nc-radius) 0 0;
+  border-radius:0;
 }
 /* Las columnas ocupan la banda de arriba y la marca cierra abajo a todo
    el ancho, con la descripción a la izquierda y el logo a la derecha.
