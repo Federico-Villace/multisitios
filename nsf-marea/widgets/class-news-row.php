@@ -23,7 +23,7 @@ class News_Row extends Widget_Base {
         $this->add_responsive_control( 'columns', [ 'label' => 'Columnas', 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '4', 'tablet_default' => '2', 'mobile_default' => '1', 'options' => [ '1'=>'1','2'=>'2','3'=>'3','4'=>'4' ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-news-row-grid' => 'grid-template-columns: repeat({{VALUE}}, minmax(0,1fr));' ] ] );
         $this->add_responsive_control( 'gap', [ 'label' => 'Gap', 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 60 ] ], 'default' => [ 'size' => 24, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-news-row-grid' => 'gap: {{SIZE}}{{UNIT}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'title_typo', 'selector' => '{{WRAPPER}} .nsfmarea-news-row-title' ] );
-        $this->add_control( 'title_color', [ 'label' => 'Color título', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#202124', 'selectors' => [ '{{WRAPPER}} .nsfmarea-news-row-title' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'title_color', [ 'label' => 'Color título', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#1b1a17', 'selectors' => [ '{{WRAPPER}} .nsfmarea-news-row-title' => 'color: {{VALUE}};' ] ] );
         $this->end_controls_section();
     }
 
@@ -31,7 +31,7 @@ class News_Row extends Widget_Base {
         $s = $this->get_settings_for_display();
         $q = $this->build_query( $s );
         ?>
-        <div class="nsfmarea-scope"><div class="nsfmarea-news-row-grid">
+        <div class="nsfmarea-scope nsfmarea-np"><div class="nsfmarea-news-row-grid">
             <?php $i=0; while ( $q->have_posts() ) : $q->the_post(); $i++; ?>
                 <article class="nsfmarea-news-row-card">
                     <h3 class="nsfmarea-news-row-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>

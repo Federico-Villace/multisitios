@@ -31,8 +31,8 @@ class Feature_Split extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_colors', [ 'label' => 'Colores y bordes', 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
-        $this->add_control( 'bg', [ 'label' => 'Fondo texto', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#f4f4f4', 'selectors' => [ '{{WRAPPER}} .nsfmarea-feature-copy' => 'background: {{VALUE}};' ] ] );
-        $this->add_control( 'border_color', [ 'label' => 'Líneas superior/inferior', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#9f9f9f', 'selectors' => [ '{{WRAPPER}} .nsfmarea-feature-split' => 'border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'bg', [ 'label' => 'Fondo texto', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#f4f1eb', 'selectors' => [ '{{WRAPPER}} .nsfmarea-feature-copy' => 'background: {{VALUE}};' ] ] );
+        $this->add_control( 'border_color', [ 'label' => 'Líneas superior/inferior', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#1b1a17', 'selectors' => [ '{{WRAPPER}} .nsfmarea-feature-split' => 'border-color: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'border_width', [ 'label' => 'Grosor líneas', 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 8 ] ], 'default' => [ 'size' => 2, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-feature-split' => 'border-top-width: {{SIZE}}{{UNIT}}; border-bottom-width: {{SIZE}}{{UNIT}};' ] ] );
         $this->add_responsive_control( 'radius', [ 'label' => 'Radio de bordes', 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 40 ] ], 'selectors' => [ '{{WRAPPER}} .nsfmarea-feature-split, {{WRAPPER}} .nsfmarea-feature-media, {{WRAPPER}} .nsfmarea-feature-copy, {{WRAPPER}} .nsfmarea-feature-media img' => 'border-radius: {{SIZE}}{{UNIT}};' ] ] );
         $this->add_control( 'title_color', [ 'label' => 'Color título', 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfmarea-feature-title' => 'color: {{VALUE}};' ] ] );
@@ -62,7 +62,7 @@ class Feature_Split extends Widget_Base {
         $classes = 'nsfmarea-feature-split';
         if ( ! empty( $s['reverse_layout'] ) && 'yes' === $s['reverse_layout'] ) { $classes .= ' is-reversed'; }
         ?>
-        <div class="nsfmarea-scope"><a class="<?php echo esc_attr( $classes ); ?>" href="<?php echo esc_url( $url ); ?>">
+        <div class="nsfmarea-scope nsfmarea-np"><a class="<?php echo esc_attr( $classes ); ?>" href="<?php echo esc_url( $url ); ?>">
             <div class="nsfmarea-feature-media"><?php echo $img_html; ?></div>
             <div class="nsfmarea-feature-copy"><h2 class="nsfmarea-feature-title"><?php echo esc_html( $title ); ?></h2><?php if ( $text ) : ?><p class="nsfmarea-feature-text"><?php echo esc_html( $text ); ?></p><?php endif; ?></div>
         </a></div>
