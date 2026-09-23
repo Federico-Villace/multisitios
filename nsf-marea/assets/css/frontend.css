@@ -3454,7 +3454,6 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 /* Trama de papel: un punteado muy tenue que imita el grano del
    papel de diario. Se resuelve con un degradado repetido en vez de
    una imagen, así no agrega ningún pedido extra. */
-.nsfmarea-np.nsfmarea-category-grid-posts,
 .nsfmarea-np.nsfmarea-archive-widget,
 .nsfmarea-np.nsfmarea-hero-news,
 .nsfmarea-np.nsfmarea-dynamic-widget,
@@ -3933,7 +3932,15 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
    un recorte pegado sobre el papel: fondo más claro, esquinas
    redondeadas y una sombra mínima.
    ============================================================ */
-.nsfmarea-np.nsfmarea-category-grid-posts{ padding:44px 0 50px; }
+/* Esta sección va en BLANCO liso, de borde a borde: sobre el papel con
+   trama las fichas sin recuadro perdían definición y el conjunto se
+   ensuciaba. El blanco las deja respirar. El color sale de un control,
+   así que se cambia desde el panel sin volver a tocar la hoja. */
+.nsfmarea-np.nsfmarea-category-grid-posts{
+  padding:44px 0 50px;
+  background-color:var(--nc-grid-bg,#ffffff);
+  background-image:none;
+}
 .nsfmarea-np.nsfmarea-category-grid-posts > .container{
   max-width:var(--nc-box,1280px);
   margin-inline:auto;
@@ -3977,7 +3984,7 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   transform:none;
 }
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card::after{ content:none; }
-.nsfmarea-np.nsfmarea-category-grid-posts .post-card-img{ background:var(--nc-paper-2); filter:none; }
+.nsfmarea-np.nsfmarea-category-grid-posts .post-card-img{ background:#ececea; filter:none; }
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card-img::after{ content:none; }
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card-body{ padding:12px 0 0; }
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card-kicker{ display:block; margin:0 0 5px; font-size:9.5px; }
