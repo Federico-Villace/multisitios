@@ -3457,7 +3457,7 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np.nsfmarea-category-grid-posts,
 .nsfmarea-np.nsfmarea-archive-widget,
 .nsfmarea-np.nsfmarea-hero-news,
-.nsfmarea-np .nsfmarea-dynamic-news,
+.nsfmarea-np.nsfmarea-dynamic-widget,
 .nsfmarea-np .site-header,
 .nsfmarea-np.nsfmarea-note-widget{
   background-color:var(--nc-paper);
@@ -3958,23 +3958,28 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   font-size:14.5px; line-height:1.5; max-width:62ch; margin:8px 0 0;
 }
 
+/* Sin recuadro: la ficha va directo sobre el papel.
+
+   Con un fondo apenas más claro que el papel, el borde no leía como una
+   tarjeta sino como un marco suelto alrededor del texto. Un diario no
+   encajona cada nota: las separa con aire y un filete. La foto ya trae
+   su esquina redondeada, que es la firma del sitio, y alcanza. */
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card{
-  background:var(--nc-clip);
-  border:1px solid var(--nc-rule-sft);
-  border-radius:var(--nc-radius);
-  padding:10px 10px 14px;
-  border-top:1px solid var(--nc-rule-sft);
-  box-shadow:0 1px 0 rgba(27,26,23,.05);
-  transition:box-shadow 160ms ease, transform 160ms ease;
+  background:none;
+  border:0;
+  border-radius:0;
+  padding:0;
+  box-shadow:none;
+  transition:none;
 }
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card:hover{
-  box-shadow:0 5px 14px rgba(27,26,23,.11);
-  transform:translateY(-2px);
+  box-shadow:none;
+  transform:none;
 }
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card::after{ content:none; }
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card-img{ background:var(--nc-paper-2); filter:none; }
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card-img::after{ content:none; }
-.nsfmarea-np.nsfmarea-category-grid-posts .post-card-body{ padding:11px 4px 0; }
+.nsfmarea-np.nsfmarea-category-grid-posts .post-card-body{ padding:12px 0 0; }
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card-kicker{ display:block; margin:0 0 5px; font-size:9.5px; }
 .nsfmarea-np.nsfmarea-category-grid-posts .post-card-title{
   display:block;
@@ -3995,16 +4000,16 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   grid-column:1 / -1;
   display:grid;
   grid-template-columns:minmax(0,.62fr) minmax(0,1fr);
-  gap:20px;
+  gap:22px;
   align-items:center;
-  padding:12px;
-  border-top:1px solid var(--nc-rule-sft);
+  padding:0 0 22px;
+  border-bottom:1px solid var(--nc-rule);
 }
 .nsfmarea-scope.nsfmarea-np.nsfmarea-category-grid-posts .posts-grid > .post-card.feat .post-card-img,
 .nsfmarea-scope.nsfmarea-np.nsfmarea-category-grid-posts .posts-grid > .post-card.feat .post-card-img img{
   aspect-ratio:4 / 3;
 }
-.nsfmarea-np.nsfmarea-category-grid-posts .posts-grid > .post-card.feat .post-card-body{ padding:0 8px 0 0; }
+.nsfmarea-np.nsfmarea-category-grid-posts .posts-grid > .post-card.feat .post-card-body{ padding:0; }
 .nsfmarea-np.nsfmarea-category-grid-posts .posts-grid > .post-card.feat .post-card-title{
   font-size:clamp(19px,2.2vw,29px);
   line-height:1.08;
@@ -4087,22 +4092,19 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
    existe, así que la foto caía debajo del título. Se pasa a flex para
    poder subirla y las fichas quedan como recortes, igual que en el resto
    de las retículas. */
-.nsfmarea-np .cat-list.layout-grid{ gap:18px; }
+.nsfmarea-np .cat-list.layout-grid{ gap:28px 22px; }
 .nsfmarea-np .cat-list.layout-grid .cat-item{
   display:flex;
   flex-direction:column;
-  background:var(--nc-clip);
-  border:1px solid var(--nc-rule-sft);
-  border-radius:var(--nc-radius);
-  padding:10px 10px 14px;
+  background:none;
+  border:0;
+  border-radius:0;
+  padding:0;
   margin:0;
-  box-shadow:0 1px 0 rgba(27,26,23,.05);
-  transition:box-shadow 160ms ease, transform 160ms ease;
+  box-shadow:none;
 }
 .nsfmarea-np .cat-list.layout-grid .cat-item:hover{
-  background:var(--nc-clip);
-  box-shadow:0 5px 14px rgba(27,26,23,.11);
-  transform:translateY(-2px);
+  background:none; box-shadow:none; transform:none;
 }
 .nsfmarea-np .cat-list.layout-grid .nsfmarea-archive-img{
   order:-1;
@@ -4111,7 +4113,7 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 }
 .nsfmarea-np .cat-list.layout-grid .nsfmarea-archive-content{
   order:2;
-  padding:11px 4px 0;
+  padding:12px 0 0;
 }
 .nsfmarea-np .cat-list.layout-grid .card-title{ font-size:15.5px; }
 .nsfmarea-np .cat-list.layout-grid .nsfmarea-archive-excerpt{ font-size:13.5px; margin-top:6px; }
@@ -4240,13 +4242,19 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 /* ============================================================
    6. BLOQUE DINÁMICO y 7. LO ÚLTIMO
    ============================================================ */
-/* Este widget NO trae `.container` en su marcado —la grilla y el archivo
-   sí lo traen—, así que iba pegado al borde izquierdo sin ningún respiro
-   mientras la columna derecha acumulaba el sobrante. El encajonado va
-   entonces sobre la sección misma, con las MISMAS medidas que el resto
-   para que todos los bloques de la página alineen en la misma vertical. */
+/* Este widget NO trae `.container` en su marcado, así que el encajonado
+   hay que armarlo a mano. Y hay que hacerlo en DOS niveles:
+
+     raíz     → papel a ancho completo, de borde a borde
+     sección  → contenido acotado y centrado
+
+   Ponerlos en el mismo elemento —que fue el error anterior— acota
+   también el fondo, y el papel queda como una banda cortada con blanco
+   a los costados. El fondo pinta la franja; la medida la lleva adentro. */
+.nsfmarea-np.nsfmarea-dynamic-widget{ border-top:3px solid var(--nc-ink); }
 .nsfmarea-np .nsfmarea-dynamic-news{
-  border-top:3px solid var(--nc-ink);
+  border-top:0;
+  background:none;
   max-width:var(--nc-box,1280px);
   margin-inline:auto;
   padding:32px var(--nc-inset,32px) 34px;
@@ -4840,17 +4848,16 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 /* Fichas: recortes pegados sobre el papel, igual que en la grilla
    de categoría, para que las dos retículas se lean como una sola */
 .nsfmarea-np.nsfmarea-grid-news .dual-grid{ align-items:start; }
+/* Sin recuadro, igual que el resto de las retículas: un diario separa
+   las notas con aire y un filete, no encajonando cada una. */
 .nsfmarea-np.nsfmarea-grid-news .card{
   display:block;
-  border:1px solid var(--nc-rule-sft);
-  padding:10px 10px 14px;
-  box-shadow:0 1px 0 rgba(27,26,23,.05);
-  transition:box-shadow 160ms ease, transform 160ms ease;
+  background:none;
+  border:0;
+  padding:0;
+  box-shadow:none;
 }
-.nsfmarea-np.nsfmarea-grid-news .card:hover{
-  box-shadow:0 5px 14px rgba(27,26,23,.11);
-  transform:translateY(-2px);
-}
+.nsfmarea-np.nsfmarea-grid-news .card:hover{ box-shadow:none; transform:none; }
 .nsfmarea-np.nsfmarea-grid-news .card-img,
 .nsfmarea-np.nsfmarea-grid-news .card-img-real,
 .nsfmarea-np.nsfmarea-grid-news .card > a:first-child{
@@ -4866,8 +4873,8 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   line-height:1.16;
   letter-spacing:-.012em;
   text-transform:none;
-  margin:11px 0 0;
-  padding:0 4px;
+  margin:12px 0 0;
+  padding:0;
 }
 .nsfmarea-np.nsfmarea-grid-news .card-byline{
   font-family:var(--f-nc-meta);
@@ -4875,8 +4882,8 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   font-size:9.5px;
   letter-spacing:.13em;
   text-transform:uppercase;
-  margin:9px 4px 0;
-  padding-top:7px;
+  margin:10px 0 0;
+  padding-top:8px;
   border-top:1px solid var(--nc-rule-sft);
 }
 /* Sin autor ni fecha el filete quedaría suelto arriba de la nada */
@@ -4973,17 +4980,14 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np .nsfmarea-news-row-card{
   display:flex;
   flex-direction:column;
-  background:var(--nc-clip);
-  border:1px solid var(--nc-rule-sft);
-  border-radius:var(--nc-radius);
-  padding:14px 14px 16px;
-  box-shadow:0 1px 0 rgba(27,26,23,.05);
-  transition:box-shadow 160ms ease, transform 160ms ease;
+  background:none;
+  border:0;
+  border-top:2px solid var(--nc-ink);
+  border-radius:0;
+  padding:14px 0 16px;
+  box-shadow:none;
 }
-.nsfmarea-np .nsfmarea-news-row-card:hover{
-  box-shadow:0 5px 14px rgba(27,26,23,.11);
-  transform:translateY(-2px);
-}
+.nsfmarea-np .nsfmarea-news-row-card:hover{ box-shadow:none; transform:none; }
 .nsfmarea-np .nsfmarea-news-row-title{
   font-family:var(--f-nc-disp);
   font-weight:400;

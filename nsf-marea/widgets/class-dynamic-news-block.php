@@ -124,7 +124,7 @@ class Dynamic_News_Block extends Widget_Base {
         $text_below_mobile = 'yes' === ( $settings['mobile_text_below'] ?? '' ) ? '1' : '0';
         $hide_excerpt_mobile = 'yes' === ( $settings['mobile_hide_excerpt'] ?? '' ) ? '1' : '0';
         ?>
-        <div class="nsfmarea-scope nsfmarea-np">
+        <div class="nsfmarea-scope nsfmarea-np nsfmarea-dynamic-widget">
             <section class="nsfmarea-dynamic-news nsfmarea-dynamic-mobile-<?php echo esc_attr( $layout_mobile ); ?>" data-mobile-visible="<?php echo esc_attr( $mobile_visible ); ?>" data-mobile-text-below="<?php echo esc_attr( $text_below_mobile ); ?>" data-mobile-hide-excerpt="<?php echo esc_attr( $hide_excerpt_mobile ); ?>">
                 <?php if ( ! empty( $settings['section_title'] ) ) : ?><h2 class="nsfmarea-dynamic-section-title"><?php echo esc_html( $settings['section_title'] ); ?></h2><?php endif; ?>
                 <div class="nsfmarea-dynamic-grid <?php echo 'right' === ( $settings['big_position'] ?? 'left' ) ? 'is-reverse' : ''; ?>">
