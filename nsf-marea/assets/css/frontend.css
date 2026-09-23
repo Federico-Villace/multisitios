@@ -4849,6 +4849,9 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 }
 .nsfmarea-np.nsfmarea-grid-news .section-title{
   font-family:var(--f-nc-disp);
+  /* El CSS base del clon pone estos títulos en itálica. Declarar sólo la
+     familia no la desactiva: hay que decir `normal` explícitamente. */
+  font-style:normal;
   font-weight:400;
   font-size:clamp(20px,2.2vw,29px);
   line-height:1;
@@ -4903,8 +4906,10 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   background:var(--nc-paper-2);
   display:block;
 }
-.nsfmarea-np.nsfmarea-grid-news .card-title{
+.nsfmarea-scope.nsfmarea-np.nsfmarea-grid-news .card-title,
+.nsfmarea-scope.nsfmarea-np.nsfmarea-grid-news .dual-grid .card-title{
   font-family:var(--f-nc-disp);
+  font-style:normal;
   font-weight:400;
   font-size:15.5px;
   line-height:1.16;
@@ -4913,16 +4918,21 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   margin:12px 0 0;
   padding:0;
 }
+/* La fecha y su filete se empujan al pie de la tarjeta, así quedan
+   alineados en toda la fila sin importar si el titular ocupa dos
+   renglones o tres. */
 .nsfmarea-np.nsfmarea-grid-news .card-byline{
   font-family:var(--f-nc-meta);
   font-weight:700;
   font-size:9.5px;
   letter-spacing:.13em;
   text-transform:uppercase;
-  margin:10px 0 0;
-  padding-top:8px;
+  margin:14px 0 0;
+  padding-top:9px;
   border-top:1px solid var(--nc-rule-sft);
 }
+/* El titular ocupa el alto sobrante para que el filete baje a ras */
+.nsfmarea-np.nsfmarea-grid-news .card-title{ flex:1 0 auto; }
 /* Sin autor ni fecha el filete quedaría suelto arriba de la nada */
 .nsfmarea-np.nsfmarea-grid-news .card-byline:empty{ display:none; }
 
@@ -4963,10 +4973,23 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   overflow:hidden;
   background:var(--nc-paper-2);
 }
-.nsfmarea-np .nsfmarea-feature-media img,
-.nsfmarea-np .nsfmarea-feature-media .card-img{
+/* La caja quedaba con una franja de aire abajo: el contenedor de la foto
+   no se estiraba a la altura de la fila, así que la imagen terminaba
+   antes que el borde. Se fuerza el estirado y la foto llena su columna. */
+.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-split{
+  align-items:stretch;
+  padding:0;
+  line-height:0;      /* mata cualquier resto de caja de línea del enlace */
+}
+.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-media{
+  display:flex;
+  align-self:stretch;
+}
+.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-copy{ line-height:1.5; }
+.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-media img,
+.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-media .card-img{
+  flex:1;
   width:100%; height:100%;
-  min-height:0;
   object-fit:cover;
   display:block;
   border-radius:0;   /* el recorte ya lo da el contenedor */
