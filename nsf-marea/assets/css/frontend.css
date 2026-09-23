@@ -3422,9 +3422,9 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 
 .nsfmarea-scope.nsfmarea-np,
 .nsfmarea-np{
-  --nc-paper:    #e7e3da;
-  --nc-paper-2:  #dcd7cb;
-  --nc-clip:     #f4f1eb;   /* el recorte, más claro que el papel */
+  --nc-paper:    #ffffff;
+  --nc-paper-2:  #ededea;   /* marcador de foto sin imagen */
+  --nc-clip:     #f7f6f4;   /* apenas gris, para las pocas piezas enmarcadas */
   --nc-ink:      #1b1a17;
   --nc-ink-soft: #4a4740;
   --nc-muted:    #75716a;
@@ -3451,17 +3451,18 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   font-family:var(--f-nc-body);
 }
 
-/* Trama de papel: un punteado muy tenue que imita el grano del
-   papel de diario. Se resuelve con un degradado repetido en vez de
-   una imagen, así no agrega ningún pedido extra. */
+/* Fondo blanco liso en todas las secciones, de borde a borde. La trama
+   de papel que imitaba el grano de impresión se retira: con las fichas
+   sin recuadro el punteado ensuciaba la lectura en vez de dar textura.
+   La identidad la sostienen ahora la tipografía, el rojo de sello y las
+   esquinas redondeadas de las fotos. */
 .nsfmarea-np.nsfmarea-archive-widget,
 .nsfmarea-np.nsfmarea-hero-news,
 .nsfmarea-np.nsfmarea-dynamic-widget,
 .nsfmarea-np .site-header,
 .nsfmarea-np.nsfmarea-note-widget{
   background-color:var(--nc-paper);
-  background-image:radial-gradient(rgba(27,26,23,.045) 1px, transparent 1px);
-  background-size:4px 4px;
+  background-image:none;
 }
 
 /* Titulares: ancha, negrísima, apretada de línea */
@@ -4370,8 +4371,8 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 /* Sin partido de palabras: `hyphens:auto` en una columna angosta cortaba
    los títulos en sílabas sueltas. Con la ficha apilada ya no hace falta. */
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-title{
-  font-size:15px;
-  line-height:1.16;
+  font-size:16px;
+  line-height:1.18;
   letter-spacing:-.018em;
   text-wrap:pretty;
   hyphens:manual;
@@ -4397,12 +4398,26 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{
   display:grid;
-  grid-template-columns:104px minmax(0,1fr);
-  gap:15px;
+  grid-template-columns:150px minmax(0,1fr);
+  gap:18px;
   align-items:center;
-  padding:14px 0;
+  padding:16px 0;
   border-top:1px solid var(--nc-rule-sft);
   min-width:0;
+}
+/* La columna se reparte en tres partes iguales y coincide en alto con la
+   nota principal. Para que además COINCIDAN LAS FOTOS, la primera ficha
+   alinea su contenido arriba y la última abajo: así la foto de arriba
+   arranca a la misma altura que la nota grande y la de abajo cierra con
+   ella. Las del medio quedan centradas en su tercio. */
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card:first-child{
+  align-items:start;
+  padding-top:0;
+  border-top:0;
+}
+.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card:last-child{
+  align-items:end;
+  padding-bottom:0;
 }
 /* Defensivo: en más de un contexto el bloque de texto se encogía a su
    contenido mínimo y el título se partía en astillas de una palabra
@@ -4418,13 +4433,11 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   width:100%;
   max-width:none;
 }
-.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card:first-child{ border-top:0; padding-top:0; }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-content{ padding:0; }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-content::before{ content:none; }
 .nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-img{
-  aspect-ratio:1 / 1;
-  width:104px;
-  align-self:center;
+  aspect-ratio:4 / 3;
+  width:150px;
 }
 /* En el lateral el título va al lado de la foto, nunca encima */
 .nsfmarea-np .nsfmarea-dynamic-side-card.nsfmarea-dynamic-overlay .nsfmarea-dynamic-content{
@@ -4658,8 +4671,6 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-scope.nsfmarea-np .nsfmarea-search-modal__panel{
   width:min(680px,calc(100vw - 44px));
   background:var(--nc-paper);
-  background-image:radial-gradient(rgba(27,26,23,.045) 1px, transparent 1px);
-  background-size:4px 4px;
   border:2px solid var(--nc-ink);
   border-radius:var(--nc-radius);
   box-shadow:0 20px 50px rgba(27,26,23,.3);
@@ -4791,12 +4802,15 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   /* En móvil las dos columnas se apilan, así que la lateral deja de
      tener que igualar altura y la miniatura puede achicarse. */
   .nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side{ align-self:auto; grid-auto-rows:auto; }
-  .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{
-    grid-template-columns:84px minmax(0,1fr);
-    gap:13px;
-    padding:13px 0;
+  .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card,
+  .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card:first-child,
+  .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card:last-child{
+    grid-template-columns:104px minmax(0,1fr);
+    gap:14px;
+    padding:14px 0;
+    align-items:center;
   }
-  .nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-img{ width:84px; }
+  .nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-img{ width:104px; }
   .nsfmarea-np .note-body{ font-size:16.5px; }
   .nsfmarea-np .note-body > p:first-of-type{ font-size:17.5px; }
   .nsfmarea-np .share-save{ margin-left:0; }
