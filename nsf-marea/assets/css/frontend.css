@@ -4972,28 +4972,30 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   flex:0 0 54%;
   overflow:hidden;
   background:var(--nc-paper-2);
+  /* Grid en vez de flex: los hijos de una grilla llenan su celda en los
+     DOS ejes por defecto, sin depender de `height:100%` —que necesita un
+     alto definido en el padre para funcionar— ni de `flex:1`, que sólo
+     reparte el eje principal. Y al blockificarse el hijo desaparece el
+     hueco de línea base, que es de donde salía la franja de abajo. */
+  display:grid;
+  font-size:0;
 }
-/* La caja quedaba con una franja de aire abajo: el contenedor de la foto
-   no se estiraba a la altura de la fila, así que la imagen terminaba
-   antes que el borde. Se fuerza el estirado y la foto llena su columna. */
+.nsfmarea-np .nsfmarea-feature-media > *{
+  grid-area:1 / 1;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  border-radius:0;   /* el recorte lo da el contenedor */
+}
+/* La columna de la foto tiene que estirarse a la altura de la fila, o la
+   imagen termina antes que el borde inferior de la caja. */
 .nsfmarea-scope.nsfmarea-np .nsfmarea-feature-split{
   align-items:stretch;
   padding:0;
-  line-height:0;      /* mata cualquier resto de caja de línea del enlace */
 }
-.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-media{
-  display:flex;
-  align-self:stretch;
-}
-.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-copy{ line-height:1.5; }
-.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-media img,
-.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-media .card-img{
-  flex:1;
-  width:100%; height:100%;
-  object-fit:cover;
-  display:block;
-  border-radius:0;   /* el recorte ya lo da el contenedor */
-}
+.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-media{ align-self:stretch; }
+.nsfmarea-scope.nsfmarea-np .nsfmarea-feature-copy{ align-self:stretch; }
 /* El texto centrado del clon no encaja en un diario: va a la izquierda,
    que es donde arranca la lectura. */
 .nsfmarea-np .nsfmarea-feature-copy{
