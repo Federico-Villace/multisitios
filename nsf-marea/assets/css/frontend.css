@@ -4972,6 +4972,16 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   flex:0 0 54%;
   overflow:hidden;
   background:var(--nc-paper-2);
+  /* El CSS base trata a este elemento como si fuera un <img> —le pone
+     object-fit y wp-post-image— cuando en el marcado es un <div> que
+     envuelve a la foto. De ahí salen dos herencias que rompen la caja:
+
+       margin-bottom:12px  → la franja de aire bajo la imagen
+       aspect-ratio:16/9   → le fija el alto e impide que se estire
+
+     Declarar sólo lo nuevo no las desactiva: hay que anularlas. */
+  margin:0;
+  aspect-ratio:auto;
   /* Grid en vez de flex: los hijos de una grilla llenan su celda en los
      DOS ejes por defecto, sin depender de `height:100%` —que necesita un
      alto definido en el padre para funcionar— ni de `flex:1`, que sólo
