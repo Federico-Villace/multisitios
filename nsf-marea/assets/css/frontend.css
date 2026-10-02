@@ -4417,27 +4417,37 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   align-self:stretch;
   grid-auto-rows:1fr;
 }
+/* Dos alineaciones distintas, que se confundían en una sola:
+
+     align-items   → cómo se alinean la foto y el texto ENTRE SÍ
+     align-content → dónde se apoya ese par dentro del alto de la ficha
+
+   El intento anterior usaba `align-items` para empujar la primera ficha
+   arriba y la última abajo, y eso arrastraba también el texto: quedaba
+   pegado al borde superior de su foto en la primera y al inferior en la
+   última, en vez de centrado contra ella.
+
+   Con `align-items:center` fijo, el texto queda siempre centrado contra
+   su foto. Y `align-content` mueve el conjunto completo, así la primera
+   foto sigue arrancando a la altura de la nota grande y la última cierra
+   con ella. */
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card{
   display:grid;
   grid-template-columns:150px minmax(0,1fr);
   gap:18px;
   align-items:center;
+  align-content:center;
   padding:16px 0;
   border-top:1px solid var(--nc-rule-sft);
   min-width:0;
 }
-/* La columna se reparte en tres partes iguales y coincide en alto con la
-   nota principal. Para que además COINCIDAN LAS FOTOS, la primera ficha
-   alinea su contenido arriba y la última abajo: así la foto de arriba
-   arranca a la misma altura que la nota grande y la de abajo cierra con
-   ella. Las del medio quedan centradas en su tercio. */
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card:first-child{
-  align-items:start;
+  align-content:start;
   padding-top:0;
   border-top:0;
 }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-side-card:last-child{
-  align-items:end;
+  align-content:end;
   padding-bottom:0;
 }
 /* Defensivo: en más de un contexto el bloque de texto se encogía a su
@@ -4830,6 +4840,7 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
     gap:14px;
     padding:14px 0;
     align-items:center;
+    align-content:center;
   }
   .nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-img{ width:104px; }
   .nsfmarea-np .note-body{ font-size:16.5px; }
