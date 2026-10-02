@@ -4285,6 +4285,24 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np .nsfmarea-dynamic-section-title::after{ content:none; }
 .nsfmarea-np .nsfmarea-dynamic-card{ background:none; }
 
+/* EL bloque de texto va en flujo normal, no en grilla.
+
+   El CSS base del clon declara `.nsfmarea-dynamic-content` como una
+   grilla de dos columnas, `1fr 280px`, pensada para poner el titular a
+   la izquierda y la bajada a la derecha. En la columna lateral, que mide
+   unos 360px, esos 280px reservados dejaban al título con menos de 60:
+   de ahí salían los titulares partidos en una palabra por renglón,
+   mientras sobraba hueco a la derecha.
+
+   Era el origen de todos los intentos anteriores de ensanchar ese texto:
+   la caja SÍ ocupaba el ancho completo, lo que la partía era su propia
+   grilla interna. Pasa a bloque y el título recupera toda la medida. */
+.nsfmarea-scope.nsfmarea-np .nsfmarea-dynamic-content{
+  display:block;
+  grid-template-columns:none;
+  gap:0;
+}
+
 /* El texto superpuesto se posiciona contra la FICHA, no contra la foto.
 
    El CSS base del clon declara dos veces la misma grilla con valores
@@ -4365,7 +4383,7 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-excerpt{
   font-size:13.5px;
   line-height:1.5;
-  margin-top:6px;
+  margin-top:7px;
   color:var(--nc-ink-soft);
 }
 .nsfmarea-np .nsfmarea-dynamic-side .nsfmarea-dynamic-meta{ margin-top:7px; }
