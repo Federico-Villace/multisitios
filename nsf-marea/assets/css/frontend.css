@@ -4936,6 +4936,21 @@ body.nsfmarea-drawer-open, body.nsfmarea-search-open{overflow:hidden!important;}
   margin:12px 0 0;
   padding:0;
 }
+/* Seguro contra el recorte de la primera letra.
+
+   El control "Radio card" no escribe sólo el radio: le suma
+   `overflow:hidden` a la ficha. Con la fecha apoyada abajo a la
+   izquierda, la curva de la esquina se comía el gancho de la J y
+   "JULIO" se leía "IULIO".
+
+   El radio ya está en cero porque la ficha no tiene ni fondo ni borde
+   que redondear, pero el control sigue disponible: este margen mínimo
+   deja el glifo a salvo si alguien vuelve a subirlo. */
+.nsfmarea-np.nsfmarea-grid-news .card-byline,
+.nsfmarea-np.nsfmarea-category-grid-posts .post-card-date{
+  padding-left:2px;
+}
+
 /* La fecha y su filete se empujan al pie de la tarjeta, así quedan
    alineados en toda la fila sin importar si el titular ocupa dos
    renglones o tres. */
