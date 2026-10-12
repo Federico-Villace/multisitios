@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Cenit · Widgets Elementor
- * Description: Widgets Elementor, demo installer y plantillas para portal de noticias. Estética tabloide — negro agresivo, rojo vivo, headlines bold, estilo Clarín.
- * Version: 1.1.0
+ * Description: Identidad Cenit — lenguaje de 8 bits aplicado a la interfaz, no al contenido: esquinas escalonadas, trama de damero, retícula de 8px y paleta sobria de verdigrís.
+ * Version: 2.0.0
  * Author: Connotar
  * Text Domain: nsfcenit-widgets
  * Requires Plugins: elementor
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'NSFCENIT_VERSION', '1.1.0' );
+define( 'NSFCENIT_VERSION', '2.0.0' );
 define( 'NSFCENIT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'NSFCENIT_URL', plugin_dir_url( __FILE__ ) );
 

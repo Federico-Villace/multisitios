@@ -33,7 +33,7 @@ class Category_Grid_Posts extends Widget_Base {
         $this->add_control( 'image_ratio', [ 'label' => esc_html__( 'Proporción imagen', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '4/3', 'options' => [ '1/1'=>'Cuadrada 1:1','4/3'=>'4:3','16/9'=>'16:9','3/2'=>'3:2','2/3'=>'Vertical 2:3' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-category-grid-posts .post-card-img, {{WRAPPER}} .nsfcenit-category-grid-posts .post-card-img img' => 'aspect-ratio: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'card_padding', [ 'label' => esc_html__( 'Padding card', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::DIMENSIONS, 'size_units' => [ 'px', 'em', '%' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-category-grid-posts .post-card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ] ] );
         $this->add_control( 'card_bg', [ 'label' => esc_html__( 'Fondo card', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfcenit-category-grid-posts .post-card' => 'background: {{VALUE}};' ] ] );
-        $this->add_responsive_control( 'card_radius', [ 'label' => esc_html__( 'Radio card', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 40 ] ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-category-grid-posts .post-card' => 'border-radius: {{SIZE}}{{UNIT}}; overflow: hidden;' ] ] );
+        $this->add_responsive_control( 'card_radius', [ 'label' => esc_html__( 'Radio card', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 40 ] ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-category-grid-posts .post-card' => 'border-radius: {{SIZE}}{{UNIT}};' ] ] );
         $this->add_responsive_control( 'image_radius', [ 'label' => esc_html__( 'Radio imagen', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 40 ] ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-category-grid-posts .post-card-img' => 'border-radius: {{SIZE}}{{UNIT}}; overflow: hidden;' ] ] );
         $this->end_controls_section();
 
@@ -41,17 +41,17 @@ class Category_Grid_Posts extends Widget_Base {
         $this->add_responsive_control( 'header_align', [ 'label' => esc_html__( 'Alineación', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::CHOOSE, 'options' => [ 'left'=>[ 'title'=>'Izquierda','icon'=>'eicon-text-align-left' ], 'center'=>[ 'title'=>'Centro','icon'=>'eicon-text-align-center' ], 'right'=>[ 'title'=>'Derecha','icon'=>'eicon-text-align-right' ] ], 'default' => 'left', 'selectors' => [ '{{WRAPPER}} .nsfcenit-cat-grid-header' => 'text-align: {{VALUE}};' ] ] );
         $this->add_control( 'header_bg', [ 'label' => esc_html__( 'Fondo encabezado', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfcenit-cat-grid-header' => 'background: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'header_padding', [ 'label' => esc_html__( 'Padding', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::DIMENSIONS, 'size_units' => [ 'px', 'em', '%' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-cat-grid-header' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ] ] );
-        $this->add_control( 'cat_title_color', [ 'label' => esc_html__( 'Color título', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#e30613', 'selectors' => [ '{{WRAPPER}} .nsfcenit-cat-grid-title' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'cat_title_color', [ 'label' => esc_html__( 'Color título', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#191d1c', 'selectors' => [ '{{WRAPPER}} .nsfcenit-cat-grid-title' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'cat_title_typo', 'selector' => '{{WRAPPER}} .nsfcenit-cat-grid-title' ] );
         $this->add_control( 'desc_color', [ 'label' => esc_html__( 'Color descripción', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfcenit-cat-grid-desc' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'desc_typo', 'selector' => '{{WRAPPER}} .nsfcenit-cat-grid-desc' ] );
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_card', [ 'label' => esc_html__( 'Texto de notas', 'nsfcenit-widgets' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
-        $this->add_control( 'kicker_color', [ 'label' => esc_html__( 'Color kicker', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#e30613', 'selectors' => [ '{{WRAPPER}} .post-card-kicker' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'kicker_color', [ 'label' => esc_html__( 'Color kicker', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#2f6f5e', 'selectors' => [ '{{WRAPPER}} .post-card-kicker' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'kicker_typo', 'selector' => '{{WRAPPER}} .post-card-kicker' ] );
         $this->add_control( 'post_title_color', [ 'label' => esc_html__( 'Color título', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .post-card-title, {{WRAPPER}} .post-card-title a' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'post_title_hover_color', [ 'label' => esc_html__( 'Título hover', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#e30613', 'selectors' => [ '{{WRAPPER}} .post-card:hover .post-card-title, {{WRAPPER}} .post-card:hover .post-card-title a' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'post_title_hover_color', [ 'label' => esc_html__( 'Título hover', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#2f6f5e', 'selectors' => [ '{{WRAPPER}} .post-card:hover .post-card-title, {{WRAPPER}} .post-card:hover .post-card-title a' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'post_title_typo', 'selector' => '{{WRAPPER}} .post-card-title' ] );
         $this->add_control( 'excerpt_color', [ 'label' => esc_html__( 'Color bajada', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .post-card-excerpt' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'excerpt_typo', 'selector' => '{{WRAPPER}} .post-card-excerpt' ] );
@@ -111,7 +111,7 @@ class Category_Grid_Posts extends Widget_Base {
         $title = trim( (string) ( $s['custom_title'] ?? '' ) );
         if ( '' === $title ) { $title = $term && ! is_wp_error( $term ) ? $term->name : __( 'Noticias', 'nsfcenit-widgets' ); }
         ?>
-        <div class="nsfcenit-scope nsfcenit-category-grid-posts"><div class="container">
+        <div class="nsfcenit-scope nsfcenit-px nsfcenit-category-grid-posts"><div class="container">
             <?php if ( 'yes' === ( $s['show_header'] ?? '' ) ) : ?>
                 <header class="nsfcenit-cat-grid-header">
                     <h2 class="nsfcenit-cat-grid-title"><?php echo esc_html( $title ); ?></h2>

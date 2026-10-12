@@ -30,7 +30,7 @@ class Grid_News extends Widget_Base {
         $this->add_control( 'image_ratio', [ 'label' => 'Proporción imagen', 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '1/1', 'options' => [ '1/1' => 'Cuadrada 1:1', '4/3' => '4:3', '16/9' => '16:9', '3/2' => '3:2', '2/3' => 'Vertical 2:3' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-grid-news' => '--nsfcenit-grid-ratio: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'card_padding', [ 'label' => 'Padding card', 'type' => \Elementor\Controls_Manager::DIMENSIONS, 'size_units' => [ 'px', 'em', '%' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-grid-news .card' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};' ] ] );
         $this->add_control( 'card_bg', [ 'label' => 'Fondo card', 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfcenit-grid-news .card' => 'background: {{VALUE}};' ] ] );
-        $this->add_responsive_control( 'card_radius', [ 'label' => 'Radio card', 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 40 ] ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-grid-news .card' => 'border-radius: {{SIZE}}{{UNIT}}; overflow:hidden;' ] ] );
+        $this->add_responsive_control( 'card_radius', [ 'label' => 'Radio card', 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 40 ] ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-grid-news .card' => 'border-radius: {{SIZE}}{{UNIT}};' ] ] );
         $this->add_responsive_control( 'image_radius', [ 'label' => 'Radio imagen', 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 40 ] ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-grid-news .card > a:first-child, {{WRAPPER}} .nsfcenit-grid-news .card-img-real, {{WRAPPER}} .nsfcenit-grid-news .card-img' => 'border-radius: {{SIZE}}{{UNIT}};' ] ] );
         $this->end_controls_section();
 
@@ -64,7 +64,7 @@ class Grid_News extends Widget_Base {
             if ( $cat_link && ! is_wp_error( $cat_link ) ) { $more_url = $cat_link; }
         }
         ?>
-        <div class="nsfcenit-scope nsfcenit-grid-news"><div class="container"><section class="section-block">
+        <div class="nsfcenit-scope nsfcenit-px nsfcenit-grid-news"><div class="container"><section class="section-block">
             <?php if ( 'yes' === ( $s['show_header'] ?? 'yes' ) ) : ?>
                 <header class="section-head"><h2 class="section-title"><?php echo esc_html( $s['section_title'] ); ?></h2><?php if ( 'yes' === ( $s['show_more'] ?? 'yes' ) ) : ?><a href="<?php echo esc_url( $more_url ); ?>" class="section-link"><?php echo esc_html( $s['more_text'] ?: 'Ver más' ); ?></a><?php endif; ?></header>
             <?php endif; ?>

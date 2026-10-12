@@ -455,7 +455,7 @@ class Category_Nav extends Widget_Base {
         }
 
         ?>
-        <div class="nsfcenit-scope nsfcenit-cat-nav-widget">
+        <div class="nsfcenit-scope nsfcenit-px nsfcenit-cat-nav-widget">
             <nav class="nsfcenit-cat-nav" aria-label="<?php echo esc_attr__( 'Categorías', 'nsfcenit-widgets' ); ?>">
                 <?php if ( 'yes' === ( $settings['show_title'] ?? 'no' ) && ! empty( $settings['title'] ) ) : ?>
                     <h3 class="nsfcenit-cat-nav-title"><?php echo esc_html( $settings['title'] ); ?></h3>

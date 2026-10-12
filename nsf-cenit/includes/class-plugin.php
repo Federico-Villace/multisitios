@@ -27,10 +27,18 @@ final class Plugin {
         add_action( 'elementor/elements/categories_registered', [ $this, 'register_category' ] );
         add_action( 'elementor/widgets/register', [ $this, 'register_widgets' ] );
         add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ], 5 );
+        add_filter( 'wp_resource_hints', [ $this, 'resource_hints' ], 10, 2 );
         add_action( 'elementor/frontend/after_register_styles', [ $this, 'register_assets' ] );
         add_action( 'elementor/frontend/after_register_scripts', [ $this, 'register_assets' ] );
         add_action( 'elementor/preview/enqueue_styles', [ $this, 'enqueue_assets' ] );
         add_action( 'elementor/preview/enqueue_scripts', [ $this, 'enqueue_assets' ] );
+    }
+
+    public function resource_hints( $hints, $relation ) {
+        if ( 'preconnect' === $relation && wp_style_is( 'nsfcenit-fonts', 'enqueued' ) ) {
+            $hints[] = [ 'href' => 'https://fonts.gstatic.com', 'crossorigin' => 'anonymous' ];
+        }
+        return $hints;
     }
 
     public function register_assets() {
@@ -39,10 +47,27 @@ final class Plugin {
         $css_version  = NSFCENIT_VERSION . '-' . ( file_exists( $frontend_css ) ? filemtime( $frontend_css ) : time() );
         $js_version   = NSFCENIT_VERSION . '-' . ( file_exists( $frontend_js ) ? filemtime( $frontend_js ) : time() );
 
+        /* Tipografía bitmap, SÓLO para etiquetas chicas y el logo.
+
+           Es la única pieza de 8 bits que toca texto: secciones, fechas,
+           kickers y el wordmark. Los titulares y el cuerpo van en una
+           grotesca normal, porque una bitmap en texto corrido es
+           ilegible y haría parecer el sitio un juego en vez de un
+           portal de noticias.
+
+           Se registra como dependencia de la hoja: WordPress la pide
+           sola donde hay un widget y no en el resto del sitio. */
+        wp_register_style(
+            'nsfcenit-fonts',
+            'https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap',
+            [],
+            null
+        );
+
         wp_register_style(
             'nsfcenit-widgets-frontend',
             NSFCENIT_URL . 'assets/css/frontend.css',
-            [],
+            [ 'nsfcenit-fonts' ],
             $css_version
         );
 

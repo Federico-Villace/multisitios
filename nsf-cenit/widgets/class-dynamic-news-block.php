@@ -49,7 +49,7 @@ class Dynamic_News_Block extends Widget_Base {
         $this->start_controls_section( 'colors_style', [ 'label' => esc_html__( 'Colores', 'nsfcenit-widgets' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
         $this->add_control( 'title_color', [ 'label' => esc_html__( 'Título', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfcenit-dynamic-title, {{WRAPPER}} .nsfcenit-dynamic-title a' => 'color: {{VALUE}};' ] ] );
         $this->add_control( 'excerpt_color', [ 'label' => esc_html__( 'Bajada', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfcenit-dynamic-excerpt' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'overlay_color', [ 'label' => esc_html__( 'Degradado overlay', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => 'rgba(0,0,0,.62)', 'selectors' => [ '{{WRAPPER}} .nsfcenit-dynamic-overlay .nsfcenit-dynamic-img::after' => 'background: linear-gradient(180deg, rgba(0,0,0,0) 25%, {{VALUE}} 100%);' ] ] );
+        $this->add_control( 'overlay_color', [ 'label' => esc_html__( 'Degradado overlay', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => 'rgba(25,29,28,0.9)', 'selectors' => [ '{{WRAPPER}} .nsfcenit-dynamic-overlay .nsfcenit-dynamic-img::after' => 'background: linear-gradient(180deg, rgba(0,0,0,0) 25%, {{VALUE}} 100%);' ] ] );
         $this->end_controls_section();
     }
 
@@ -91,7 +91,7 @@ class Dynamic_News_Block extends Widget_Base {
         $text_below_mobile = 'yes' === ( $settings['mobile_text_below'] ?? '' ) ? '1' : '0';
         $hide_excerpt_mobile = 'yes' === ( $settings['mobile_hide_excerpt'] ?? '' ) ? '1' : '0';
         ?>
-        <div class="nsfcenit-scope">
+        <div class="nsfcenit-scope nsfcenit-px nsfcenit-dynamic-widget">
             <section class="nsfcenit-dynamic-news nsfcenit-dynamic-mobile-<?php echo esc_attr( $layout_mobile ); ?>" data-mobile-visible="<?php echo esc_attr( $mobile_visible ); ?>" data-mobile-text-below="<?php echo esc_attr( $text_below_mobile ); ?>" data-mobile-hide-excerpt="<?php echo esc_attr( $hide_excerpt_mobile ); ?>">
                 <?php if ( ! empty( $settings['section_title'] ) ) : ?><h2 class="nsfcenit-dynamic-section-title"><?php echo esc_html( $settings['section_title'] ); ?></h2><?php endif; ?>
                 <div class="nsfcenit-dynamic-grid <?php echo 'right' === ( $settings['big_position'] ?? 'left' ) ? 'is-reverse' : ''; ?>">

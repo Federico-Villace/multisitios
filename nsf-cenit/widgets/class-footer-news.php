@@ -104,16 +104,16 @@ class Footer_News extends Widget_Base {
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_colors', [ 'label' => 'Colores', 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
-        $this->add_control( 'footer_bg', [ 'label' => 'Fondo', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#363636', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro' => 'background: {{VALUE}};' ] ] );
-        $this->add_control( 'footer_border_color', [ 'label' => 'Línea superior / divisores', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#777777', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro, {{WRAPPER}} .nsfcenit-footer-pro .footer-bottom' => 'border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'footer_bg', [ 'label' => 'Fondo', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#191d1c', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro' => 'background: {{VALUE}};' ] ] );
+        $this->add_control( 'footer_border_color', [ 'label' => 'Línea superior / divisores', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#2f6f5e', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro, {{WRAPPER}} .nsfcenit-footer-pro .footer-bottom' => 'border-color: {{VALUE}};' ] ] );
         $this->add_responsive_control( 'top_border_width', [ 'label' => 'Grosor línea superior', 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 12 ] ], 'default' => [ 'size' => 0, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro' => 'border-top-width: {{SIZE}}{{UNIT}};' ] ] );
-        $this->add_control( 'logo_color', [ 'label' => 'Color logo texto', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .brand-logo' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'heading_color', [ 'label' => 'Color títulos columnas', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-col h5' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'link_color', [ 'label' => 'Color links', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#eeeeee', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-col a, {{WRAPPER}} .nsfcenit-footer-pro .footer-bottom a' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'link_hover_color', [ 'label' => 'Color links hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#e30613', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-col a:hover, {{WRAPPER}} .nsfcenit-footer-pro .footer-bottom a:hover' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'text_color', [ 'label' => 'Color textos', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#dddddd', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-brand p, {{WRAPPER}} .nsfcenit-footer-pro .footer-text, {{WRAPPER}} .nsfcenit-footer-pro .footer-bottom p' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'social_color', [ 'label' => 'Color iconos redes', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#ffffff', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-socials a' => 'color: {{VALUE}};' ] ] );
-        $this->add_control( 'social_hover_bg', [ 'label' => 'Fondo redes hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#e30613', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-socials a:hover' => 'background: {{VALUE}}; border-color: {{VALUE}};' ] ] );
+        $this->add_control( 'logo_color', [ 'label' => 'Color logo texto', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#f3f2ee', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .brand-logo' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'heading_color', [ 'label' => 'Color títulos columnas', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#f3f2ee', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-col h5' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'link_color', [ 'label' => 'Color links', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#aeb3af', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-col a, {{WRAPPER}} .nsfcenit-footer-pro .footer-bottom a' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'link_hover_color', [ 'label' => 'Color links hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#6fbfa8', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-col a:hover, {{WRAPPER}} .nsfcenit-footer-pro .footer-bottom a:hover' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'text_color', [ 'label' => 'Color textos', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#8f9591', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-brand p, {{WRAPPER}} .nsfcenit-footer-pro .footer-text, {{WRAPPER}} .nsfcenit-footer-pro .footer-bottom p' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'social_color', [ 'label' => 'Color iconos redes', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#f3f2ee', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-socials a' => 'color: {{VALUE}};' ] ] );
+        $this->add_control( 'social_hover_bg', [ 'label' => 'Fondo redes hover', 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#2f6f5e', 'selectors' => [ '{{WRAPPER}} .nsfcenit-footer-pro .footer-socials a:hover' => 'background: {{VALUE}}; border-color: {{VALUE}};' ] ] );
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_typo', [ 'label' => 'Tipografías', 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
@@ -183,7 +183,7 @@ class Footer_News extends Widget_Base {
         $logo_url = ! empty( $s['logo_url']['url'] ) ? $s['logo_url']['url'] : home_url( '/' );
         $bottom_text = str_replace( '{year}', gmdate( 'Y' ), $s['bottom_text'] ?? '' );
         ?>
-        <div class="nsfcenit-scope">
+        <div class="nsfcenit-scope nsfcenit-px nsfcenit-footer-widget">
             <footer class="footer nsfcenit-footer-pro">
                 <div class="container">
                     <div class="nsfcenit-footer-main">
