@@ -5988,3 +5988,152 @@ body.nsfcenit-drawer-open, body.nsfcenit-search-open{overflow:hidden!important;}
     grid-template-columns:repeat(var(--px-grid-cols,1),minmax(0,1fr))!important;
   }
 }
+
+
+/* ============================================================
+   CENIT · v2.6 — FONDO BLANCO Y NOTA CENTRADA
+   ============================================================ */
+
+/* ── Fondo blanco ───────────────────────────────────────────
+   El papel hueso pasa a blanco puro. Hay que recalibrar las dos
+   superficies de apoyo: un panel que antes se distinguía del
+   hueso queda invisible sobre blanco, y el filete necesita medio
+   tono más para no desaparecer. */
+.nsfcenit-scope.nsfcenit-px,
+.nsfcenit-px{
+  --px-paper:    #ffffff;
+  --px-panel:    #f1f1ef;   /* marcador de foto y placas */
+  --px-rule:     #dcdbd6;
+  --px-rule-sft: #ebeae6;
+}
+
+
+/* ── PÁGINA DE NOTA — plantilla propia, centrada ────────────
+   Venía con la misma disposición que el resto de los componentes:
+   columna medida pegada al margen izquierdo. En escritorio eso
+   deja la nota descolgada contra un costado y muchísimo aire
+   muerto del otro.
+
+   Pasa a columna centrada, y con un bloque de cabecera propio:
+   migas, titular y bajada CENTRADOS, con la ficha de datos
+   también al medio. El cuerpo en cambio queda alineado a la
+   izquierda: centrar texto corrido destruye la lectura, porque
+   el ojo pierde el punto de arranque de cada renglón.
+
+   Es la diferencia entre centrar el BLOQUE y centrar el TEXTO.
+   ============================================================ */
+.nsfcenit-px.nsfcenit-note-widget{ background:var(--px-paper); }
+.nsfcenit-px .note-wrap{ padding:56px 0 64px; }
+
+.nsfcenit-scope.nsfcenit-px .note-breadcrumb,
+.nsfcenit-scope.nsfcenit-px .note-title,
+.nsfcenit-scope.nsfcenit-px .note-subtitle,
+.nsfcenit-scope.nsfcenit-px .note-author-row,
+.nsfcenit-scope.nsfcenit-px .note-date,
+.nsfcenit-scope.nsfcenit-px .share-row,
+.nsfcenit-scope.nsfcenit-px .note-figure,
+.nsfcenit-scope.nsfcenit-px .note-figcaption,
+.nsfcenit-scope.nsfcenit-px .note-body{
+  max-width:740px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Cabecera centrada: migas con el filete corto al medio */
+.nsfcenit-scope.nsfcenit-px .note-breadcrumb{
+  justify-content:center;
+  border-bottom:0;
+  padding:0;
+  margin-bottom:20px;
+  color:var(--px-accent);
+}
+.nsfcenit-scope.nsfcenit-px .note-title{
+  text-align:center;
+  letter-spacing:-.032em;
+  margin:0 0 18px;
+}
+.nsfcenit-scope.nsfcenit-px .note-subtitle{
+  text-align:center;
+  max-width:62ch;
+  margin:0 auto 28px;
+  color:var(--px-slate);
+}
+/* La ficha de datos al medio, con el filete arriba y abajo que la
+   encierra como una línea de crédito */
+.nsfcenit-scope.nsfcenit-px .note-author-row{
+  justify-content:center;
+  width:auto;
+  background:none;
+  border:0;
+  border-top:1px solid var(--px-rule);
+  padding:18px 0 0;
+  margin:0 auto 10px;
+}
+.nsfcenit-scope.nsfcenit-px .note-date{
+  text-align:center;
+  margin:0 auto 24px;
+}
+.nsfcenit-scope.nsfcenit-px .share-row{
+  justify-content:center;
+  border-top:1px solid var(--px-rule);
+  border-bottom:1px solid var(--px-rule);
+  margin:0 auto 32px;
+}
+
+/* La foto sale de la medida de lectura: un poco más ancha que el
+   texto, centrada, con la sombra dura de la identidad. Así la
+   imagen respira sin empujar la columna de lectura. */
+.nsfcenit-scope.nsfcenit-px .note-figure{
+  max-width:900px;
+  margin:0 auto 10px;
+  box-shadow:10px 10px 0 var(--px-accent);
+}
+.nsfcenit-scope.nsfcenit-px .note-figure img{ aspect-ratio:16 / 9; }
+.nsfcenit-scope.nsfcenit-px .note-figcaption{
+  max-width:900px;
+  text-align:left;
+  padding:14px 0 28px;
+}
+
+/* El cuerpo: bloque centrado, texto a la izquierda */
+.nsfcenit-scope.nsfcenit-px .note-body{
+  text-align:left;
+  padding-top:32px;
+  border-top:1px solid var(--px-rule);
+}
+.nsfcenit-px .note-body h2,
+.nsfcenit-px .note-body h3{ text-align:left; }
+/* La cita sale de la medida y se centra: es el único momento en que
+   centrar texto funciona, porque son dos renglones y no un párrafo. */
+.nsfcenit-px .note-body blockquote{
+  margin:36px 0;
+  padding:24px 28px;
+  text-align:center;
+  background:var(--px-panel);
+  border:0;
+  border-top:3px solid var(--px-accent);
+  border-bottom:3px solid var(--px-accent);
+  font-size:21px;
+  line-height:1.4;
+}
+.nsfcenit-px .note-body blockquote footer{ text-align:center; }
+
+@media (max-width:1023px){
+  .nsfcenit-scope.nsfcenit-px .note-figure,
+  .nsfcenit-scope.nsfcenit-px .note-figcaption{ max-width:740px; }
+}
+
+@media (max-width:767px){
+  .nsfcenit-px .note-wrap{ padding:28px 0 36px; }
+  /* En pantalla angosta la cabecera vuelve a la izquierda: centrado en
+     poco ancho produce renglones de largo irregular y se lee peor. */
+  .nsfcenit-scope.nsfcenit-px .note-title,
+  .nsfcenit-scope.nsfcenit-px .note-subtitle{ text-align:left; }
+  .nsfcenit-scope.nsfcenit-px .note-breadcrumb,
+  .nsfcenit-scope.nsfcenit-px .note-author-row,
+  .nsfcenit-scope.nsfcenit-px .share-row{ justify-content:flex-start; }
+  .nsfcenit-scope.nsfcenit-px .note-date{ text-align:left; }
+  .nsfcenit-scope.nsfcenit-px .note-figure{ box-shadow:5px 5px 0 var(--px-accent); }
+  .nsfcenit-px .note-body blockquote{ padding:18px 16px; font-size:18px; text-align:left; }
+  .nsfcenit-px .note-body blockquote footer{ text-align:left; }
+}
