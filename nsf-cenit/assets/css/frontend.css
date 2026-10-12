@@ -6047,10 +6047,20 @@ body.nsfcenit-drawer-open, body.nsfcenit-search-open{overflow:hidden!important;}
   margin-bottom:20px;
   color:var(--px-accent);
 }
+/* El margen va con `auto` a los lados, no en cero.
+
+   La regla de centrado de más arriba pone `margin-left:auto` y
+   `margin-right:auto`; escribir después `margin:0 0 18px` es una
+   abreviatura que fija los cuatro lados y pisa esos dos autos con cero.
+   El bloque quedaba pegado a la izquierda del contenedor mientras el
+   resto de la cabecera sí se centraba.
+
+   Una abreviatura no declara sólo lo que uno escribe: declara TODOS los
+   lados, también los que se omiten. */
 .nsfcenit-scope.nsfcenit-px .note-title{
   text-align:center;
   letter-spacing:-.032em;
-  margin:0 0 18px;
+  margin:0 auto 18px;
 }
 .nsfcenit-scope.nsfcenit-px .note-subtitle{
   text-align:center;
