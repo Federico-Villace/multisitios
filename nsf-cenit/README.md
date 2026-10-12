@@ -1,4 +1,4 @@
-# Cenit · Widgets Elementor v2.1.0
+# Cenit · Widgets Elementor v2.3.0
 
 Identidad **8 bits sobrios**: lenguaje de pixel art aplicado al envase de la
 interfaz, no al contenido.
@@ -74,6 +74,35 @@ filete, separadas por aire.
 
 Si sólo creciera el hero la página se desarmaría: los titulares de las retículas
 acompañan la escala nueva o la jerarquía se rompe.
+
+## Tipografía — una sola familia
+
+Hasta la v2.2 convivían dos: una bitmap para el logo y las etiquetas, y una
+grotesca para titulares y cuerpo. No comparten nada —ni proporción, ni
+terminaciones, ni eje— y el conjunto se leía como dos sitios pegados.
+
+Pasa a una sola: **Chakra Petch**. Tiene las terminaciones cortadas en recto que
+dan el aire digital del pixel, pero es una tipografía de texto y se lee sin
+esfuerzo en párrafo. Más legible y menos dura, con el mismo formato en todas
+partes.
+
+Lo que distingue a una etiqueta de un titular deja de ser la familia y pasa a ser
+lo que corresponde: **el cuerpo, el peso y el interletrado**.
+
+| Rol | Peso | Tratamiento |
+| --- | --- | --- |
+| Logo | 700 | Mayúsculas, interletrado `.16em` |
+| Titulares | 700 | Caja normal, interletrado negativo |
+| Etiquetas y controles | 600 | Mayúsculas, interletrado `.13em`, 11px |
+| Cuerpo y bajadas | 400 | Caja normal |
+
+Las dos variables `--f-px-bit` y `--f-px-sans` se conservan apuntando a la misma
+familia: así los 54 usos repartidos por los trece componentes se actualizan de
+una, sin tocar regla por regla.
+
+Las etiquetas suben de 9,5 a 11px: una tipografía de texto en mayúsculas no se
+lee al cuerpo que toleraba una bitmap. Y el cuerpo lleva un punto más de
+interlínea, porque Chakra Petch tiene la caja de la x algo baja.
 
 ## Paleta
 

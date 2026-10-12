@@ -47,19 +47,23 @@ final class Plugin {
         $css_version  = NSFCENIT_VERSION . '-' . ( file_exists( $frontend_css ) ? filemtime( $frontend_css ) : time() );
         $js_version   = NSFCENIT_VERSION . '-' . ( file_exists( $frontend_js ) ? filemtime( $frontend_js ) : time() );
 
-        /* Tipografía bitmap, SÓLO para etiquetas chicas y el logo.
+        /* UNA sola familia para todo el sitio.
 
-           Es la única pieza de 8 bits que toca texto: secciones, fechas,
-           kickers y el wordmark. Los titulares y el cuerpo van en una
-           grotesca normal, porque una bitmap en texto corrido es
-           ilegible y haría parecer el sitio un juego en vez de un
-           portal de noticias.
+           Antes convivían dos: una bitmap para el logo y las etiquetas, y
+           una grotesca para titulares y cuerpo. No compartían nada —ni
+           proporción, ni terminaciones, ni eje— y el conjunto se leía como
+           dos sitios pegados.
+
+           Chakra Petch resuelve los dos trabajos: tiene las terminaciones
+           cortadas en recto que dan el aire digital del pixel, pero es
+           una tipografía de texto y se lee sin esfuerzo en párrafo. Más
+           legible y menos dura, con el mismo formato en todas partes.
 
            Se registra como dependencia de la hoja: WordPress la pide
            sola donde hay un widget y no en el resto del sitio. */
         wp_register_style(
             'nsfcenit-fonts',
-            'https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&display=swap',
+            'https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300;400;500;600;700&display=swap',
             [],
             null
         );

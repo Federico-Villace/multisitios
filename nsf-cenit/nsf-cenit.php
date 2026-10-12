@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Cenit · Widgets Elementor
- * Description: Identidad Cenit — estructura moderna con rastros de 8 bits: logo bitmap, acento verdigris y sombras duras en las fotos jerárquicas. Tipografía grande y mucho aire.
- * Version: 2.1.0
+ * Description: Identidad Cenit — estructura moderna con rastros de 8 bits: una sola tipografía de terminaciones cortadas, acento verdigris y sombras duras en las fotos jerárquicas.
+ * Version: 2.3.0
  * Author: Connotar
  * Text Domain: nsfcenit-widgets
  * Requires Plugins: elementor
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'NSFCENIT_VERSION', '2.1.0' );
+define( 'NSFCENIT_VERSION', '2.3.0' );
 define( 'NSFCENIT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'NSFCENIT_URL', plugin_dir_url( __FILE__ ) );
 

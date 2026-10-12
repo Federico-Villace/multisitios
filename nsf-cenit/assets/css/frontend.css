@@ -5598,3 +5598,180 @@ body.nsfcenit-drawer-open, body.nsfcenit-search-open{overflow:hidden!important;}
   .nsfcenit-px .trends-items{ gap:0 16px; }
   .nsfcenit-px .trends-items a{ font-size:12px; }
 }
+
+
+/* ============================================================
+   CENIT · v2.3 — UNA SOLA TIPOGRAFÍA
+   ------------------------------------------------------------
+   Hasta acá convivían dos familias: una bitmap para el logo y las
+   etiquetas, y una grotesca para titulares y cuerpo. No comparten
+   nada —ni proporción, ni terminaciones, ni eje— y el conjunto se
+   leía como dos sitios pegados.
+
+   Pasa a una sola: Chakra Petch. Tiene las terminaciones cortadas
+   en recto que dan el aire digital del pixel, pero es una
+   tipografía de texto y se lee sin esfuerzo en párrafo.
+
+   Las dos variables se conservan apuntando a la misma familia: así
+   los 54 usos repartidos por los trece componentes se actualizan
+   de una, sin tocar regla por regla. Lo que distingue a una
+   etiqueta de un titular deja de ser la familia y pasa a ser lo
+   que corresponde: el cuerpo, el peso y el interletrado.
+   ============================================================ */
+
+.nsfcenit-scope.nsfcenit-px,
+.nsfcenit-px{
+  --f-px:      "Chakra Petch", "DejaVu Sans Mono", ui-monospace, system-ui, sans-serif;
+  --f-px-bit:  var(--f-px);
+  --f-px-sans: var(--f-px);
+  font-family:var(--f-px);
+}
+
+/* Etiquetas: lo que antes distinguía la bitmap ahora lo hacen el
+   peso y el interletrado. Suben de cuerpo, porque una tipografía
+   de texto a 9,5px en mayúsculas no se lee. */
+.nsfcenit-px .post-card-kicker,
+.nsfcenit-px .cat-kicker,
+.nsfcenit-px .nsfcenit-archive-kicker,
+.nsfcenit-px .cat-item .kicker,
+.nsfcenit-px .card-byline,
+.nsfcenit-px .post-card-date,
+.nsfcenit-px .note-date,
+.nsfcenit-px .author-name,
+.nsfcenit-px .header-date,
+.nsfcenit-px .brand-slogan,
+.nsfcenit-px .note-breadcrumb,
+.nsfcenit-px .nsfcenit-latest-head em,
+.nsfcenit-px .nsfcenit-dynamic-meta,
+.nsfcenit-px .nsfcenit-news-row-author,
+.nsfcenit-px .hero-byline,
+.nsfcenit-px .note-figcaption,
+.nsfcenit-px .note-body blockquote footer,
+.nsfcenit-px .nsfcenit-footer-pro .footer-col h5,
+.nsfcenit-px .nsfcenit-footer-pro .footer-bottom,
+.nsfcenit-px .live-status,
+.nsfcenit-px .live-time,
+.nsfcenit-px .trends-label,
+.nsfcenit-px .fm-badge small{
+  font-family:var(--f-px);
+  font-weight:600;
+  font-size:11px;
+  line-height:1.5;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.nsfcenit-px .note-figcaption{
+  font-weight:400;
+  font-size:13px;
+  letter-spacing:.01em;
+  text-transform:none;
+}
+.nsfcenit-px .nsfcenit-footer-pro .footer-bottom p{
+  font-weight:400;
+  font-size:13px;
+  letter-spacing:.02em;
+  text-transform:none;
+}
+
+/* Elementos de control: mismo tratamiento que las etiquetas */
+.nsfcenit-px .header-nav a,
+.nsfcenit-px .drawer-list li a,
+.nsfcenit-px .drawer-close,
+.nsfcenit-px .share-save,
+.nsfcenit-px .nsfcenit-cat-nav-list a,
+.nsfcenit-px .nsfcenit-cat-nav-title,
+.nsfcenit-px .live-pill,
+.nsfcenit-px .club-pill .club-badge,
+.nsfcenit-px .club-pill .club-text,
+.nsfcenit-px .drawer-live-cta,
+.nsfcenit-px .nsfcenit-dynamic-section-title,
+.nsfcenit-px.nsfcenit-grid-news .section-link{
+  font-family:var(--f-px);
+  font-weight:600;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+}
+.nsfcenit-px .header-nav a{ font-size:13px; }
+.nsfcenit-px .drawer-list li a{ font-size:13px; }
+.nsfcenit-px .nsfcenit-cat-nav-list a{ font-size:12px; }
+.nsfcenit-px .nsfcenit-cat-nav-title,
+.nsfcenit-px .nsfcenit-dynamic-section-title{ font-size:11px; letter-spacing:.17em; }
+.nsfcenit-px .live-pill,
+.nsfcenit-px .club-pill .club-badge{ font-size:10.5px; }
+.nsfcenit-px .club-pill .club-text{ font-size:9.5px; letter-spacing:.09em; }
+.nsfcenit-px .drawer-close,
+.nsfcenit-px .share-save,
+.nsfcenit-px.nsfcenit-grid-news .section-link{ font-size:11px; }
+
+/* Titulares: la misma familia, distinguida por peso y cuerpo */
+.nsfcenit-px .brand-logo,
+.nsfcenit-px .drawer-logo,
+.nsfcenit-px .cat-title,
+.nsfcenit-px .cat-item .card-title,
+.nsfcenit-px .note-title,
+.nsfcenit-px .note-body h2,
+.nsfcenit-px .note-body h3,
+.nsfcenit-px .hero-title,
+.nsfcenit-px .nsfcenit-hero-main-title,
+.nsfcenit-px .nsfcenit-hero-side-title,
+.nsfcenit-px .nsfcenit-dynamic-title,
+.nsfcenit-px .nsfcenit-latest-head strong,
+.nsfcenit-px .nsfcenit-latest-item-title,
+.nsfcenit-px .nsfcenit-news-row-title,
+.nsfcenit-px .live-title,
+.nsfcenit-px .nsfcenit-footer-pro .footer-brand .brand-logo,
+.nsfcenit-px.nsfcenit-category-grid-posts .nsfcenit-cat-grid-title,
+.nsfcenit-px.nsfcenit-category-grid-posts .post-card-title,
+.nsfcenit-px.nsfcenit-grid-news .card-title,
+.nsfcenit-px.nsfcenit-mostread-widget li a,
+.nsfcenit-scope.nsfcenit-px .section-title{
+  font-family:var(--f-px);
+  font-weight:700;
+  font-style:normal;
+  text-transform:none;
+}
+
+/* El logo: la misma familia que todo lo demás, separada sólo por el
+   interletrado y la caja alta. Deja de ser una pieza ajena. */
+.nsfcenit-px .brand-logo,
+.nsfcenit-px .drawer-logo,
+.nsfcenit-px .nsfcenit-footer-pro .footer-brand .brand-logo{
+  font-weight:700;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+/* Cuerpo y bajadas: peso regular de la misma familia */
+.nsfcenit-px .note-body,
+.nsfcenit-px .note-subtitle,
+.nsfcenit-px .hero-sub,
+.nsfcenit-px .nsfcenit-dynamic-excerpt,
+.nsfcenit-px .nsfcenit-archive-excerpt,
+.nsfcenit-px .nsfcenit-cat-grid-desc,
+.nsfcenit-px .cat-desc,
+.nsfcenit-px .nsfcenit-footer-pro .footer-brand p,
+.nsfcenit-px .nsfcenit-footer-pro .footer-col a,
+.nsfcenit-px .trends-items a,
+.nsfcenit-px.nsfcenit-category-grid-posts .post-card-excerpt{
+  font-family:var(--f-px);
+  font-weight:400;
+  font-style:normal;
+  letter-spacing:.005em;
+  text-transform:none;
+}
+/* Chakra Petch tiene la caja de la x algo baja: el cuerpo necesita un
+   punto más de interlínea que una grotesca común para respirar. */
+.nsfcenit-px .note-body{ line-height:1.78; }
+.nsfcenit-px .note-body blockquote{ font-weight:600; font-style:normal; }
+
+/* La marca del logo y el badge de radio comparten peso */
+.nsfcenit-px .fm-badge{ font-family:var(--f-px); font-weight:700; letter-spacing:.14em; font-size:11px; }
+
+@media (max-width:767px){
+  .nsfcenit-px .post-card-kicker,
+  .nsfcenit-px .cat-kicker,
+  .nsfcenit-px .nsfcenit-archive-kicker,
+  .nsfcenit-px .card-byline,
+  .nsfcenit-px .post-card-date,
+  .nsfcenit-px .note-date{ font-size:10.5px; letter-spacing:.11em; }
+}
