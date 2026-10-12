@@ -55,7 +55,10 @@ class Dynamic_News_Block extends Widget_Base {
 
     protected function render_post_card( $post_id, $is_main, $settings, $index = 0 ) {
         $classes = 'nsfcenit-dynamic-card ' . ( $is_main ? 'nsfcenit-dynamic-main' : 'nsfcenit-dynamic-side-card' );
-        if ( 'yes' === ( $settings['overlay_titles'] ?? '' ) ) { $classes .= ' nsfcenit-dynamic-overlay'; }
+        /* El texto superpuesto queda sólo para la nota grande: sobre una
+           foto chica el titular no se lee, y la clase arrastraba reglas de
+           posicionamiento absoluto que chocaban con la ficha horizontal. */
+        if ( $is_main && 'yes' === ( $settings['overlay_titles'] ?? '' ) ) { $classes .= ' nsfcenit-dynamic-overlay'; }
         ?>
         <article class="<?php echo esc_attr( $classes ); ?>" data-mobile-index="<?php echo esc_attr( $index ); ?>">
             <a class="nsfcenit-dynamic-img" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>">

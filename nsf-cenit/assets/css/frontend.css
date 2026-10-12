@@ -6400,3 +6400,54 @@ body.nsfcenit-drawer-open, body.nsfcenit-search-open{overflow:hidden!important;}
 @media (prefers-reduced-motion:reduce){
   .nsfcenit-px .nsfcenit-related-item:hover .nsfcenit-related-img{ transform:none; }
 }
+
+
+/* ============================================================
+   CENIT · v2.9 — LA FICHA LATERAL EN MÓVIL
+   ------------------------------------------------------------
+   El titular quedaba pisado por la foto. Causa: en la v2.2 se le
+   dio 120px de ancho a la miniatura, y esa regla quedó DESPUÉS del
+   bloque de móvil que la bajaba a 96px.
+
+   Las media queries no suman especificidad. Una regla posterior le
+   gana a una anterior aunque la anterior esté dentro de un
+   `@media`: la consulta acota cuándo aplica, no cuánto pesa. Así
+   que la foto conservaba sus 120px, desbordaba su columna de 96 y
+   se metía sobre el texto.
+
+   El ancho de la foto y el de su columna pasan a salir de la misma
+   variable: no pueden volver a desincronizarse.
+   ============================================================ */
+.nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side{ --px-side-thumb:120px; }
+.nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-side-card{
+  grid-template-columns:var(--px-side-thumb) minmax(0,1fr);
+}
+.nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-img{
+  width:var(--px-side-thumb);
+  max-width:100%;
+}
+
+@media (max-width:767px){
+  /* Una sola variable y las dos medidas acompañan */
+  .nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side{ --px-side-thumb:92px; }
+  .nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-side-card,
+  .nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-side-card:first-child,
+  .nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-side-card:last-child{
+    grid-template-columns:var(--px-side-thumb) minmax(0,1fr);
+    gap:14px;
+    padding:14px 0;
+    align-items:center;
+    align-content:center;
+  }
+  .nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-title{
+    font-size:15px;
+    line-height:1.26;
+  }
+  /* Sin texto superpuesto en la lateral, pase lo que pase */
+  .nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side-card .nsfcenit-dynamic-content{
+    position:static;
+    padding:0;
+    color:inherit;
+  }
+  .nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side-card .nsfcenit-dynamic-img::after{ content:none; }
+}
