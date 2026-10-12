@@ -6239,3 +6239,164 @@ body.nsfcenit-drawer-open, body.nsfcenit-search-open{overflow:hidden!important;}
 @media (prefers-reduced-motion:reduce){
   .nsfcenit-px .header-search-form{ transition:none; }
 }
+
+
+/* ============================================================
+   CENIT · v2.8 — UN SOLO EJE PARA LA NOTA
+   ------------------------------------------------------------
+   La foto se veía corrida respecto del cuerpo. La causa no estaba
+   en la foto: `.note-main` mide el ancho completo de su columna y
+   tiene margen cero, así que queda apoyado a la izquierda. Centrar
+   cada hijo dentro de esa caja los centra sobre el eje de la caja,
+   no sobre el de la página, y con hijos de distinto ancho —740px
+   el texto, 900px la foto— cada uno terminaba en un eje propio.
+
+   Se centra EL CONTENEDOR una sola vez. Los hijos heredan el eje
+   y dejan de poder desalinearse entre sí.
+   ============================================================ */
+.nsfcenit-scope.nsfcenit-px .note-main{
+  max-width:900px;
+  margin-inline:auto;
+}
+/* La foto ocupa el ancho completo del contenedor; el texto se
+   recoge a su medida de lectura adentro. */
+.nsfcenit-scope.nsfcenit-px .note-figure,
+.nsfcenit-scope.nsfcenit-px .note-figcaption{
+  max-width:100%;
+  margin-left:0;
+  margin-right:0;
+}
+.nsfcenit-scope.nsfcenit-px .note-figure img{
+  width:100%;
+  height:auto;
+  object-fit:cover;
+  display:block;
+}
+/* El epígrafe se alinea con el borde de la foto, no con el texto */
+.nsfcenit-scope.nsfcenit-px .note-figcaption{ text-align:left; }
+
+@media (max-width:1023px){
+  .nsfcenit-scope.nsfcenit-px .note-main{ max-width:740px; }
+}
+
+
+/* ============================================================
+   MÁS LEÍDAS BAJO LA NOTA — widget nuevo
+   ------------------------------------------------------------
+   Hace el mismo trabajo que el Sidebar Más Leídas pero al pie del
+   artículo, donde hay ancho de sobra: en vez de una lista vertical
+   angosta, reparte las notas en columnas y usa la numeración como
+   ancla visual.
+   ============================================================ */
+.nsfcenit-px.nsfcenit-related-widget{ background:var(--px-paper); }
+.nsfcenit-px .nsfcenit-related{
+  max-width:var(--px-box,1280px);
+  margin-inline:auto;
+  padding:48px var(--px-inset,32px) 52px;
+}
+.nsfcenit-px .nsfcenit-related-head{
+  font-family:var(--f-px);
+  font-weight:600;
+  font-size:11px;
+  line-height:1;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+  color:var(--px-accent);
+  margin:0 0 28px;
+  padding:0 0 12px;
+  border-bottom:1px solid var(--px-ink);
+}
+.nsfcenit-px .nsfcenit-related-grid{
+  --px-rel-cols:4;
+  display:grid;
+  grid-template-columns:repeat(var(--px-rel-cols),minmax(0,1fr));
+  gap:28px;
+  align-items:stretch;
+}
+/* Cada ficha es una columna flexible para que el titular empuje la
+   fecha al pie y la línea de fechas quede alineada en toda la fila. */
+.nsfcenit-px .nsfcenit-related-item{
+  display:flex;
+  flex-direction:column;
+  min-width:0;
+}
+.nsfcenit-px .nsfcenit-related-img{
+  display:block;
+  width:100%;
+  aspect-ratio:4 / 3;
+  overflow:hidden;
+  background:var(--px-panel);
+  margin-bottom:14px;
+  transition:transform 160ms ease;
+}
+.nsfcenit-px .nsfcenit-related-img img,
+.nsfcenit-px .nsfcenit-related-img .card-img{
+  width:100%; height:100%;
+  object-fit:cover;
+  display:block;
+}
+.nsfcenit-px .nsfcenit-related-item:hover .nsfcenit-related-img{ transform:translate(-2px,-2px); }
+.nsfcenit-px .nsfcenit-related-body{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+  min-width:0;
+}
+/* La numeración es el ancla: cuerpo grande y en acento, como en el
+   sidebar, pero arriba del titular en lugar de al costado. */
+.nsfcenit-px .nsfcenit-related-num{
+  font-family:var(--f-px);
+  font-weight:700;
+  font-size:22px;
+  line-height:1;
+  letter-spacing:-.03em;
+  color:var(--px-accent);
+  display:block;
+  margin-bottom:8px;
+}
+.nsfcenit-px .nsfcenit-related-kicker{
+  font-family:var(--f-px);
+  font-weight:600;
+  font-size:10.5px;
+  line-height:1.5;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--px-accent);
+  display:block;
+  margin-bottom:6px;
+}
+.nsfcenit-px .nsfcenit-related-title{
+  font-family:var(--f-px);
+  font-weight:700;
+  font-size:17px;
+  line-height:1.24;
+  letter-spacing:-.015em;
+  color:var(--px-ink);
+  margin:0;
+  flex:1 0 auto;
+}
+.nsfcenit-px .nsfcenit-related-date{
+  font-family:var(--f-px);
+  font-weight:600;
+  font-size:10.5px;
+  line-height:1.5;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--px-muted);
+  display:block;
+  margin-top:14px;
+  padding-top:9px;
+  padding-left:2px;   /* protege el primer glifo de cualquier recorte */
+  border-top:1px solid var(--px-rule);
+}
+
+@media (max-width:767px){
+  .nsfcenit-px .nsfcenit-related{ padding:28px 18px 32px; }
+  .nsfcenit-px .nsfcenit-related-grid{ gap:22px; }
+  .nsfcenit-px .nsfcenit-related-num{ font-size:19px; }
+  .nsfcenit-px .nsfcenit-related-title{ font-size:16px; }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .nsfcenit-px .nsfcenit-related-item:hover .nsfcenit-related-img{ transform:none; }
+}
