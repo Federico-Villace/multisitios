@@ -5350,3 +5350,251 @@ body.nsfcenit-drawer-open, body.nsfcenit-search-open{overflow:hidden!important;}
     box-shadow:5px 5px 0 var(--px-accent);
   }
 }
+
+
+/* ============================================================
+   CENIT · v2.2 — UN SOLO FONDO, Y TRES PIEZAS MÁS
+   ============================================================ */
+
+/* ── El doble fondo de Grilla Noticias ──────────────────────
+   La capa base arma la retícula con un truco de tabloide: pinta
+   el contenedor de gris y deja 3px de separación entre fichas
+   blancas, de modo que el gris asoma como si fueran filetes. Con
+   el fondo de papel de la identidad eso produce TRES superficies
+   distintas apiladas —papel, gris y blanco— y la página se ve
+   sucia. Todo pasa a un único color. */
+.nsfcenit-scope.nsfcenit-px .dual-grid{
+  background:none;
+  gap:28px;
+}
+.nsfcenit-scope.nsfcenit-px .dual-grid .card{
+  background:none;
+}
+/* El titular de sección tenía su propio bloque de color y un
+   subrayado heredados del clon: sobran, la jerarquía ya la da el
+   cuerpo de la letra. */
+.nsfcenit-scope.nsfcenit-px .section-title{
+  background:none;
+  color:var(--px-ink);
+  text-align:left;
+  font-family:var(--f-px-sans);
+  padding:0;
+}
+.nsfcenit-scope.nsfcenit-px .section-title::after{ content:none; }
+/* El marcador de foto sin imagen también en papel */
+.nsfcenit-scope.nsfcenit-px.nsfcenit-grid-news .card > a:first-child{
+  background:var(--px-panel);
+}
+
+
+/* ── BLOQUE DE NOTICIAS DINÁMICO, al estilo actual ──────────
+   Se alinea con el resto: filete de 1px en vez de bloque de
+   color, cabecera de sección como etiqueta de acento sobre línea,
+   y la sombra dura reservada a la foto principal. */
+.nsfcenit-px.nsfcenit-dynamic-widget{
+  background:var(--px-paper);
+  border-top:1px solid var(--px-rule);
+}
+.nsfcenit-px .nsfcenit-dynamic-news{ padding:48px var(--px-inset,32px) 52px; }
+.nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-section-title{
+  display:block;
+  width:100%;
+  background:none;
+  color:var(--px-accent);
+  font-family:var(--f-px-sans);
+  font-weight:600;
+  font-size:10.5px;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  padding:0 0 12px;
+  margin:0 0 28px;
+  border:0;
+  border-bottom:1px solid var(--px-ink);
+}
+.nsfcenit-px .nsfcenit-dynamic-grid{ gap:40px; }
+.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-side-card{
+  border-top:1px solid var(--px-rule);
+  padding:20px 0;
+  gap:20px;
+  grid-template-columns:120px minmax(0,1fr);
+}
+.nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-img{ width:120px; }
+.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-title{ font-size:17px; line-height:1.22; }
+.nsfcenit-px .nsfcenit-dynamic-main .nsfcenit-dynamic-title{ letter-spacing:-.028em; }
+/* Si el texto va superpuesto, la sombra dura pelearía con el
+   degradado: se retira y queda sólo cuando el texto va debajo. */
+.nsfcenit-scope.nsfcenit-px .nsfcenit-dynamic-main.nsfcenit-dynamic-overlay .nsfcenit-dynamic-img{
+  box-shadow:none;
+}
+
+
+/* ── FILA DE NOTAS EDITORIAL, al estilo actual ──────────────
+   Deja el filete grueso superior y pasa a separarse por aire,
+   con la firma en grotesca y el distintivo de opinión reducido
+   a un punto de acento. */
+.nsfcenit-px .nsfcenit-news-row-grid{
+  padding:48px var(--px-inset,32px) 0;
+  gap:36px;
+}
+.nsfcenit-px .nsfcenit-news-row-card{
+  border-top:1px solid var(--px-ink);
+  padding:20px 0 0;
+}
+.nsfcenit-px .nsfcenit-news-row-title{
+  font-size:var(--px-card);
+  line-height:1.22;
+  letter-spacing:-.018em;
+  margin:0 0 14px;
+}
+.nsfcenit-px .nsfcenit-news-row-author{
+  font-family:var(--f-px-sans);
+  font-weight:600;
+  font-size:10.5px;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--px-muted);
+  margin:0 0 18px;
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+.nsfcenit-px .nsfcenit-news-row-author strong{ color:var(--px-accent); font-weight:600; }
+.nsfcenit-px .nsfcenit-opinion-dot{
+  width:9px; height:9px;
+  flex:0 0 auto;
+  border:0;
+  border-radius:50%;
+  background:var(--px-accent);
+  margin:0;
+  clip-path:none;
+}
+.nsfcenit-px .nsfcenit-news-row-img img,
+.nsfcenit-px .nsfcenit-news-row-img .card-img{ aspect-ratio:3 / 2; }
+
+
+/* ── LIVE BAR + TRENDS, al estilo actual ────────────────────
+   Dos tiras finas que coronan la página. La de EN VIVO en tinta
+   plena para que corte, la de tendencias en papel con el rótulo
+   en acento. Sin biseles ni damero: son piezas de servicio y
+   tienen que leerse de un vistazo. */
+.nsfcenit-px.nsfcenit-live-trends-widget{ background:var(--px-paper); }
+
+.nsfcenit-px .live-bar{
+  background:var(--px-ink);
+  border-bottom:0;
+  color:var(--px-paper);
+}
+.nsfcenit-px .live-bar-inner{
+  display:flex; align-items:center; gap:16px;
+  min-height:46px;
+  padding:8px 0;
+}
+.nsfcenit-px .fm-badge{
+  display:inline-flex; flex-direction:column; align-items:flex-start;
+  gap:1px;
+  padding:5px 11px;
+  background:var(--px-accent);
+  color:var(--px-paper);
+  font-family:var(--f-px-bit);
+  font-size:10px; line-height:1;
+  letter-spacing:.1em; text-transform:uppercase;
+}
+.nsfcenit-px .fm-badge small{
+  font-family:var(--f-px-sans);
+  font-size:8.5px; font-weight:600;
+  letter-spacing:.14em;
+  opacity:.8;
+}
+.nsfcenit-px .nsfcenit-live-main-link{
+  display:flex; align-items:center; gap:14px;
+  flex:1; min-width:0;
+  color:inherit;
+}
+.nsfcenit-px .live-status{
+  display:inline-flex; align-items:center; gap:7px;
+  flex:0 0 auto;
+  font-family:var(--f-px-sans);
+  font-weight:600; font-size:10.5px;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--px-amber);
+}
+.nsfcenit-px .live-status .dot{
+  width:7px; height:7px; border-radius:50%;
+  background:var(--px-amber);
+  animation:none;
+}
+.nsfcenit-px .live-title{
+  flex:1; min-width:0;
+  font-family:var(--f-px-sans);
+  font-weight:700; font-size:15px;
+  letter-spacing:-.01em;
+  color:var(--px-paper);
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;
+}
+.nsfcenit-px .live-time{
+  flex:0 0 auto;
+  font-family:var(--f-px-sans);
+  font-weight:600; font-size:10px;
+  letter-spacing:.12em; text-transform:uppercase;
+  color:rgba(243,242,238,.6);
+}
+.nsfcenit-px .live-chevron{
+  flex:0 0 auto;
+  color:var(--px-accent-l);
+  font-size:18px; line-height:1;
+}
+
+.nsfcenit-px .trends-bar{
+  background:var(--px-paper);
+  border-bottom:1px solid var(--px-rule);
+}
+.nsfcenit-px .trends-bar-inner{
+  display:flex; align-items:center; gap:18px;
+  min-height:42px;
+  padding:6px 0;
+}
+.nsfcenit-px .trends-label{
+  display:inline-flex; align-items:center; gap:7px;
+  flex:0 0 auto;
+  font-family:var(--f-px-sans);
+  font-weight:600; font-size:10.5px;
+  letter-spacing:.14em; text-transform:uppercase;
+  color:var(--px-accent);
+}
+.nsfcenit-px .trends-label .bolt{ width:13px; height:13px; fill:currentColor; }
+/* Los temas se desplazan en horizontal sin barra visible: en una
+   tira de servicio el scroll no debe ocupar alto. */
+.nsfcenit-px .trends-items{
+  display:flex; align-items:center; gap:0 22px;
+  flex:1; min-width:0;
+  overflow-x:auto;
+  scrollbar-width:none;
+  white-space:nowrap;
+}
+.nsfcenit-px .trends-items::-webkit-scrollbar{ display:none; }
+.nsfcenit-px .trends-items a{
+  flex:0 0 auto;
+  font-family:var(--f-px-sans);
+  font-weight:600; font-size:13px;
+  letter-spacing:-.005em;
+  color:var(--px-slate);
+  padding:4px 0;
+  border-bottom:2px solid transparent;
+  transition:color 160ms ease, border-color 160ms ease;
+}
+.nsfcenit-px .trends-items a:hover{ color:var(--px-ink); border-bottom-color:var(--px-accent); }
+.nsfcenit-px .trends-items a.live-item{ color:var(--px-amber); }
+
+@media (max-width:767px){
+  .nsfcenit-scope.nsfcenit-px .dual-grid{ gap:20px; }
+  .nsfcenit-px .nsfcenit-dynamic-news{ padding:28px 18px 32px; }
+  .nsfcenit-px .nsfcenit-dynamic-grid{ gap:24px; }
+  .nsfcenit-px .nsfcenit-news-row-grid{ padding:28px 18px 0; gap:24px; }
+  .nsfcenit-px .live-bar-inner{ gap:10px; min-height:40px; }
+  .nsfcenit-px .live-time,
+  .nsfcenit-px .live-chevron{ display:none; }
+  .nsfcenit-px .live-title{ font-size:13.5px; }
+  .nsfcenit-px .trends-bar-inner{ gap:12px; }
+  .nsfcenit-px .trends-items{ gap:0 16px; }
+  .nsfcenit-px .trends-items a{ font-size:12px; }
+}

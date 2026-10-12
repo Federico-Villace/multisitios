@@ -104,7 +104,7 @@ class Live_Trends extends Widget_Base {
         $fm_url = ! empty( $s['fm_url']['url'] ) ? $s['fm_url']['url'] : '';
         $live_url = ! empty( $s['live_url']['url'] ) ? $s['live_url']['url'] : '';
         ?>
-        <div class="nsfcenit-scope nsfcenit-live-trends-widget">
+        <div class="nsfcenit-scope nsfcenit-px nsfcenit-live-trends-widget">
             <?php if ( 'yes' === ( $s['show_live_bar'] ?? 'yes' ) ) : ?>
             <div class="live-bar"><div class="container"><div class="live-bar-inner">
                 <?php $badge = '<span class="fm-badge">' . esc_html( $s['fm_brand'] ?: 'Cenit' ) . '<small>' . esc_html( $s['fm_small'] ?: 'FM 102.3' ) . '</small></span>'; echo $fm_url ? '<a href="' . esc_url( $fm_url ) . '">' . $badge . '</a>' : $badge; ?>
