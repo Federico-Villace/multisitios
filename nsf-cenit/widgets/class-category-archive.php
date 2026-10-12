@@ -23,6 +23,8 @@ class Category_Archive extends Widget_Base {
         $this->add_control( 'show_author', [ 'label' => esc_html__( 'Mostrar autor', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => 'yes' ] );
         $this->add_control( 'author_prefix', [ 'label' => esc_html__( 'Prefijo autor', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::TEXT, 'default' => esc_html__( 'Por', 'nsfcenit-widgets' ), 'condition' => [ 'show_author' => 'yes' ] ] );
         $this->add_control( 'show_date', [ 'label' => esc_html__( 'Mostrar fecha', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => '' ] );
+        $this->add_control( 'show_pagination', [ 'label' => esc_html__( 'Mostrar paginado', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SWITCHER, 'return_value' => 'yes', 'default' => 'yes' ] );
+        $this->add_control( 'pagination_align', [ 'label' => esc_html__( 'Alineación del paginado', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::CHOOSE, 'default' => 'center', 'options' => [ 'flex-start' => [ 'title' => esc_html__( 'Izquierda', 'nsfcenit-widgets' ), 'icon' => 'eicon-text-align-left' ], 'center' => [ 'title' => esc_html__( 'Centro', 'nsfcenit-widgets' ), 'icon' => 'eicon-text-align-center' ], 'flex-end' => [ 'title' => esc_html__( 'Derecha', 'nsfcenit-widgets' ), 'icon' => 'eicon-text-align-right' ] ], 'condition' => [ 'show_pagination' => 'yes' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-pagination' => 'justify-content: {{VALUE}};' ] ] );
         $this->end_controls_section();
 
         $this->start_controls_section( 'style_header', [ 'label' => esc_html__( 'Encabezado', 'nsfcenit-widgets' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
@@ -36,7 +38,7 @@ class Category_Archive extends Widget_Base {
         $this->add_responsive_control( 'item_gap', [ 'label' => esc_html__( 'Separación', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'size_units' => [ 'px' ], 'range' => [ 'px' => [ 'min' => 0, 'max' => 80 ] ], 'default' => [ 'size' => 18, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .cat-list' => 'gap: {{SIZE}}{{UNIT}};' ] ] );
         $this->add_responsive_control( 'image_width', [ 'label' => esc_html__( 'Ancho imagen lista', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'size_units' => [ 'px', '%' ], 'range' => [ 'px' => [ 'min' => 80, 'max' => 520 ], '%' => [ 'min' => 20, 'max' => 60 ] ], 'default' => [ 'size' => 220, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .cat-list' => '--px-archive-img: {{SIZE}}{{UNIT}};' ], 'condition' => [ 'layout' => 'list' ] ] );
         $this->add_responsive_control( 'image_ratio', [ 'label' => esc_html__( 'Proporción imagen', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '1/1', 'options' => [ '1/1' => '1:1', '4/3' => '4:3', '16/9' => '16:9', '3/2' => '3:2' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-archive-img' => 'aspect-ratio: {{VALUE}};' ] ] );
-        $this->add_responsive_control( 'grid_columns', [ 'label' => esc_html__( 'Columnas grilla', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 1, 'max' => 5, 'default' => 2, 'selectors' => [ '{{WRAPPER}} .cat-list.layout-grid' => 'grid-template-columns: repeat({{VALUE}}, minmax(0, 1fr));' ], 'condition' => [ 'layout' => 'grid' ] ] );
+        $this->add_responsive_control( 'grid_columns', [ 'label' => esc_html__( 'Columnas de la grilla', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::NUMBER, 'min' => 1, 'max' => 6, 'default' => 3, 'tablet_default' => 2, 'mobile_default' => 1, 'description' => esc_html__( 'Sólo aplica al layout Grilla. En un archivo conviene 3 o 4: la vista tiene que ser panorámica.', 'nsfcenit-widgets' ), 'selectors' => [ '{{WRAPPER}} .cat-list' => '--px-grid-cols: {{VALUE}};' ], 'condition' => [ 'layout' => 'grid' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'item_title_typo', 'selector' => '{{WRAPPER}} .card-title' ] );
         $this->add_control( 'item_title_color', [ 'label' => esc_html__( 'Color título', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .card-title, {{WRAPPER}} .card-title a' => 'color: {{VALUE}};' ] ] );
         $this->add_control( 'item_title_hover_color', [ 'label' => esc_html__( 'Título hover', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'default' => '#2f6f5e', 'selectors' => [ '{{WRAPPER}} .card-title a:hover' => 'color: {{VALUE}};' ] ] );
@@ -75,7 +77,22 @@ class Category_Archive extends Widget_Base {
     protected function render() {
         $s = $this->get_settings_for_display();
         global $wp_query;
-        $query = ( 'yes' === ( $s['use_archive_query'] ?? '' ) && ( is_archive() || is_home() ) ) ? $wp_query : $this->build_query( $s );
+        /* El número de página sale de `paged` en archivos y de `page` en una
+           portada estática: hay que mirar las dos o el paginado no avanza. */
+        $paged = max( 1, (int) get_query_var( 'paged' ), (int) get_query_var( 'page' ) );
+        $use_archive = 'yes' === ( $s['use_archive_query'] ?? '' ) && ( is_archive() || is_home() );
+        if ( $use_archive ) {
+            $query = $wp_query;
+        } else {
+            /* `build_query` devuelve la consulta ya ejecutada y sin paginar.
+               Se reaprovechan sus argumentos y se le agrega la página, así
+               no hay que duplicar la lógica de filtros y orden. */
+            $base = $this->build_query( $s );
+            $args = $base->query_vars;
+            $args['paged'] = $paged;
+            wp_reset_postdata();
+            $query = new \WP_Query( $args );
+        }
         $term = is_category() ? get_queried_object() : null;
         $ids = [];
         if ( $query && $query->have_posts() ) {
@@ -95,6 +112,24 @@ class Category_Archive extends Widget_Base {
                     <p><?php echo esc_html__( 'No hay notas para mostrar.', 'nsfcenit-widgets' ); ?></p>
                 <?php endif; ?>
             </section>
+            <?php
+            if ( 'yes' === ( $s['show_pagination'] ?? 'yes' ) && $query && $query->max_num_pages > 1 ) :
+                $links = paginate_links( [
+                    'total'     => (int) $query->max_num_pages,
+                    'current'   => $paged,
+                    'type'      => 'array',
+                    'mid_size'  => 1,
+                    'end_size'  => 1,
+                    'prev_text' => '&lsaquo;',
+                    'next_text' => '&rsaquo;',
+                ] );
+                if ( $links ) : ?>
+                    <nav class="nsfcenit-pagination" aria-label="<?php echo esc_attr__( 'Paginación', 'nsfcenit-widgets' ); ?>">
+                        <?php foreach ( $links as $link ) { echo wp_kses_post( $link ); } ?>
+                    </nav>
+                <?php endif;
+            endif;
+            ?>
         </div></div>
         <?php
     }

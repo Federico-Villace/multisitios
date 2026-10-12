@@ -5895,3 +5895,96 @@ body.nsfcenit-drawer-open, body.nsfcenit-search-open{overflow:hidden!important;}
   .nsfcenit-px.nsfcenit-mostread-widget .rank-num{ font-size:22px; }
   .nsfcenit-px.nsfcenit-mostread-widget .side-block{ box-shadow:3px 3px 0 var(--px-ink); }
 }
+
+
+/* ============================================================
+   CENIT · v2.5 — PAGINADO DEL ARCHIVO
+   ------------------------------------------------------------
+   `paginate_links()` emite `<a class="page-numbers">` para las
+   páginas, `<span class="page-numbers current">` para la actual y
+   `<span class="page-numbers dots">` para los puntos. Se estilan
+   los tres estados con el mismo lenguaje que el resto: filete de
+   1px, sin radio, y la página actual invertida en tinta plena.
+   ============================================================ */
+.nsfcenit-px .nsfcenit-pagination{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-top:40px;
+  padding-top:28px;
+  border-top:1px solid var(--px-rule);
+}
+.nsfcenit-px .nsfcenit-pagination .page-numbers{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:40px;
+  height:40px;
+  padding:0 12px;
+  border:1px solid var(--px-rule);
+  border-radius:0;
+  background:none;
+  font-family:var(--f-px);
+  font-weight:600;
+  font-size:13px;
+  letter-spacing:.06em;
+  line-height:1;
+  color:var(--px-ink);
+  transition:background 160ms ease, color 160ms ease, border-color 160ms ease;
+}
+.nsfcenit-px .nsfcenit-pagination a.page-numbers:hover{
+  background:var(--px-accent);
+  border-color:var(--px-accent);
+  color:var(--px-paper);
+}
+/* La página actual se invierte: en una lista de números, el relleno
+   dice dónde estás más rápido que un subrayado. */
+.nsfcenit-px .nsfcenit-pagination .page-numbers.current{
+  background:var(--px-ink);
+  border-color:var(--px-ink);
+  color:var(--px-paper);
+}
+/* Los puntos no son un botón: sin marco ni caja clickeable */
+.nsfcenit-px .nsfcenit-pagination .page-numbers.dots{
+  border:0;
+  min-width:0;
+  padding:0 4px;
+  color:var(--px-muted);
+}
+/* Anterior y siguiente, un punto más grandes y en acento */
+.nsfcenit-px .nsfcenit-pagination .prev,
+.nsfcenit-px .nsfcenit-pagination .next{
+  font-size:19px;
+  color:var(--px-accent);
+  border-color:var(--px-rule);
+}
+
+@media (max-width:767px){
+  .nsfcenit-px .nsfcenit-pagination{
+    margin-top:28px;
+    padding-top:20px;
+    gap:6px;
+  }
+  .nsfcenit-px .nsfcenit-pagination .page-numbers{
+    min-width:36px; height:36px; padding:0 9px; font-size:12px;
+  }
+}
+
+/* El control de columnas pasa a emitir una variable.
+
+   La capa base fuerza una sola columna en móvil con `!important`, y eso
+   le gana a cualquier valor que escriba Elementor —el `!important` vence
+   a la especificidad—, así que el control quedaba muerto en ese
+   dispositivo. Con la variable, el valor viaja y la regla con
+   `!important` es la mía: el control vuelve a mandar en los tres
+   tamaños. */
+.nsfcenit-scope.nsfcenit-px .cat-list.layout-grid{
+  grid-template-columns:repeat(var(--px-grid-cols,3),minmax(0,1fr));
+}
+@media (max-width:767px){
+  .nsfcenit-scope.nsfcenit-px .cat-list.layout-grid{
+    grid-template-columns:repeat(var(--px-grid-cols,1),minmax(0,1fr))!important;
+  }
+}
