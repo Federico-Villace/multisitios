@@ -5775,3 +5775,123 @@ body.nsfcenit-drawer-open, body.nsfcenit-search-open{overflow:hidden!important;}
   .nsfcenit-px .post-card-date,
   .nsfcenit-px .note-date{ font-size:10.5px; letter-spacing:.11em; }
 }
+
+
+/* ============================================================
+   CENIT · v2.4 — DOS CORRECCIONES
+   ============================================================ */
+
+/* ── Fila editorial: el fondo le faltaba ────────────────────
+   Se estilaron la retícula y las fichas, pero nunca la raíz del
+   widget, así que la tira tomaba el fondo de lo que hubiera
+   detrás en lugar del papel de la identidad. */
+.nsfcenit-px.nsfcenit-row-widget{
+  background:var(--px-paper);
+}
+.nsfcenit-px .nsfcenit-news-row-grid{ background:none; }
+
+
+/* ── Sidebar Más Leídas: el marcado ya traía su numeración ──
+   Error propio: agregué un contador con `::before` sin revisar que
+   el marcado ya imprime el número en un `.rank-num`. Resultado:
+   doble numeración, y la grilla de dos columnas recibiendo TRES
+   hijos —el pseudo-elemento, el número real y el bloque de texto—
+   con lo que el texto se iba a una fila nueva y se colapsaba a una
+   palabra por renglón.
+
+   Antes de numerar con CSS hay que mirar si el PHP ya numera. */
+.nsfcenit-px.nsfcenit-mostread-widget li::before{ content:none; }
+
+.nsfcenit-px.nsfcenit-mostread-widget{ background:var(--px-paper); }
+.nsfcenit-px.nsfcenit-mostread-widget .home-side,
+.nsfcenit-px.nsfcenit-mostread-widget .side-block{
+  background:none; border:0; padding:0; margin:0; box-shadow:none;
+}
+/* El panel enmarcado va sobre .side-block, que es el contenedor real */
+.nsfcenit-px.nsfcenit-mostread-widget .side-block{
+  background:var(--px-paper);
+  border:1px solid var(--px-ink);
+  box-shadow:4px 4px 0 var(--px-ink);
+}
+.nsfcenit-px.nsfcenit-mostread-widget .side-head{
+  margin:0;
+  padding:14px 18px;
+  background:var(--px-ink);
+  color:var(--px-paper);
+  font-family:var(--f-px);
+  font-weight:600;
+  font-size:11px;
+  line-height:1;
+  letter-spacing:.17em;
+  text-transform:uppercase;
+}
+.nsfcenit-px.nsfcenit-mostread-widget .rank-list{
+  display:flex;
+  flex-direction:column;
+  counter-reset:none;
+  margin:0;
+  padding:4px 18px 18px;
+  list-style:none;
+}
+/* Dos columnas para los dos hijos que el marcado trae de verdad:
+   el número y el bloque de texto. Con aire, que estaba apretado. */
+.nsfcenit-px.nsfcenit-mostread-widget .rank-item{
+  display:grid;
+  grid-template-columns:38px minmax(0,1fr);
+  gap:16px;
+  align-items:start;
+  padding:18px 0;
+  margin:0;
+  border-top:1px solid var(--px-rule);
+  border-bottom:0;
+}
+.nsfcenit-px.nsfcenit-mostread-widget .rank-item:first-child{
+  border-top:0;
+  padding-top:16px;
+}
+.nsfcenit-px.nsfcenit-mostread-widget .rank-num{
+  font-family:var(--f-px);
+  font-weight:700;
+  font-size:26px;
+  line-height:.9;
+  letter-spacing:-.04em;
+  color:var(--px-accent);
+  display:block;
+}
+.nsfcenit-px.nsfcenit-mostread-widget .rank-item > div{ min-width:0; }
+.nsfcenit-px.nsfcenit-mostread-widget .rank-item .card-title{
+  font-family:var(--f-px);
+  font-weight:700;
+  font-size:16px;
+  line-height:1.26;
+  letter-spacing:-.015em;
+  text-transform:none;
+  color:var(--px-ink);
+  margin:0 0 7px;
+}
+.nsfcenit-px.nsfcenit-mostread-widget .rank-item .card-title a{ color:inherit; }
+.nsfcenit-px.nsfcenit-mostread-widget .rank-item .card-title a:hover{ color:var(--px-accent); }
+.nsfcenit-px.nsfcenit-mostread-widget .rank-item .card-byline{
+  font-family:var(--f-px);
+  font-weight:600;
+  font-size:10.5px;
+  line-height:1.5;
+  letter-spacing:.13em;
+  text-transform:uppercase;
+  color:var(--px-muted);
+  margin:0;
+  padding:0;
+  border:0;
+}
+
+@media (max-width:767px){
+  .nsfcenit-px.nsfcenit-mostread-widget .side-head{ padding:12px 14px; }
+  .nsfcenit-px.nsfcenit-mostread-widget .rank-list{ padding:4px 14px 14px; }
+  .nsfcenit-px.nsfcenit-mostread-widget .rank-item{
+    grid-template-columns:32px minmax(0,1fr);
+    gap:12px;
+    padding:14px 0;
+  }
+  .nsfcenit-px.nsfcenit-mostread-widget .rank-num{ font-size:22px; }
+  .nsfcenit-px.nsfcenit-mostread-widget .side-block{ box-shadow:3px 3px 0 var(--px-ink); }
+}
