@@ -64,7 +64,32 @@
       document.body.style.overflow = '';
     }
 
+    var inlineSearch = q(scope, '[data-nsfcenit-inline-search]');
+
+    /* Campo en linea: la lupa no abre un modal, despliega un input al lado.
+       Se resuelve alternando una clase; el ancho y la transicion los pone
+       el CSS, asi el comportamiento no depende de medidas escritas aca. */
+    function toggleInlineSearch(force) {
+      if (!inlineSearch) return false;
+      var willOpen = (typeof force === 'boolean')
+        ? force
+        : !inlineSearch.classList.contains('is-open');
+      inlineSearch.classList.toggle('is-open', willOpen);
+      if (searchOpen) searchOpen.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+      var inp = inlineSearch.querySelector('input[type="search"]');
+      if (inp) {
+        /* El campo sale del orden de tabulacion mientras esta cerrado: un
+           input invisible pero enfocable es una trampa para el teclado. */
+        inp.setAttribute('tabindex', willOpen ? '0' : '-1');
+        if (willOpen) { try { inp.focus(); } catch (e) {} }
+      }
+      return true;
+    }
+
     function openSearchModal() {
+      if (searchMode === 'inline') {
+        if (toggleInlineSearch()) return;
+      }
       if (searchMode === 'trigger_ivory') {
         if (openIvorySearchFallback()) return;
       }
@@ -111,7 +136,15 @@
       if (e.key === 'Escape') {
         if (drawer && drawer.classList.contains('is-open')) closeDrawer();
         if (searchModal && searchModal.classList.contains('is-open')) closeSearchModal();
+        if (inlineSearch && inlineSearch.classList.contains('is-open')) toggleInlineSearch(false);
       }
+    });
+
+    /* Un campo desplegado que no se cierra al clickear afuera queda
+       trabado y tapando la navegacion. */
+    document.addEventListener('click', function (e) {
+      if (!inlineSearch || !inlineSearch.classList.contains('is-open')) return;
+      if (!inlineSearch.contains(e.target)) toggleInlineSearch(false);
     });
 
     var views = {

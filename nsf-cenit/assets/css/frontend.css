@@ -6147,3 +6147,95 @@ body.nsfcenit-drawer-open, body.nsfcenit-search-open{overflow:hidden!important;}
   .nsfcenit-px .note-body blockquote{ padding:18px 16px; font-size:18px; text-align:left; }
   .nsfcenit-px .note-body blockquote footer{ text-align:left; }
 }
+
+
+/* ============================================================
+   CENIT · v2.7 — BUSCADOR EN LÍNEA
+   ------------------------------------------------------------
+   La lupa deja de abrir el modal de Ivory Search y despliega un
+   campo al lado, en el propio cabezal. El modal tapaba la página
+   entera para pedir una sola línea de texto: demasiada ceremonia
+   para lo que es.
+
+   El campo se abre creciendo en ancho, no apareciendo de golpe:
+   así se entiende de dónde salió y a qué botón pertenece.
+   ============================================================ */
+.nsfcenit-px .header-search{
+  display:inline-flex;
+  align-items:center;
+  gap:0;
+}
+.nsfcenit-px .header-search-form{
+  display:block;
+  overflow:hidden;
+  width:0;
+  transition:width 260ms cubic-bezier(.2,.8,.3,1), margin-left 260ms cubic-bezier(.2,.8,.3,1);
+  margin-left:0;
+}
+.nsfcenit-px .header-search.is-open .header-search-form{
+  width:clamp(180px,22vw,280px);
+  margin-left:8px;
+}
+.nsfcenit-px .header-search-form input[type="search"]{
+  width:100%;
+  height:36px;
+  padding:0 12px;
+  border:1px solid var(--px-ink);
+  border-radius:0;
+  background:var(--px-paper);
+  color:var(--px-ink);
+  font-family:var(--f-px);
+  font-weight:600;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  outline:0;
+  /* Quita la cruz de limpiar que Safari agrega y descoloca el campo */
+  appearance:none;
+  -webkit-appearance:none;
+}
+.nsfcenit-px .header-search-form input[type="search"]::-webkit-search-cancel-button{ display:none; }
+.nsfcenit-px .header-search-form input::placeholder{
+  color:var(--px-muted);
+  letter-spacing:.1em;
+}
+.nsfcenit-px .header-search-form input:focus{ border-color:var(--px-accent); }
+/* La lupa queda marcada mientras el campo está abierto, para que se
+   lea como un estado y no como un botón suelto. */
+.nsfcenit-px .header-search.is-open .header-icon-btn[data-nsfcenit-search-open]{
+  background:var(--px-ink);
+  border-color:var(--px-ink);
+  color:var(--px-paper);
+}
+
+@media (max-width:1024px){
+  /* En tablet y móvil el cabezal no tiene ancho para un campo al lado:
+     se despliega debajo, a todo el ancho de la fila. */
+  .nsfcenit-px .header-search{ position:relative; }
+  .nsfcenit-px .header-search-form{
+    position:absolute;
+    top:calc(100% + 10px);
+    right:0;
+    width:auto;
+    min-width:0;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity 200ms ease;
+    margin:0;
+    z-index:40;
+  }
+  .nsfcenit-px .header-search.is-open .header-search-form{
+    width:min(74vw,320px);
+    opacity:1;
+    pointer-events:auto;
+    margin:0;
+  }
+  .nsfcenit-px .header-search-form input[type="search"]{
+    height:42px;
+    box-shadow:0 6px 18px rgba(25,29,28,.14);
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  .nsfcenit-px .header-search-form{ transition:none; }
+}
