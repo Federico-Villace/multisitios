@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Cenit · Widgets Elementor
- * Description: Identidad Cenit — lenguaje de 8 bits aplicado a la interfaz, no al contenido: esquinas escalonadas, trama de damero, retícula de 8px y paleta sobria de verdigrís.
- * Version: 2.0.0
+ * Description: Identidad Cenit — estructura moderna con rastros de 8 bits: logo bitmap, acento verdigris y sombras duras en las fotos jerárquicas. Tipografía grande y mucho aire.
+ * Version: 2.1.0
  * Author: Connotar
  * Text Domain: nsfcenit-widgets
  * Requires Plugins: elementor
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-define( 'NSFCENIT_VERSION', '2.0.0' );
+define( 'NSFCENIT_VERSION', '2.1.0' );
 define( 'NSFCENIT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'NSFCENIT_URL', plugin_dir_url( __FILE__ ) );
 

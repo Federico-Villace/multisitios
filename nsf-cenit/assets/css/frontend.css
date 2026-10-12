@@ -4783,3 +4783,570 @@ body.nsfcenit-drawer-open, body.nsfcenit-search-open{overflow:hidden!important;}
   .nsfcenit-px.nsfcenit-category-grid-posts .post-card:hover .post-card-img,
   .nsfcenit-px.nsfcenit-grid-news .card:hover > a:first-child{ transform:none; }
 }
+
+
+/* ============================================================
+   CENIT · v2.1 — ESTRUCTURA MODERNA
+   ------------------------------------------------------------
+   Giro de dirección. La v2.0 llevaba el lenguaje de 8 bits a casi
+   todas las piezas: biseles por todas partes, damero en las tiras,
+   bitmap en cada etiqueta y transiciones a saltos. Leía como una
+   interfaz retro antes que como un portal de noticias.
+
+   Acá el 8 bits queda reducido a TRES rastros —el logo, el acento
+   verdigrís y una sombra dura en las fotos jerárquicas— y el resto
+   pasa a una estructura contemporánea: más aire, tipografía más
+   grande, menos filetes y la jerarquía puesta en el cuerpo de la
+   letra en lugar de en los marcos.
+
+   Un detalle vale más que diez: el gesto retro funciona cuando es
+   excepción, no cuando es norma.
+   ============================================================ */
+
+.nsfcenit-scope.nsfcenit-px,
+.nsfcenit-px{
+  /* Escala tipográfica más grande y con más salto entre niveles */
+  --px-h1:   clamp(32px,4.6vw,62px);
+  --px-h2:   clamp(24px,2.9vw,40px);
+  --px-h3:   clamp(19px,2.1vw,27px);
+  --px-card: 18.5px;
+  --px-body: 18px;
+  --px-lead: 20px;
+  --px-label: 10.5px;
+
+  --px-notch: 0px;    /* el bisel se retira del uso general */
+}
+
+/* El bisel queda SÓLO en el logo y en el botón del buscador. En las
+   fotos pasaba a ser ruido: ocho esquinas cortadas en cada miniatura
+   de una retícula leen como defecto, no como estilo. */
+.nsfcenit-px .post-card-img,
+.nsfcenit-px .nsfcenit-archive-img,
+.nsfcenit-px .nsfcenit-dynamic-img,
+.nsfcenit-px .nsfcenit-latest-thumb,
+.nsfcenit-px .nsfcenit-news-row-img,
+.nsfcenit-px .note-figure,
+.nsfcenit-px.nsfcenit-grid-news .card > a:first-child{
+  clip-path:none;
+  border-radius:0;
+}
+
+/* El damero se retira de las tiras del cabezal y del pie: queda sólo
+   como relleno de las fotos que faltan, donde cumple una función. */
+.nsfcenit-px .site-header::before,
+.nsfcenit-px .nsfcenit-footer-pro::before{ display:none; content:none; }
+.nsfcenit-px .nsfcenit-latest-head span{
+  background-image:none;
+  background:rgba(243,242,238,.22);
+  height:1px;
+}
+
+/* Las transiciones dejan de saltar. El movimiento a pasos era el gesto
+   más agresivo de los cuatro y el que más envejecía la interfaz. */
+.nsfcenit-px .header-icon-btn,
+.nsfcenit-px .header-nav a,
+.nsfcenit-px .nsfcenit-cat-nav-list a,
+.nsfcenit-px .share-btn,
+.nsfcenit-px.nsfcenit-category-grid-posts .post-card-img,
+.nsfcenit-px.nsfcenit-grid-news .card > a:first-child{
+  transition:background 160ms ease, color 160ms ease, opacity 160ms ease, transform 160ms ease;
+}
+.nsfcenit-px .drawer{ transition:transform 300ms cubic-bezier(.2,.8,.3,1); }
+.nsfcenit-px .live-pill .dot,
+.nsfcenit-px .drawer-live-cta .dot{ animation:none; opacity:1; }
+
+/* La bitmap se repliega: queda en el logo, los kickers y las fechas.
+   En firmas, migas, títulos de columna y barra inferior pasa a una
+   grotesca con interletrado, que dice lo mismo sin disfraz. */
+.nsfcenit-px .note-breadcrumb,
+.nsfcenit-px .nsfcenit-footer-pro .footer-col h5,
+.nsfcenit-px .nsfcenit-footer-pro .footer-bottom,
+.nsfcenit-px .card-byline,
+.nsfcenit-px .author-name,
+.nsfcenit-px .nsfcenit-news-row-author,
+.nsfcenit-px .nsfcenit-dynamic-meta,
+.nsfcenit-px .note-figcaption,
+.nsfcenit-px .note-body blockquote footer,
+.nsfcenit-px .share-save,
+.nsfcenit-px .drawer-close,
+.nsfcenit-px .header-nav a,
+.nsfcenit-px .drawer-list li a,
+.nsfcenit-px .nsfcenit-cat-nav-list a,
+.nsfcenit-px .nsfcenit-cat-nav-title{
+  font-family:var(--f-px-sans);
+  font-weight:600;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.nsfcenit-px .note-figcaption,
+.nsfcenit-px .nsfcenit-footer-pro .footer-bottom p{
+  text-transform:none;
+  letter-spacing:.01em;
+  font-weight:400;
+}
+
+
+/* ============================================================
+   HEADER v2.1 — una sola banda, con aire
+   Se van las pestañas y la tira de damero. Queda el logo con su
+   marca de acento a la izquierda y la navegación en la misma fila,
+   con cuerpo grande y subrayado de acento al pasar.
+   ============================================================ */
+.nsfcenit-px .site-header{
+  background:var(--px-paper);
+  border-bottom:1px solid var(--px-rule);
+}
+.nsfcenit-px.nsfcenit-header-widget .site-header-inner{
+  grid-template-columns:auto minmax(0,1fr) auto;
+  grid-template-areas:
+    "brand nav status"
+    "brand nav icons";
+  align-items:center;
+  column-gap:40px;
+  row-gap:0;
+  padding:26px 0;
+}
+/* El logo pierde el bloque macizo: queda el wordmark en bitmap con una
+   barra de acento al costado. Es el único rastro tipográfico del 8 bits
+   y, al ser el único, se lee como marca en vez de como decorado. */
+.nsfcenit-px .brand{ gap:8px; }
+.nsfcenit-px .brand-logo{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  font-size:clamp(19px,2.2vw,27px);
+  letter-spacing:.1em;
+  color:var(--px-ink);
+  background:none;
+  padding:0;
+  box-shadow:none;
+  clip-path:none;
+}
+.nsfcenit-px .brand-logo::before{
+  content:"";
+  width:6px;
+  align-self:stretch;
+  min-height:1em;
+  background:var(--px-accent);
+}
+.nsfcenit-px .brand-slogan{ font-size:9px; letter-spacing:.26em; padding-left:18px; }
+
+/* La navegación comparte fila con el logo y gana cuerpo */
+.nsfcenit-px .header-nav{ grid-area:nav; width:100%; margin:0; }
+.nsfcenit-px .header-nav ul{
+  display:flex; flex-wrap:wrap; align-items:center;
+  gap:4px 28px;
+  margin:0; padding:0;
+}
+.nsfcenit-px .header-nav a{
+  position:relative;
+  display:block;
+  padding:6px 0;
+  background:none;
+  border:0;
+  clip-path:none;
+  font-size:12.5px;
+  letter-spacing:.11em;
+  color:var(--px-ink);
+}
+/* Subrayado que crece desde la izquierda, no un relleno */
+.nsfcenit-px .header-nav a::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:0;
+  height:3px;
+  background:var(--px-accent);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 180ms cubic-bezier(.2,.8,.3,1);
+}
+.nsfcenit-px .header-nav a:hover{ background:none; color:var(--px-accent); }
+.nsfcenit-px .header-nav a:hover::after{ transform:scaleX(1); }
+
+.nsfcenit-px .header-right{
+  grid-area:status;
+  justify-content:flex-end;
+  gap:14px;
+  padding:0;
+}
+.nsfcenit-px .header-icons{
+  grid-area:icons;
+  justify-self:end;
+  gap:6px;
+  padding:0;
+  border:0;
+}
+.nsfcenit-px .header-icon-btn{
+  width:36px; height:36px;
+  border:1px solid var(--px-rule);
+  background:none;
+}
+.nsfcenit-px .header-icon-btn:hover{ background:var(--px-ink); border-color:var(--px-ink); color:var(--px-paper); }
+.nsfcenit-px .header-icon-btn svg{ width:17px; height:17px; }
+.nsfcenit-px .header-date{ font-size:10px; letter-spacing:.14em; }
+.nsfcenit-px .live-pill{
+  background:none;
+  border:1px solid var(--px-amber);
+  color:var(--px-amber);
+  box-shadow:none;
+  padding:6px 11px;
+  letter-spacing:.14em;
+}
+.nsfcenit-px .live-pill .dot{ background:var(--px-amber); border-radius:50%; }
+.nsfcenit-px .club-pill{ border-width:1px; }
+
+@media (min-width:1025px){
+  .nsfcenit-px .header-icon-btn.is-burger{ display:none; }
+}
+@media (max-width:1024px){
+  .nsfcenit-px .header-nav{ display:none; }
+  .nsfcenit-px.nsfcenit-header-widget .site-header-inner{
+    grid-template-columns:auto minmax(0,1fr) auto;
+    grid-template-areas:"brand status icons";
+    column-gap:16px;
+    padding:18px 0;
+  }
+}
+
+
+/* ============================================================
+   FOOTER v2.1 — marca grande arriba, columnas abajo
+   Se va el damero y la marca sale de la fila horizontal apretada.
+   Queda el logo en cuerpo grande, la descripción debajo, y las
+   columnas separadas por aire en lugar de filetes.
+   ============================================================ */
+.nsfcenit-px .nsfcenit-footer-pro{
+  border-top-width:1px;
+  border-top-style:solid;
+}
+.nsfcenit-px .nsfcenit-footer-pro .nsfcenit-footer-main{
+  padding-top:16px;
+}
+.nsfcenit-px .nsfcenit-footer-pro .footer-brand{
+  display:block;
+  padding:0 0 40px;
+  margin-bottom:40px;
+  border-bottom:1px solid rgba(243,242,238,.14);
+}
+.nsfcenit-px .nsfcenit-footer-pro .footer-brand .brand-logo{
+  display:inline-flex;
+  align-items:center;
+  gap:14px;
+  font-size:clamp(22px,2.6vw,34px);
+  letter-spacing:.1em;
+  color:var(--px-paper);
+  background:none;
+  padding:0;
+  margin:0 0 18px;
+}
+.nsfcenit-px .nsfcenit-footer-pro .footer-brand .brand-logo::before{
+  content:"";
+  width:7px;
+  align-self:stretch;
+  min-height:1em;
+  background:var(--px-accent-l);
+}
+.nsfcenit-px .nsfcenit-footer-pro .footer-brand .brand-logo img{ max-width:160px; }
+.nsfcenit-px .nsfcenit-footer-pro .footer-brand p{
+  font-size:17px;
+  line-height:1.6;
+  max-width:52ch;
+  margin:0;
+  color:rgba(243,242,238,.72);
+}
+.nsfcenit-px .nsfcenit-footer-pro .footer-brand .footer-socials{ margin-top:24px; }
+.nsfcenit-px .nsfcenit-footer-pro .footer-socials a{
+  border-width:1px;
+  border-color:rgba(243,242,238,.22);
+  font-family:var(--f-px-sans);
+  font-size:11px;
+  font-weight:600;
+}
+.nsfcenit-px .nsfcenit-footer-pro .footer-col h5{
+  font-size:10.5px;
+  letter-spacing:.16em;
+  color:var(--px-accent-l);
+  border-bottom:0;
+  padding-bottom:0;
+  margin-bottom:16px;
+}
+.nsfcenit-px .nsfcenit-footer-pro .footer-col a{
+  font-size:16px;
+  line-height:1.4;
+  padding:7px 0;
+  color:rgba(243,242,238,.82);
+}
+.nsfcenit-px .nsfcenit-footer-pro .footer-col a:hover{ color:var(--px-accent-l); }
+.nsfcenit-px .nsfcenit-footer-pro .footer-bottom{
+  margin-top:40px;
+  padding-top:20px;
+  border-top-width:1px;
+}
+.nsfcenit-px .nsfcenit-footer-pro .footer-bottom p,
+.nsfcenit-px .nsfcenit-footer-pro .footer-bottom a{ font-size:12.5px; }
+
+
+/* ============================================================
+   HERO NOTICIAS — el titular manda, la foto acompaña
+   Entra a la identidad. La foto deja de ocupar media pantalla y
+   baja a poco más de un tercio, regulable desde el panel; el peso
+   lo lleva el titular, que es lo que define una tapa.
+   ============================================================ */
+.nsfcenit-px.nsfcenit-hero-news{
+  --px-hero-media:36%;
+  background:var(--px-paper);
+  padding:48px 0 44px;
+}
+.nsfcenit-px.nsfcenit-hero-news > .container{
+  max-width:var(--px-box,1280px);
+  margin-inline:auto;
+  padding-left:var(--px-inset,32px);
+  padding-right:var(--px-inset,32px);
+}
+.nsfcenit-px .nsfcenit-hero-grid{ grid-template-columns:minmax(0,1fr); gap:0; }
+
+/* Texto a la izquierda, foto a la derecha y contenida */
+.nsfcenit-px .nsfcenit-hero-main{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) var(--px-hero-media);
+  gap:40px;
+  align-items:center;
+  overflow:visible;
+  padding-bottom:40px;
+  border-bottom:1px solid var(--px-rule);
+}
+.nsfcenit-px .nsfcenit-hero-main > .nsfcenit-hero-main-media-link{ order:2; }
+.nsfcenit-px .nsfcenit-hero-main-content{
+  order:1;
+  margin:0; padding:0;
+  max-width:none;
+  text-align:left;
+  background:none; border:0;
+}
+.nsfcenit-px .nsfcenit-hero-main-media-link,
+.nsfcenit-px .nsfcenit-hero-side-media-link{
+  display:block;
+  background:var(--px-panel);
+  /* La única sombra dura que queda en el hero: marca la jerarquía de
+     la nota de tapa sin necesidad de agrandar la foto. */
+  box-shadow:8px 8px 0 var(--px-accent);
+}
+.nsfcenit-px .nsfcenit-hero-side-media-link{ box-shadow:none; }
+.nsfcenit-px .nsfcenit-hero-main-media,
+.nsfcenit-px .nsfcenit-hero-side-media,
+.nsfcenit-px .hero-img-real{ filter:none; }
+.nsfcenit-px .nsfcenit-hero-main-title,
+.nsfcenit-px .hero-title{
+  font-family:var(--f-px-sans);
+  font-weight:800;
+  font-size:var(--px-h1);
+  line-height:1.02;
+  letter-spacing:-.03em;
+  text-transform:none;
+  color:var(--px-ink);
+  margin:0 0 18px;
+  text-align:left;
+}
+.nsfcenit-px .nsfcenit-hero-main-title a:hover,
+.nsfcenit-px .hero-title a:hover{ color:var(--px-accent); }
+.nsfcenit-px .hero-sub{
+  font-family:var(--f-px-sans);
+  font-size:var(--px-lead);
+  line-height:1.5;
+  color:var(--px-slate);
+  margin:0 0 20px;
+  max-width:54ch;
+}
+.nsfcenit-px .hero-byline{
+  font-family:var(--f-px-bit);
+  font-size:9.5px;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--px-muted);
+  padding:14px 0 0;
+  border-top:1px solid var(--px-rule);
+  display:block;
+  margin:0;
+  max-width:28ch;
+}
+/* Nota única: el marcado ya trae el texto primero */
+.nsfcenit-px .hero{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) var(--px-hero-media);
+  gap:40px;
+  align-items:center;
+}
+.nsfcenit-px .hero > div{ order:1; margin:0; padding:0; max-width:none; text-align:left; background:none; border:0; }
+.nsfcenit-px .hero > .nsfcenit-hero-main-media-link{ order:2; }
+
+/* Secundarias: fila limpia bajo el filete, separadas por aire */
+.nsfcenit-px.nsfcenit-hero-secondary-side .nsfcenit-hero-side,
+.nsfcenit-px.nsfcenit-hero-secondary-bottom .nsfcenit-hero-side{
+  grid-auto-flow:column;
+  grid-auto-columns:minmax(0,1fr);
+  grid-template-columns:none;
+  gap:32px;
+  margin-top:36px;
+  padding-top:0;
+  border-top:0;
+}
+.nsfcenit-px .nsfcenit-hero-side-card{
+  padding:0;
+  border:0;
+  overflow:visible;
+}
+.nsfcenit-px .nsfcenit-hero-side-title{
+  font-family:var(--f-px-sans);
+  font-weight:800;
+  font-size:var(--px-card);
+  line-height:1.2;
+  letter-spacing:-.018em;
+  text-transform:none;
+  color:var(--px-ink);
+  margin:16px 0 0;
+}
+.nsfcenit-px .nsfcenit-hero-side-title::before{ content:none; }
+.nsfcenit-px .nsfcenit-hero-side-title a:hover{ color:var(--px-accent); }
+
+
+/* ============================================================
+   EL RESTO, ADAPTADO A LA ESCALA NUEVA
+   Si sólo crece el hero, la página se desarma: los titulares de
+   las retículas tienen que acompañar o la jerarquía se rompe.
+   ============================================================ */
+.nsfcenit-px.nsfcenit-category-grid-posts .nsfcenit-cat-grid-title,
+.nsfcenit-px.nsfcenit-grid-news .section-title{ font-size:var(--px-h3); }
+.nsfcenit-px.nsfcenit-category-grid-posts .nsfcenit-cat-grid-header,
+.nsfcenit-px.nsfcenit-grid-news .section-head{
+  border-bottom-width:1px;
+  border-bottom-color:var(--px-ink);
+  padding-bottom:12px;
+  margin-bottom:28px;
+}
+.nsfcenit-px.nsfcenit-category-grid-posts .post-card-title,
+.nsfcenit-px.nsfcenit-grid-news .card-title{ font-size:var(--px-card); line-height:1.2; }
+.nsfcenit-px.nsfcenit-category-grid-posts .post-card-excerpt{ font-size:15px; }
+.nsfcenit-px.nsfcenit-category-grid-posts .post-card-date,
+.nsfcenit-px.nsfcenit-grid-news .card-byline{
+  border-top-width:1px;
+  border-top-color:var(--px-rule);
+}
+.nsfcenit-px.nsfcenit-category-grid-posts .posts-grid > .post-card.feat{
+  border-bottom-width:1px;
+  padding-bottom:32px;
+}
+.nsfcenit-px.nsfcenit-category-grid-posts .posts-grid > .post-card.feat .post-card-img{
+  box-shadow:8px 8px 0 var(--px-accent);
+}
+.nsfcenit-px.nsfcenit-category-grid-posts .posts-grid > .post-card.feat .post-card-title{ font-size:var(--px-h2); }
+
+.nsfcenit-px .cat-title{ font-size:var(--px-h2); }
+.nsfcenit-px .cat-header{ border-bottom-width:1px; padding-bottom:16px; }
+.nsfcenit-px .cat-item .card-title{ font-size:var(--px-card); line-height:1.2; }
+.nsfcenit-px .cat-list.layout-list .cat-item{ border-bottom-width:1px; padding:20px 0; }
+.nsfcenit-px .nsfcenit-archive-excerpt{ font-size:15px; }
+.nsfcenit-px .cat-item.is-featured-archive{ border-bottom-width:1px; padding-bottom:32px; margin-bottom:28px; }
+.nsfcenit-px .cat-item.is-featured-archive .card-title{ font-size:var(--px-h2); }
+.nsfcenit-px .cat-item.is-featured-archive .nsfcenit-archive-img{ box-shadow:8px 8px 0 var(--px-accent); }
+
+.nsfcenit-px .nsfcenit-dynamic-section-title{
+  background:none;
+  color:var(--px-accent);
+  padding:0 0 12px;
+  border-bottom:1px solid var(--px-ink);
+  width:100%;
+  font-size:10.5px;
+  letter-spacing:.16em;
+  margin-bottom:28px;
+}
+.nsfcenit-px .nsfcenit-dynamic-main .nsfcenit-dynamic-title{ font-size:var(--px-h2); }
+.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-title{ font-size:var(--px-card); line-height:1.2; }
+.nsfcenit-px .nsfcenit-dynamic-excerpt{ font-size:16px; }
+.nsfcenit-px .nsfcenit-dynamic-side .nsfcenit-dynamic-side-card{ border-top-width:1px; }
+.nsfcenit-px .nsfcenit-dynamic-main .nsfcenit-dynamic-img{ box-shadow:8px 8px 0 var(--px-accent); }
+.nsfcenit-px.nsfcenit-dynamic-widget{ border-top-width:1px; border-top-color:var(--px-rule); }
+
+/* Los paneles de columna bajan el borde grueso y la sombra: con menos
+   marcos alrededor, ese peso quedaba desproporcionado. */
+.nsfcenit-px .nsfcenit-latest-box,
+.nsfcenit-px.nsfcenit-mostread-widget > div:first-child{
+  border-width:1px;
+  box-shadow:4px 4px 0 var(--px-ink);
+}
+.nsfcenit-px .nsfcenit-latest-item-title{ font-size:16px; }
+.nsfcenit-px .nsfcenit-latest-item.has-thumb .nsfcenit-latest-item-title{ font-size:17px; }
+.nsfcenit-px .nsfcenit-latest-item{ border-top-width:1px; }
+.nsfcenit-px.nsfcenit-mostread-widget li{ border-top-width:1px; }
+.nsfcenit-px.nsfcenit-mostread-widget li a{ font-size:16px; }
+.nsfcenit-px.nsfcenit-mostread-widget li::before{ font-size:19px; }
+
+.nsfcenit-px .nsfcenit-news-row-card{ border-top-width:1px; border-top-color:var(--px-ink); padding-top:18px; }
+.nsfcenit-px .nsfcenit-news-row-title{ font-size:var(--px-card); line-height:1.2; }
+.nsfcenit-px .nsfcenit-opinion-dot{ clip-path:none; border-radius:50%; border-width:1px; }
+
+.nsfcenit-px .nsfcenit-cat-nav-list a{
+  border-width:1px;
+  font-size:11px;
+  padding:10px 15px;
+}
+.nsfcenit-px .nsfcenit-cat-nav-list a:hover{ transform:none; box-shadow:none; }
+.nsfcenit-px .nsfcenit-cat-nav-title{ border-bottom-width:1px; font-size:10.5px; letter-spacing:.16em; }
+
+.nsfcenit-px .note-title{ font-size:var(--px-h1); line-height:1.02; }
+.nsfcenit-px .note-subtitle{ font-size:var(--px-lead); }
+.nsfcenit-px .note-body{ font-size:var(--px-body); border-image:none; border-top:1px solid var(--px-rule); }
+.nsfcenit-px .note-body > p:first-of-type{ font-size:19.5px; }
+.nsfcenit-px .note-body h2{ font-size:26px; }
+.nsfcenit-px .note-body h3{ font-size:20px; }
+.nsfcenit-px .note-breadcrumb{ border-bottom-width:1px; font-size:10.5px; }
+.nsfcenit-px .note-author-row{ border-width:1px; }
+.nsfcenit-px .share-row{ border-top-width:1px; border-bottom-width:1px; }
+.nsfcenit-px .share-btn{ border-width:1px; }
+.nsfcenit-px .share-save{ border-width:1px; font-size:10.5px; }
+.nsfcenit-px .note-figure{ box-shadow:8px 8px 0 var(--px-accent); }
+.nsfcenit-px .drawer{ border-bottom-width:1px; border-bottom-color:var(--px-ink); }
+.nsfcenit-px .drawer-top{ border-bottom-width:1px; }
+.nsfcenit-px .drawer-list li a{ border-width:1px; font-size:12px; }
+.nsfcenit-px .drawer-close{ border-width:1px; font-size:10.5px; }
+.nsfcenit-px .drawer-search-input input{ border-width:1px; }
+.nsfcenit-px .nsfcenit-search-modal__panel{ border-width:1px; box-shadow:10px 10px 0 var(--px-accent); }
+.nsfcenit-px .nsfcenit-search-modal__close{ border-width:2px; }
+.nsfcenit-px .nsfcenit-search-modal input[type="search"],
+.nsfcenit-px .nsfcenit-search-modal .is-search-input{ border-width:1px!important; }
+.nsfcenit-px .nsfcenit-search-modal .is-search-submit,
+.nsfcenit-px .nsfcenit-search-modal button[type="submit"]{ border-width:1px!important; }
+
+@media (max-width:1023px){
+  .nsfcenit-px .nsfcenit-hero-main,
+  .nsfcenit-px .hero{ gap:28px; }
+}
+
+@media (max-width:767px){
+  /* El hero se apila y la foto va primero: a un tercio de una pantalla
+     angosta queda del tamaño de una estampilla. */
+  .nsfcenit-px.nsfcenit-hero-news{ padding:28px 0 28px; }
+  .nsfcenit-px.nsfcenit-hero-news > .container{ padding-left:18px; padding-right:18px; }
+  .nsfcenit-px .nsfcenit-hero-main,
+  .nsfcenit-px .hero{ grid-template-columns:minmax(0,1fr); gap:20px; }
+  .nsfcenit-px .nsfcenit-hero-main > .nsfcenit-hero-main-media-link,
+  .nsfcenit-px .hero > .nsfcenit-hero-main-media-link{ order:1; }
+  .nsfcenit-px .nsfcenit-hero-main-content,
+  .nsfcenit-px .hero > div{ order:2; }
+  .nsfcenit-px .nsfcenit-hero-main{ padding-bottom:28px; }
+  .nsfcenit-px .nsfcenit-hero-main-media-link{ box-shadow:5px 5px 0 var(--px-accent); }
+  .nsfcenit-px.nsfcenit-hero-secondary-side .nsfcenit-hero-side,
+  .nsfcenit-px.nsfcenit-hero-secondary-bottom .nsfcenit-hero-side{
+    grid-auto-flow:row;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-auto-columns:auto;
+    gap:24px 18px;
+    margin-top:24px;
+  }
+  .nsfcenit-px .hero-byline{ max-width:none; }
+  .nsfcenit-px .nsfcenit-footer-pro .footer-brand{ padding-bottom:28px; margin-bottom:28px; }
+  .nsfcenit-px .note-figure,
+  .nsfcenit-px .nsfcenit-dynamic-main .nsfcenit-dynamic-img,
+  .nsfcenit-px .cat-item.is-featured-archive .nsfcenit-archive-img,
+  .nsfcenit-px.nsfcenit-category-grid-posts .posts-grid > .post-card.feat .post-card-img{
+    box-shadow:5px 5px 0 var(--px-accent);
+  }
+}

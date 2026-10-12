@@ -22,14 +22,24 @@ class Hero_News extends Widget_Base {
 
         $this->start_controls_section( 'style', [ 'label' => esc_html__( 'Estilo', 'nsfcenit-widgets' ), 'tab' => \Elementor\Controls_Manager::TAB_STYLE ] );
         $this->add_responsive_control( 'hero_gap', [ 'label' => esc_html__( 'Separación', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SLIDER, 'range' => [ 'px' => [ 'min' => 0, 'max' => 80 ] ], 'default' => [ 'size' => 24, 'unit' => 'px' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-hero-grid' => 'gap: {{SIZE}}{{UNIT}};' ] ] );
+        $this->add_responsive_control( 'media_width', [
+            'label' => esc_html__( 'Ancho de la foto principal', 'nsfcenit-widgets' ),
+            'type' => \Elementor\Controls_Manager::SLIDER,
+            'size_units' => [ '%' ],
+            'range' => [ '%' => [ 'min' => 22, 'max' => 60 ] ],
+            'default' => [ 'size' => 36, 'unit' => '%' ],
+            'tablet_default' => [ 'size' => 44, 'unit' => '%' ],
+            'description' => esc_html__( 'El titular manda: la foto acompaña y no al revés.', 'nsfcenit-widgets' ),
+            'selectors' => [ '{{WRAPPER}} .nsfcenit-hero-news' => '--px-hero-media: {{SIZE}}{{UNIT}};' ],
+        ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'title_typography', 'selector' => '{{WRAPPER}} .hero-title, {{WRAPPER}} .nsfcenit-hero-main-title' ] );
         $this->add_control( 'title_color', [ 'label' => esc_html__( 'Color título', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .hero-title, {{WRAPPER}} .hero-title a, {{WRAPPER}} .nsfcenit-hero-main-title, {{WRAPPER}} .nsfcenit-hero-main-title a' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'secondary_title_typography', 'label' => esc_html__( 'Título secundarias', 'nsfcenit-widgets' ), 'selector' => '{{WRAPPER}} .nsfcenit-hero-side-title' ] );
         $this->add_control( 'secondary_title_color', [ 'label' => esc_html__( 'Color títulos secundarios', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .nsfcenit-hero-side-title, {{WRAPPER}} .nsfcenit-hero-side-title a' => 'color: {{VALUE}};' ] ] );
         $this->add_group_control( \Elementor\Group_Control_Typography::get_type(), [ 'name' => 'excerpt_typography', 'selector' => '{{WRAPPER}} .hero-sub' ] );
         $this->add_control( 'excerpt_color', [ 'label' => esc_html__( 'Color bajada', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::COLOR, 'selectors' => [ '{{WRAPPER}} .hero-sub' => 'color: {{VALUE}};' ] ] );
-        $this->add_responsive_control( 'hero_image_ratio', [ 'label' => esc_html__( 'Proporción imagen principal', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '4/3', 'options' => [ '16/9' => '16:9', '4/3' => '4:3', '3/2' => '3:2', '1/1' => '1:1' ], 'selectors' => [ '{{WRAPPER}} .hero-img, {{WRAPPER}} .hero-img-real, {{WRAPPER}} .nsfcenit-hero-main-media' => 'aspect-ratio: {{VALUE}};' ] ] );
-        $this->add_responsive_control( 'side_image_ratio', [ 'label' => esc_html__( 'Proporción imágenes secundarias', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '16/9', 'options' => [ '16/9' => '16:9', '4/3' => '4:3', '3/2' => '3:2', '1/1' => '1:1' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-hero-side-media' => 'aspect-ratio: {{VALUE}};' ] ] );
+        $this->add_responsive_control( 'hero_image_ratio', [ 'label' => esc_html__( 'Proporción imagen principal', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '3/2', 'options' => [ '16/9' => '16:9', '4/3' => '4:3', '3/2' => '3:2', '1/1' => '1:1' ], 'selectors' => [ '{{WRAPPER}} .hero-img, {{WRAPPER}} .hero-img-real, {{WRAPPER}} .nsfcenit-hero-main-media' => 'aspect-ratio: {{VALUE}};' ] ] );
+        $this->add_responsive_control( 'side_image_ratio', [ 'label' => esc_html__( 'Proporción imágenes secundarias', 'nsfcenit-widgets' ), 'type' => \Elementor\Controls_Manager::SELECT, 'default' => '4/3', 'options' => [ '16/9' => '16:9', '4/3' => '4:3', '3/2' => '3:2', '1/1' => '1:1' ], 'selectors' => [ '{{WRAPPER}} .nsfcenit-hero-side-media' => 'aspect-ratio: {{VALUE}};' ] ] );
         $this->end_controls_section();
     }
 
@@ -51,7 +61,7 @@ class Hero_News extends Widget_Base {
         $author_byline = Helpers::author_byline( $main->ID, $s['author_prefix'] ?? __( 'Por', 'nsfcenit-widgets' ) );
         $layout_class = ( $count > 1 ) ? ' nsfcenit-hero-has-secondary nsfcenit-hero-secondary-' . sanitize_html_class( $s['secondary_layout'] ?? 'side' ) : ' nsfcenit-hero-single';
         ?>
-        <div class="nsfcenit-scope nsfcenit-hero-news<?php echo esc_attr( $layout_class ); ?>">
+        <div class="nsfcenit-scope nsfcenit-px nsfcenit-hero-news<?php echo esc_attr( $layout_class ); ?>">
             <div class="container">
                 <?php if ( 1 === $count ) : ?>
                     <article class="hero">

@@ -1,4 +1,4 @@
-# Cenit · Widgets Elementor v2.0.0
+# Cenit · Widgets Elementor v2.1.0
 
 Identidad **8 bits sobrios**: lenguaje de pixel art aplicado al envase de la
 interfaz, no al contenido.
@@ -24,6 +24,56 @@ en lugar de un portal de noticias. **Ese contraste es lo que lo mantiene serio.*
 Las transiciones usan `steps()` en lugar de curvas suaves: el movimiento salta,
 no se desliza. El canvas desplegable baja en ocho pasos y el punto de EN VIVO
 parpadea sin interpolar.
+
+## Giro de la v2.1 — estructura moderna
+
+La v2.0 llevaba el lenguaje de 8 bits a casi todas las piezas: biseles por todas
+partes, damero en las tiras, bitmap en cada etiqueta y transiciones a saltos.
+Leía como una interfaz retro antes que como un portal de noticias.
+
+**El gesto retro funciona cuando es excepción, no cuando es norma.** En la v2.1
+queda reducido a tres rastros:
+
+1. El **logo** en bitmap, con una barra de acento al costado.
+2. El **verdigrís** como único color de acento.
+3. Una **sombra dura** en las fotos jerárquicas —tapa, destacadas, nota— que
+   marca la jerarquía sin necesidad de agrandar la imagen.
+
+Todo lo demás pasa a estructura contemporánea: más aire, tipografía más grande,
+filetes de 1px en lugar de 2 y 3, y la jerarquía puesta en el **cuerpo de la
+letra** en vez de en los marcos. Se retiran los biseles de las fotos —ocho
+esquinas cortadas en cada miniatura de una retícula leen como defecto, no como
+estilo—, el damero de las tiras, y las transiciones a pasos, que eran el gesto
+más agresivo y el que más envejecía la interfaz.
+
+### Header
+Una sola banda con aire: logo con su barra de acento a la izquierda y la
+navegación en la misma fila, con cuerpo más grande y un subrayado de acento que
+crece desde la izquierda al pasar el cursor. Se fueron las pestañas y la tira de
+damero.
+
+### Footer
+La marca sale de la fila horizontal apretada: logo en cuerpo grande arriba,
+descripción debajo, y las columnas separadas por aire en lugar de filetes.
+
+### Hero Noticias
+Entra a la identidad. **El titular manda y la foto acompaña**, no al revés: la
+imagen baja de media pantalla a poco más de un tercio, regulable con el control
+*Ancho de la foto principal* (36% por defecto), y el peso lo lleva el titular,
+que es lo que define una tapa. Las secundarias van en una fila limpia bajo el
+filete, separadas por aire.
+
+### Escala
+| | |
+| --- | --- |
+| Titular de tapa y de nota | `clamp(32px, 4.6vw, 62px)` |
+| Destacadas y sección | `clamp(24px, 2.9vw, 40px)` |
+| Cabeceras de bloque | `clamp(19px, 2.1vw, 27px)` |
+| Titulares de ficha | `18.5px` |
+| Cuerpo | `18px` |
+
+Si sólo creciera el hero la página se desarmaría: los titulares de las retículas
+acompañan la escala nueva o la jerarquía se rompe.
 
 ## Paleta
 
